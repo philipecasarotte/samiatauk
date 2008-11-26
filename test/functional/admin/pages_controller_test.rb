@@ -1,15 +1,30 @@
-require File.dirname(__FILE__) + '/../../test_helper'
-require 'pages_controller'
+require 'test_helper'
+require 'admin/pages_controller'
 
-class PagesController; def rescue_action(e) raise e end; end
+class Admin::PagesController; def rescue_action(e) raise e end; end
 
 class Admin::PagesControllerTest < ActionController::TestCase
+
+  context "A user" do
+    
+    context "not logged in" do
+      setup do
+        logged_in = false
+        get :index
+      end
+
+      should_respond_with :redirect
+    end
+    
+  end
+
   context "At the Admin environment" do 
     
     setup do
       @controller = Admin::PagesController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
+      login_as(:quentin)
     end
 
     should "get index" do
@@ -60,6 +75,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
       @controller = Admin::PagesController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
+      login_as(:quentin)
     end
     
     should "give all children" do

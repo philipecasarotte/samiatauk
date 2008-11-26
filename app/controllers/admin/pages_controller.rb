@@ -1,4 +1,4 @@
-class Admin::PagesController < ResourceController::Base
+class Admin::PagesController < Admin::AdminController
   create.wants.html do 
     params[:page][:parent_id] ? redirect_to(admin_pages_path(:parent_id=>params[:page][:parent_id])) : redirect_to(admin_pages_path)
   end

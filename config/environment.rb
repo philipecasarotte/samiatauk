@@ -65,3 +65,14 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
+
+old_verbose = $VERBOSE
+$VERBOSE = nil
+
+SITE_NAME = '* PLACE SITE NAME HERE *'
+SITE_DOMAIN = 'CHANGEME.com'
+SITE_URL = "http://www.#{SITE_DOMAIN}/"
+SITE_EMAIL = "contact@#{SITE_DOMAIN}"
+SITE_META_KEYWORDS = ""
+
+$VERBOSE = old_verbose

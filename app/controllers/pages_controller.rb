@@ -1,4 +1,5 @@
 class PagesController < ResourceController::Base
+  
   actions :all, :except=>[:new, :create, :edit, :update, :destroy]
   
   show.wants.html { @pages = @page.children }
