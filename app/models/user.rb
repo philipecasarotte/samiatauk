@@ -1,6 +1,18 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  
+  has_and_belongs_to_many :roles
+  
+  # has_role? simply needs to return true or false whether a user has a role or not.  
+  # It may be a good idea to have "admin" roles return true always
+  def has_role?(role_in_question)
+    @roles_list ||= self.roles.collect(&:name).collect(&:downcase)
+    return true if @roles_list.include?("admin")
+    (@roles_list.include?(role_in_question.downcase.to_s))
+  end
+
+
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken

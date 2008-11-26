@@ -2,3 +2,4 @@ config/database.yml
 config/initializers/site_keys.rb
 log/*
 tmp/*
+db/schema.rb

@@ -16,6 +16,14 @@ class Admin::PagesControllerTest < ActionController::TestCase
       should_respond_with :redirect
     end
     
+    context "logged in but not authorized" do
+      setup do
+        login_as(:quentin)
+        get :index
+      end
+
+      should_respond_with :redirect
+    end
   end
 
   context "At the Admin environment" do 
@@ -24,7 +32,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
       @controller = Admin::PagesController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
-      login_as(:quentin)
+      login_as(:admin)
     end
 
     should "get index" do
@@ -75,7 +83,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
       @controller = Admin::PagesController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
-      login_as(:quentin)
+      login_as(:admin)
     end
     
     should "give all children" do

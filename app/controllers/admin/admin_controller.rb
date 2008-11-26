@@ -1,6 +1,9 @@
 class Admin::AdminController < ResourceController::Base
 
   include AuthenticatedSystem
+  include AuthorizedSystem
+
+  authorize_role "admin"
 
 	layout 'admin'
   before_filter :login_required
