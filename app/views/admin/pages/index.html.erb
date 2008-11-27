@@ -8,7 +8,7 @@
   <%- @pages.each do |page|%>
     <tr>
       <td><%=h page.title %></td>
-      <td><%=h page.body %></td>
+      <td><%= page.body.summary 80 %></td>
     
       <td><%=link_to 'Show', object_url(page) %></td>
       <td><%=link_to 'Edit', edit_object_url(page) %></td>

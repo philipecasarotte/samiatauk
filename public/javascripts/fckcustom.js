@@ -14,8 +14,13 @@ FCKConfig.AllowQueryStringDebug = false;
 FCKConfig.SpellChecker = 'SpellerPages';
 
 // ONLY CHANGE BELOW HERE
-FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/silver/';
+FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/default/';
 
+FCKConfig.ToolbarSets["Default"] = [
+	['FontFormat','Bold','Italic','Underline','-','OrderedList','UnorderedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','-','Link','Unlink','Anchor','-','Image','Flash','Table','Rule','-','PasteText','-','SelectAll','RemoveFormat', 'Source']
+] ;
+
+/*
 FCKConfig.ToolbarSets["Simple"] = [
 	['Source','-','-','Templates'],
 	['Cut','Copy','Paste','PasteWord','-','Print','SpellCheck'],
@@ -31,3 +36,4 @@ FCKConfig.ToolbarSets["Simple"] = [
 	['TextColor','BGColor'],
 	['-','About']
 ] ;
+*/

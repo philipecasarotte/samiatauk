@@ -3,24 +3,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>.:: <%= SITE_NAME %> ::. Admin</title>
+	<title>.:: <%= SITE_NAME %> ::.</title>
 
-	<%= stylesheet_link_tag "admin/default", "plugins/superfish" %>
+	<%= stylesheet_link_tag "defaut" %>
 
 	<link href="/images/favicon.ico" type="image/x-icon" rel="icon"/>
 	<link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
-	<%= javascript_include_tag :defaults, "plugins/superfish", "plugins/metadata", "plugins/validate", "admin/default" %>
-	<%= javascript_include_tag :fckeditor %>
+	<%= javascript_include_tag :defaults %>
 	<%= yield :head %>
 </head>
 <body>
-
-<%= render :partial=>"admin/layouts/info" if logged_in? %>
-
-<%= image_tag("admin/dbd.gif") %>
-
-<%= render :partial=>"admin/layouts/menu" if logged_in? %>
 
 <div id="content">
 	<% if flash[:notice] %>
@@ -31,7 +24,7 @@
 	<%= yield  %>
 </div>
 
-<div id="footer">Created by <%= link_to "DBurns Design", "http://www.dburnsdesign.com", :target => "_blank" %></div>
+<div id="footer">Created by <%= link_to 'DBurns Design', 'http://www.dburnsdesign.com', :target => '_blank' %></div>
 
 </body>
 </html>

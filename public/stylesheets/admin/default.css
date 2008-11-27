@@ -4,7 +4,7 @@ body {background: #FFF url('/images/admin/background.jpg') repeat-x; color:#fff;
 select option{padding:0 5px;}
 optgroup option{padding:0 20px;}
 
-.clear {clear:both;}
+.clear  {clear:both;}
 
 a       {color:#FF0000;text-decoration:none;font-weight:bold;}
 a:hover {color:#000;}
@@ -20,10 +20,12 @@ h2 {font-size:16px; margin: 0.3em 0; padding-top: 0.8em;}
 h3 {font-size:14px; padding-top: 1.5em;}
 h4 {font-weight: normal; padding-top: 0.5em;}
 
-th, td          {background-color:#F4F4F4; color:#333; padding:5px; text-align:left; font:12px Verdana, Arial, Tahoma, sans-serif;}
-th              {background-color:#393939; color:#FFF; text-align: center; min-width:200px;}
+th, td          {background-color:#F4F4F4; color:#333; padding:5px 8px; text-align:left; font:12px Verdana, Arial, Tahoma, sans-serif;}
+th              {background-color:#393939; color:#FFF; text-align: center; padding:5px 15px;}
 tr.altrow td    {background-color:#E4E4E4;}
-td.align        {text-align:center;}
+td.center       {text-align:center;}
+td.right        {text-align:right;}
+td.large        {min-width:250px;}
 
 dl              {line-height: 2em;margin: 0em 0em;width: 60%;}
 dl.altrow       {background: #f4f4f4;}
@@ -31,8 +33,13 @@ dt              {font-weight: bold;padding-left: 4px;vertical-align: top;}
 dd              {margin-left: 10em;margin-top: -2em;vertical-align: top;}
 
 label           {display:block;margin-top:5px;font-weight:bold;}
-
 form p span     {display:block;margin-bottom:5px;}
+form .submit    {margin-top:10px;}
+
+/* INFO */
+#info           {float:right; margin:20px 20px 50px 0;color:#FFCC00;text-align:right;}
+#info a         {color:#FFCC00;text-decoration:none;}
+#info a:hover   {text-decoration:underline;}
 
 /* MENU */
 #menu           {margin-top:10px;}
@@ -59,3 +66,5 @@ form p span     {display:block;margin-bottom:5px;}
 
 form ul 				{margin-left: 10px;}
 
+/* MESSAGES */
+label.error  {color:red; font-weight:normal;}

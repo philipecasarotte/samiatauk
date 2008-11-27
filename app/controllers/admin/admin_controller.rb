@@ -5,7 +5,7 @@ class Admin::AdminController < ResourceController::Base
 
   authorize_role "admin"
 
-	layout 'admin/layouts/admin'
+	layout "admin/layouts/admin"
 	
   before_filter :login_required
 
