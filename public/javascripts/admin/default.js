@@ -7,8 +7,4 @@ $(function (){
 		animation	: {opacity:"show"},
 		speed		: "normal"
 	});
-	// validate
-	$(".validate").each(function(){
-		$(this).validate();
-	});
 });

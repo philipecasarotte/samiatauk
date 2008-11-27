@@ -4,7 +4,7 @@ body {background: #FFF url('/images/admin/background.jpg') repeat-x; color:#fff;
 select option{padding:0 5px;}
 optgroup option{padding:0 20px;}
 
-.clear {clear:both;}
+.clear  {clear:both;}
 
 a       {color:#FF0000;text-decoration:none;font-weight:bold;}
 a:hover {color:#000;}
@@ -66,3 +66,5 @@ form .submit    {margin-top:10px;}
 
 form ul 				{margin-left: 10px;}
 
+/* MESSAGES */
+label.error  {color:red; font-weight:normal;}
