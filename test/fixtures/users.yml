@@ -3,6 +3,7 @@ quentin:
   id:                        1
   login:                     quentin
   email:                     quentin@example.com
+  name:                      quentin
   salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
   crypted_password:          cf4a54f7e22c27aa3ef58048d145f3acb7f0ab61 # 'monkey'
   created_at:                <%= 5.days.ago.to_s :db  %>
@@ -13,6 +14,7 @@ aaron:
   id:                        2
   login:                     aaron
   email:                     aaron@example.com
+  name:                      aaron
   salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
   crypted_password:          e858c8ce5ea5fc2d4c5463ab4f3d62a2538c5ef7 # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
@@ -34,6 +36,7 @@ admin:
   id: 4
   login: admin
   email: admin@example.com
+  name: daniel
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   # activation_code: adminscode # only if you're activating new signups

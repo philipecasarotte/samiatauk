@@ -41,6 +41,13 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  def test_should_require_name
+    assert_no_difference 'User.count' do
+      u = create_user(:name => nil)
+      assert u.errors.on(:name)
+    end
+  end
+
   def test_should_reset_password
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:quentin), User.authenticate('quentin', 'new password')
@@ -96,7 +103,7 @@ class UserTest < ActiveSupport::TestCase
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :name => 'Quire' }.merge(options))
     record.save
     record
   end
