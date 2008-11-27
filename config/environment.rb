@@ -64,6 +64,8 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+  REST_AUTH_SITE_KEY = 'ede55884819195de36d58a544cbc55891dad5ced4d0a2d11cce8a6ab8695c9c3146f72bdfa209e0240697e668a22accacb507a645f812e91ccc259e3d8b3c437'
+  REST_AUTH_DIGEST_STRETCHES = 3
 end
 
 old_verbose = $VERBOSE
@@ -76,3 +78,6 @@ SITE_EMAIL = "contact@#{SITE_DOMAIN}"
 SITE_META_KEYWORDS = ""
 
 $VERBOSE = old_verbose
+
+require 'order'
+require 'summary'

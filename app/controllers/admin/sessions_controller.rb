@@ -1,6 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class Admin::SessionsController < ApplicationController
 
+	layout "admin/layouts/admin"
+
   # render new.rhtml
   def new
   end

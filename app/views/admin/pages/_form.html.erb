@@ -1,25 +1,25 @@
 <p>
-	<%= f.label :metatag_title, "Metatag Title" %>
+	<%= f.label :metatag_title %>
 	<%= f.text_field :metatag_title %>
 </p>
 
 <p>
-	<%= f.label :metatag_keywords, "Metatag Keywords" %>
+	<%= f.label :metatag_keywords %>
 	<%= f.text_field :metatag_keywords %>
 </p>
 
 <p>
-	<%= f.label :metatag_description, "Metatag Description" %>
+	<%= f.label :metatag_description %>
 	<%= f.text_area :metatag_description %>
 </p>
 
 <p>
-  <label for="page_title">Title:</label>
+  <%= f.label :title %>
   <%= f.text_field :title %>
 </p>
 <p>
-  <label for="page_body">Body:</label>
-  <%= f.text_area :body %>
+  <%= f.label :body %>
+  <%= fckeditor_textarea "page", "body", :height => "400px" %>
 </p>
 
 <%= f.hidden_field :parent_id, :value=>params[:parent_id] %>
