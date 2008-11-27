@@ -67,9 +67,6 @@ Rails::Initializer.run do |config|
   old_verbose = $VERBOSE
   $VERBOSE = nil
 
-  REST_AUTH_SITE_KEY = 'ede55884819195de36d58a544cbc55891dad5ced4d0a2d11cce8a6ab8695c9c3146f72bdfa209e0240697e668a22accacb507a645f812e91ccc259e3d8b3c437'
-  REST_AUTH_DIGEST_STRETCHES = 3
-
   SITE_NAME = '* PLACE SITE NAME HERE *'
   SITE_DOMAIN = 'CHANGEME.com'
   SITE_URL = "http://www.#{SITE_DOMAIN}/"
