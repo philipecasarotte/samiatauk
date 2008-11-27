@@ -78,3 +78,6 @@ SITE_EMAIL = "contact@#{SITE_DOMAIN}"
 SITE_META_KEYWORDS = ""
 
 $VERBOSE = old_verbose
+
+require 'order'
+require 'summary'
