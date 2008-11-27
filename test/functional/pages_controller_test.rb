@@ -21,21 +21,35 @@ class PagesControllerTest < Test::Unit::TestCase
     end
     
     should "get show" do
-      get :show, :id=>pages(:home).permalink
+      get pages(:home).permalink
       assert assigns(:page)
     end
   
-    should "not get destructive actions" do
-      assert_raise(ActionController::UnknownAction) { post :create }
-      assert_raise(ActionController::UnknownAction) { post :update, :id=>pages(:home) }
-      assert_raise(ActionController::UnknownAction) { get :edit, :id=>pages(:home) }
-      assert_raise(ActionController::UnknownAction) { get :new }
-    end
-    
     should "have children for sidebar" do
-      get :show, :id=>pages(:about).permalink
+      get pages(:about).permalink
       assert assigns(:pages)
       assert_equal 1, assigns(:pages).size
     end
   end
+  
+  context "When a user sends the contact form" do
+    setup do
+      @controller = PagesController.new
+      @request    = ActionController::TestRequest.new
+      @response   = ActionController::TestResponse.new
+      ActionMailer::Base.delivery_method = :test
+      ActionMailer::Base.perform_deliveries = true
+      ActionMailer::Base.deliveries = []
+      post :contact, 'contact' => {'name' => "Ricardo", 'email' => "ricardo@dburnsdesign.com", 'message' => 'Hello!'}
+    end
+
+    should "send contact e-mail" do
+      assert_sent_email do |email|
+        email.from.include?('ricardo@dburnsdesign.com') && email.subject =~ /Contact From/
+      end
+    end
+    
+    should_set_the_flash_to(/Your message was sent/i)
+  end
+
 end

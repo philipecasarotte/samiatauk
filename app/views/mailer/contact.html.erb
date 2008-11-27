@@ -1,0 +1,10 @@
+<h1>Contact From <%= SITE_DOMAIN %></h1>
+Data:
+<table>
+	<% @params.each do |param, value| %>
+		<tr>
+			<th align="right"><%= param %></td>
+			<td><%= value %></td>
+		</tr>
+	<% end %>
+</table>

@@ -1,0 +1,20 @@
+<% @title = @page.title %>
+<%= @page.body %>
+<% form_for('contact') do |f| %>
+	<table>
+		<tr>
+			<td><%= f.label('name', 'Name:') %> <%= f.text_field 'name' %><td>
+		</tr>
+		<tr>
+			<td><%= f.label('email', 'E-mail:')%> <%= f.text_field 'email' %></td>
+		</tr>
+	</table>
+	<div class="break"></div>
+	<span class="message"><%= f.label('message', 'Message:') %><%= f.text_area 'message' %></span>
+	<% [:error, :notice].each do |message| %>
+		<% content_tag :div, :class => message do %>
+			<%= flash[message] %>
+		<% end if flash[message] %>
+	<% end %>
+	<%= submit_tag("Submit") %>
+<% end %>
