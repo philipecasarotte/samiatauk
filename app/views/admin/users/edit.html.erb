@@ -1,8 +1,8 @@
-<h1>Editing Page</h1>
+<h1>Editing User</h1>
 
-<%= error_messages_for :page %>
+<%= error_messages_for :user %>
 
-<% form_for(:page, :url => object_url, :html => { :method => :put }) do |f| %>
+<% form_for(:user, :url => object_url, :html => { :method => :put }) do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
   <p class="submit"><%=submit_tag "Update"%></p>
 <% end %>
