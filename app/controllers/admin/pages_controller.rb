@@ -1,20 +1,18 @@
 class Admin::PagesController < Admin::AdminController
-  create.wants.html do 
-    params[:page][:parent_id] ? redirect_to(admin_pages_path(:parent_id=>params[:page][:parent_id])) : redirect_to(admin_pages_path)
-  end
-  
-  update.wants.html do
-    params[:page][:parent_id] ? redirect_to(admin_pages_path(:parent_id=>params[:page][:parent_id])) : redirect_to(admin_pages_path)
-  end
-  
-  destroy.wants.html do
-    @object.parent_id ? redirect_to(admin_pages_path(:parent_id=>@object.parent_id)) : redirect_to(admin_pages_path)
+
+  create.wants.html {redirect_to(admin_pages_path)}
+  update.wants.html {redirect_to(admin_pages_path)}
+  destroy.wants.html {redirect_to(admin_pages_path)}
+
+  index.response do |format|
+    format.html
+    format.js { render :layout => false }
   end
   
   protected
   def collection
-    @collection = Page.find(params[:parent_id]).children
+    @collection = Page.find(params[:parent_id], :order => "title").children
     rescue
-    @collection = Page.all :conditions=>"parent_id IS NULL"
+    @collection = Page.all :conditions=>"parent_id IS NULL", :order => "title"
   end
 end

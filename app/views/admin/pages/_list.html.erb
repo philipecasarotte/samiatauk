@@ -1,0 +1,16 @@
+<%- pages.each do |page|%>
+	<li id="page_<%= page.id %>">
+		<p>
+			<% if page.children.size > 0 %>
+				<%=link_to '+', formatted_admin_pages_url(:parent_id => page, :format => :js), :class => "first" %>
+			<% else %>
+				|
+			<% end %>
+		</p>
+		<p class="title"><%=h page.title %></p>
+		<%=link_to 'New', new_admin_page_url(:parent_id => page) %>
+		<%=link_to 'Show', object_url(page) %>
+		<%=link_to 'Edit', edit_object_url(page) %>
+		<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete %>
+	</li>
+<% end %>

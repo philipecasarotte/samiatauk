@@ -1,0 +1,15 @@
+$("#page_<%= @pages.first.parent.id %> .first").removeClass("first").html("-").click(function() {
+	if ($(this).hasClass("close")) {
+		$(this).parent().parent().find("ul:first").show();
+		$(this).removeClass("close").html("-");
+	}else{
+		$(this).parent().parent().find("ul:first").hide();
+		$(this).addClass("close").html("+");
+	}
+	return false;
+}).parent().parent().append("<ul><%= escape_javascript(render :partial => "list", :locals => { :pages => @pages }) %></ul>").find(".first").click(function(){
+	if ($(this).hasClass("first")) {
+		$.get($(this).attr("href"), null, null, "script");
+	}
+	return false;
+});

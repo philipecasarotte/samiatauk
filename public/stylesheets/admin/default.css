@@ -68,3 +68,14 @@ form ul 				{margin-left: 10px;}
 
 /* MESSAGES */
 label.error  {color:red; font-weight:normal;}
+
+/* act_as_tree */
+.act_as_tree {margin:10px 0;}
+.act_as_tree,
+.act_as_tree ul {padding:0 10px; list-style:none;}
+.act_as_tree a {padding:0 5px; border-right: 1px solid black;}
+.act_as_tree p {width:20px; font-weight:normal; float:left; text-align:center;}
+.act_as_tree p a {color:black; border:none;margin:0; font-weight:normal;}
+.act_as_tree spam {width:100px; margin-right:5px;}
+
+.act_as_tree .title {width:200px; text-align:left;}
