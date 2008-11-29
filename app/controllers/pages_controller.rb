@@ -22,7 +22,7 @@ class PagesController < ApplicationController
     @page ||= Page.find_by_permalink('page-not-found')
     
     @pages = @page.children
-    render :action => method.to_s.gsub('-','_')
+    render :action => method.to_s.tableize
     rescue
       render :action => 'show'
   end
