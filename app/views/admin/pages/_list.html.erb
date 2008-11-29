@@ -1,16 +1,15 @@
 <%- pages.each do |page|%>
 	<li id="page_<%= page.id %>">
-		<p>
-			<% if page.children.size > 0 %>
-				<%=link_to '+', formatted_admin_pages_url(:parent_id => page, :format => :js), :class => "first" %>
-			<% else %>
-				|
-			<% end %>
-		</p>
-		<p class="title"><%=h page.title %></p>
-		<%=link_to 'New', new_admin_page_url(:parent_id => page) %>
-		<%=link_to 'Show', object_url(page) %>
-		<%=link_to 'Edit', edit_object_url(page) %>
-		<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete %>
+		<% if page.children.size > 0 %>
+			<%=link_to image_tag("act_as_tree/open.gif", :size => "20x16", :alt => ""), formatted_admin_pages_url(:parent_id => page, :format => :js), :class => "first" %>
+		<% else %>
+			<%= image_tag "act_as_tree/simple.gif", :size => "20x16", :alt => "" %>
+		<% end %>
+		<span><%=h page.title %></span>
+		<div>
+			<%=link_to 'New children', new_admin_page_url(:parent_id => page) %>
+			<%=link_to 'Edit', edit_object_url(page) %>
+			<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete %>
+		</div>
 	</li>
 <% end %>

@@ -60,7 +60,7 @@ form .submit    {margin-top:10px;}
 #filter .submit {border:none;vertical-align:top;}
 
 /* CONTENT */
-#content        {background:#fff;color:#333;padding: 10px 20px 40px 20px;height:auto !important;height:300px;min-height:300px; clear:both;position:relative;}
+#content        {background:#fff;color:#333;padding: 10px 20px 40px 20px;height:auto !important;height:300px;min-height:300px; clear:both;}
 
 #order li       {list-style:none; background-color:#f4f4f4; margin:5px 0; padding:5px; cursor:move;width:300px;}
 
@@ -72,10 +72,11 @@ label.error  {color:red; font-weight:normal;}
 /* act_as_tree */
 .act_as_tree {margin:10px 0;}
 .act_as_tree,
-.act_as_tree ul {padding:0 10px; list-style:none;}
-.act_as_tree a {padding:0 5px; border-right: 1px solid black;}
-.act_as_tree p {width:20px; font-weight:normal; float:left; text-align:center;}
-.act_as_tree p a {color:black; border:none;margin:0; font-weight:normal;}
-.act_as_tree spam {width:100px; margin-right:5px;}
-
-.act_as_tree .title {width:200px; text-align:left;}
+.act_as_tree ul  {padding:0 10px; list-style:none;}
+.act_as_tree ul  {padding:0 17px;}
+.act_as_tree li  {background:URL("/images/act_as_tree/bg.gif") repeat-y; clear:both;padding-bottom:1px;}
+.act_as_tree img {margin-right:-3px;}
+.act_as_tree a   {outline:none;}
+.act_as_tree div {position:absolute; top:0; left:0; display:none; background:white; border:1px solid black; z-index:1;}
+.act_as_tree div a {padding:5px 10px;display:block; width:100px; font-weight:normal; color:black;}
+.act_as_tree div a:hover {background:black; color:white;}

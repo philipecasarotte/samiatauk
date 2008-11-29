@@ -1,15 +1,19 @@
-$("#page_<%= @pages.first.parent.id %> .first").removeClass("first").html("-").click(function() {
+var img = $("#page_<%= @pages.first.parent.id %> .first").find("img");
+$("#page_<%= @pages.first.parent.id %> .first").removeClass("first").find("img").attr("src", img.attr("src").replace("open", "close")).parent().click(function() {
 	if ($(this).hasClass("close")) {
-		$(this).parent().parent().find("ul:first").show();
-		$(this).removeClass("close").html("-");
+		$(this).parent().find("ul:first").show();
+		$(this).removeClass("close").find("img").attr("src", $(this).find("img").attr("src").replace("open", "close"));
 	}else{
-		$(this).parent().parent().find("ul:first").hide();
-		$(this).addClass("close").html("+");
+		$(this).parent().find("ul:first").hide();
+		$(this).addClass("close").find("img").attr("src", $(this).find("img").attr("src").replace("close", "open"));
 	}
 	return false;
-}).parent().parent().append("<ul><%= escape_javascript(render :partial => "list", :locals => { :pages => @pages }) %></ul>").find(".first").click(function(){
+}).parent().append("<ul><%= escape_javascript(render :partial => "list", :locals => { :pages => @pages }) %></ul>").find(".first").click(function(){
 	if ($(this).hasClass("first")) {
 		$.get($(this).attr("href"), null, null, "script");
 	}
 	return false;
 });
+
+$("#page_<%= @pages.first.parent.id %> ul li:last").css("background", "none");
+act_as_tree_start_efect();
