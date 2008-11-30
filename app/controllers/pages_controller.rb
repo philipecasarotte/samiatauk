@@ -9,7 +9,6 @@ class PagesController < ApplicationController
     if request.post?
       Mailer.deliver_contact(params[:contact])
       flash[:notice] = 'Your message was sent.'
-      redirect_to page_path('contact')
     end
   end
 
