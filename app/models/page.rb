@@ -6,7 +6,13 @@ class Page < ActiveRecord::Base
   acts_as_tree
   acts_as_seo
   
+  named_scope :main_pages, :conditions=>'parent_id IS NULL'
+  
+  def self.page_not_found
+    find_by_permalink('page-not-found')
+  end
+  
   def summary(size = 100)
-    ApplicationController.helpers.truncate(ApplicationController.helpers.sanitize(body), size)
+    body.summary(size)
   end
 end

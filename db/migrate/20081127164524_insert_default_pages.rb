@@ -8,7 +8,8 @@ class InsertDefaultPages < ActiveRecord::Migration
 			unless Page.find_by_permalink(page.permalink)
 				page.save!
 			end
-		end  end
+		end  
+	end
 
   def self.down
     Page.find_by_permalink('page-not-found').destroy

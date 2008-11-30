@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   
   def index
-    @pages = Page.all :conditions => 'parent_id IS NULL'
+    @pages = Page.main_pages
   end
   
   def contact
@@ -9,17 +9,14 @@ class PagesController < ApplicationController
     if request.post?
       Mailer.deliver_contact(params[:contact])
       flash[:notice] = 'Your message was sent.'
-      session[:contact_params] = nil
-      redirect_to(:permalink => 'contact')
-      return false
+      redirect_to page_path('contact')
     end
-    return true
   end
 
   def method_missing(method, *args)
-    @page = Page.find_by_permalink(method) || Page.find_by_permalink('page-not-found')
+    @page = Page.find_by_permalink(method) || Page.page_not_found
     @pages = @page.children
-    render :action => method.to_s.tableize
+    render :action => method.methodize
     rescue
       render :action => 'show'
   end
