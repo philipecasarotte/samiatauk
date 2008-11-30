@@ -17,10 +17,7 @@ class PagesController < ApplicationController
   end
 
   def method_missing(method, *args)
-    @page = Page.find_by_permalink(method)
-    
-    @page ||= Page.find_by_permalink('page-not-found')
-    
+    @page = Page.find_by_permalink(method) || Page.find_by_permalink('page-not-found')
     @pages = @page.children
     render :action => method.to_s.tableize
     rescue

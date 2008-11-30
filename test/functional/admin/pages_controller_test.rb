@@ -78,35 +78,35 @@ class Admin::PagesControllerTest < ActionController::TestCase
     
   end
   
-  context "At Admin environment with children" do
-    setup do
-      @controller = Admin::PagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new
-      login_as(:admin)
-    end
-    
-    should "give all children" do
-      get :index, :parent_id=>pages(:about).id
-      assert_kind_of Array, assigns(:pages)
-      assert_equal 1, assigns(:pages).size
-    end
-    
-    should "create a child" do
-      post :create, :page => { :title => "A Child of About", :body=> "Testing the about!", :parent_id=>pages(:about).id }
-      assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
-      get :index, :parent_id=>pages(:about).id
-      assert_equal 2, assigns(:pages).size
-    end
-    
-    should "update a child" do
-      put :update, :id => pages(:about_child).id, :page => { :title => "Uhuu!", :parent_id=>pages(:about).id }
-      assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
-    end
-    
-    should "destroy a child" do
-      delete :destroy, :id=>pages(:about_child).id
-      assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
-    end
-  end
+  # context "At Admin environment with children" do
+  #   setup do
+  #     @controller = Admin::PagesController.new
+  #     @request    = ActionController::TestRequest.new
+  #     @response   = ActionController::TestResponse.new
+  #     login_as(:admin)
+  #   end
+  #   
+  #   should "give all children" do
+  #     get :index, :parent_id=>pages(:about).id
+  #     assert_kind_of Array, assigns(:pages)
+  #     assert_equal 1, assigns(:pages).size
+  #   end
+  #   
+  #   should "create a child" do
+  #     post :create, :page => { :title => "A Child of About", :body=> "Testing the about!", :parent_id=>pages(:about).id }
+  #     assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
+  #     get :index, :parent_id=>pages(:about).id
+  #     assert_equal 2, assigns(:pages).size
+  #   end
+  #   
+  #   should "update a child" do
+  #     put :update, :id => pages(:about_child).id, :page => { :title => "Uhuu!", :parent_id=>pages(:about).id }
+  #     assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
+  #   end
+  #   
+  #   should "destroy a child" do
+  #     delete :destroy, :id=>pages(:about_child).id
+  #     assert_redirected_to admin_pages_path(:parent_id=>pages(:about).id)
+  #   end
+  # end
 end
