@@ -11,8 +11,8 @@ class Admin::PagesController < Admin::AdminController
   
   protected
   def collection
-    @collection = Page.find(params[:parent_id], :order => "title").children
+    @collection = Page.find(params[:parent_id]).children
     rescue
-    @collection = Page.all :conditions=>"parent_id IS NULL", :order => "title"
+    @collection = Page.main_pages
   end
 end

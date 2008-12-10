@@ -6,15 +6,15 @@ class PageTest < Test::Unit::TestCase
     should_require_unique_attributes :title
     
     should "have the children method" do
-      assert_respond_to(Page.new, :children)
+      assert_respond_to(pages(:about).children.create, :children)
       assert_kind_of(Array, Page.new.children)
       
       assert_equal pages(:about).children.size, 1
     end
     
     should "have a permalink when saved" do
-      page = Page.create(:title => "Testing", :body => "Testing text!")
-      assert_equal("testing", page.permalink)
+      page = Page.create(:title => "Title of Permalink", :body => "Testing text!")
+      assert_equal("title-of-permalink", page.permalink)
     end
   end
   
