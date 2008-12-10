@@ -1,5 +1,5 @@
-var img = $("#page_<%= @pages.first.parent.id %> .first").find("img");
-$("#page_<%= @pages.first.parent.id %> .first").removeClass("first").find("img").attr("src", img.attr("src").replace("open", "close")).parent().click(function() {
+var img = $("#page_<%= @pages[0].parent_id %> .first").find("img");
+$("#page_<%= @pages[0].parent_id %> .first").removeClass("first").find("img").attr("src", img.attr("src").replace("open", "close")).parent().click(function() {
 	if ($(this).hasClass("close")) {
 		$(this).parent().find("ul:first").show();
 		$(this).removeClass("close").find("img").attr("src", $(this).find("img").attr("src").replace("open", "close"));
@@ -15,5 +15,5 @@ $("#page_<%= @pages.first.parent.id %> .first").removeClass("first").find("img")
 	return false;
 });
 
-$("#page_<%= @pages.first.parent.id %> ul li:last").css("background", "none");
+$("#page_<%= @pages[0].parent_id %> ul li:last").css("background", "none");
 act_as_tree_start_efect();
