@@ -35,7 +35,7 @@ function act_as_tree_start_efect(){
 	}, function () {
 		$(this).css("background", "#ffffff");
 	}).click(function(a) {
-		$(this).parent().find("div").fadeIn(500).css({
+		$(this).parent().find("div:first").fadeIn(500).css({
 			left: (a.pageX - 2) + "px",
 			top: (a.pageY - 2) + "px"
 		});
