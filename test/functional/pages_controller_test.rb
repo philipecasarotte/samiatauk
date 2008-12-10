@@ -17,7 +17,7 @@ class PagesControllerTest < Test::Unit::TestCase
     should "get index" do
       get :index
       assert assigns(:pages)
-      assert_equal 2, assigns(:pages).size
+      assert_equal 3, assigns(:pages).size
     end
     
     should "get show" do
@@ -40,12 +40,12 @@ class PagesControllerTest < Test::Unit::TestCase
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries = []
-      post :contact, 'contact' => {'name' => "Ricardo", 'email' => "ricardo@dburnsdesign.com", 'message' => 'Hello!'}
+      post :contact, 'contact' => {'name' => "Ricardo", 'email' => "dev.dburns@gmail.com", 'message' => 'Hello!'}
     end
 
     should "send contact e-mail" do
       assert_sent_email do |email|
-        email.from.include?('ricardo@dburnsdesign.com') && email.subject =~ /Contact From/
+        email.from.include?('dev.dburns@gmail.com') && email.subject =~ /Contact From/
       end
     end
     
