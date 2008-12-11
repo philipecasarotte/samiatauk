@@ -17,7 +17,7 @@ class PagesControllerTest < Test::Unit::TestCase
     should "get index" do
       get :index
       assert assigns(:pages)
-      assert_equal 3, assigns(:pages).size
+      assert_equal 4, assigns(:pages).size
     end
     
     should "get show" do
@@ -50,6 +50,27 @@ class PagesControllerTest < Test::Unit::TestCase
     end
     
     should_set_the_flash_to(/Your message was sent/i)
+  end
+  
+  context "Trying to get a page with a existing method" do
+    setup do
+      PagesController.class_eval do 
+        def testing
+          @testing = "Testing"
+        end
+      end
+      
+      @controller = PagesController.new
+      @request    = ActionController::TestRequest.new
+      @response   = ActionController::TestResponse.new
+    end
+    
+    should "return the @testing value" do
+      assert_respond_to(@controller, :testing)
+      
+      get 'testing'
+      assert_equal "Testing", assigns(:testing)
+    end
   end
 
 end

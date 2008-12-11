@@ -15,6 +15,8 @@ class PagesController < ApplicationController
   def method_missing(method, *args)
     @page = Page.find_by_permalink(method) || Page.page_not_found
     @pages = @page.children
+    send(method.methodize) if respond_to? method.methodize
+    
     render :action => method.methodize
     rescue
       render :action => 'show'
