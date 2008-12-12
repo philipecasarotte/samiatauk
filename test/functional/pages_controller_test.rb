@@ -17,7 +17,7 @@ class PagesControllerTest < Test::Unit::TestCase
     should "get index" do
       get :index
       assert assigns(:pages)
-      assert_equal 4, assigns(:pages).size
+      assert_equal 5, assigns(:pages).size
     end
     
     should "get show" do
@@ -58,6 +58,10 @@ class PagesControllerTest < Test::Unit::TestCase
         def testing
           @testing = "Testing"
         end
+        
+        def its_a_joke
+          @file_attribute = true
+        end
       end
       
       @controller = PagesController.new
@@ -70,6 +74,14 @@ class PagesControllerTest < Test::Unit::TestCase
       
       get 'testing'
       assert_equal "Testing", assigns(:testing)
+      assert_template "show"
+    end
+    
+    should "return the joke" do
+      get 'its-a-joke'
+      
+      assert assigns(:file_attribute)
+      assert_template "show"
     end
   end
 

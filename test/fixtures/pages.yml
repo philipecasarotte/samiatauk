@@ -23,5 +23,10 @@ contact:
   
 testing:
   title: Testing
-  body: "Elit placerat est. Blandit tempus curae vivamus molestie, tempor nullam nunc dui. Ante magna ultrices eros libero, porta congue, fusce et mi quia proin ante, adipiscing penatibus pellentesque ac eros. Eget per interdum, ultricies urna egestas tortor leo egestas, proin ornare mauris eu eget mi, et senectus viverra massa aliquam sed, amet turpis dignissim platea quam. Morbi nullam ut nascetur in sem sed, auctor iaculis diam sem ultricies, in commodo phasellus vel amet felis. A hac leo aliquam, in pulvinar neque risus facilisis molestie donec. Interdum convallis ut et sodales non. Cum lacinia fringilla dignissim in. Convallis natoque sed."
+  body: Elit placerat est. Blandit tempus curae vivamus molestie, tempor nullam nunc dui. Ante magna ultrices eros libero, porta congue, fusce et mi quia proin ante, adipiscing penatibus pellentesque ac eros. Eget per interdum, ultricies urna egestas tortor leo egestas, proin ornare mauris eu eget mi, et senectus viverra massa aliquam sed, amet turpis dignissim platea quam. Morbi nullam ut nascetur in sem sed, auctor iaculis diam sem ultricies, in commodo phasellus vel amet felis. A hac leo aliquam, in pulvinar neque risus facilisis molestie donec. Interdum convallis ut et sodales non. Cum lacinia fringilla dignissim in. Convallis natoque sed.
   permalink: testing
+  
+its_a_joke:
+  title: It's a Joke
+  body: Elit placerat est. Blandit tempus curae vivamus molestie, tempor nullam nunc dui. Ante magna ultrices eros libero.
+  permalink: its-a-joke

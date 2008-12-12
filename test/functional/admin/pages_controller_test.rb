@@ -38,7 +38,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
     should "get index" do
       get :index
       assert_response :success
-      assert_equal 4, assigns(:pages).size
+      assert_equal 5, assigns(:pages).size
     end
 
     should "get new" do
