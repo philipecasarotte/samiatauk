@@ -64,9 +64,9 @@ class Admin::PagesControllerTest < ActionController::TestCase
     end
   
     should "update a page" do
-      put :update, :id => pages(:home).id, :page => { :title=>"Testing" }
+      put :update, :id => pages(:home).id, :page => { :title=>"Testing Again" }
       assert_redirected_to admin_pages_path
-      assert_equal "testing", assigns(:page).permalink
+      assert_equal "testing-again", assigns(:page).permalink
     end
   
     should "delete a page" do
