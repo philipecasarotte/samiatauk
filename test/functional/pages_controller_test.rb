@@ -42,6 +42,11 @@ class PagesControllerTest < Test::Unit::TestCase
       ActionMailer::Base.deliveries = []
       post :contact, 'contact' => {'name' => "Ricardo", 'email' => "dev.dburns@gmail.com", 'message' => 'Hello!'}
     end
+    
+    should "render the contact's template" do
+      get "contact"
+      assert_template "contact"
+    end
 
     should "send contact e-mail" do
       assert_sent_email do |email|
