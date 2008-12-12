@@ -8,6 +8,8 @@ class Admin::PagesController < Admin::AdminController
     format.html
     format.js { render :layout => false }
   end
+
+  include Order
   
   protected
   def collection

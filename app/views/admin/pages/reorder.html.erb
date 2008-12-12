@@ -1,0 +1,11 @@
+<ul id="order">
+	<% @items.each do |page| %>
+	<li id="item_<%=page.id%>"><%= page.title %></li>
+	<% end %>
+</ul>
+
+<%= sortable_element 'order', 
+      :complete => visual_effect(:highlight, 'order'), 
+      :url => { :action => "order" } %>
+
+<p><%= link_to "Back", admin_pages_url %></p>
