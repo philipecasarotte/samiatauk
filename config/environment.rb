@@ -79,4 +79,3 @@ end
 
 require 'order'
 require 'summary'
-require 'methodize'
