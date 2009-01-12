@@ -27,3 +27,8 @@ its_a_joke:
   name: it-s-a-joke
   sluggable_type: Page
   sluggable: its_a_joke
+  
+protected_page:
+  name: protected-page
+  sluggable_type: Page
+  sluggable: protected_page

@@ -26,3 +26,8 @@ testing:
 its_a_joke:
   title: It's a Joke
   body: Elit placerat est. Blandit tempus curae vivamus molestie, tempor nullam nunc dui. Ante magna ultrices eros libero.
+  
+protected_page:
+  title: Protected Page
+  body: Elit placerat est. Blandit tempus curae vivamus molestie, tempor nullam nunc dui. Ante magna ultrices eros libero.
+  is_protected: 1

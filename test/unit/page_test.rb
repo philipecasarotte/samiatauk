@@ -75,4 +75,21 @@ class PageTest < Test::Unit::TestCase
     end
   end
   
+  
+  context "When a Page is protected" do
+    setup do
+      @page = pages(:protected_page)
+    end
+
+    should "not change the slug" do
+      slug = @page.slug.name
+      
+      assert(@page.is_protected)
+      
+      @page.update_attribute(:title,"CHANGED")
+      
+      assert_equal(slug, @page.slug.name)
+    end
+  end
+  
 end
