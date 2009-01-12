@@ -11,6 +11,6 @@ module Order
   
   private
   def collection
-    @collection = end_of_association_chain.all :order=>'position'
+    @collection = end_of_association_chain.all :order=>'position', :include=>:slugs
   end
 end
