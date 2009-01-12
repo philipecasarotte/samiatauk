@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PageTest < Test::Unit::TestCase
   context "A new page" do
     should_require_attributes :title, :body
-    should_require_unique_attributes :title
     
     should "have the children method" do
       assert_respond_to(pages(:about).children.create, :children)
@@ -52,4 +51,28 @@ class PageTest < Test::Unit::TestCase
     end
     
   end
+  
+  context "Pages with duplicated title" do
+    setup do
+      @page_one ||= Page.new(:title=>'Page', :body=>'Lorem')
+      @page_two ||= Page.new(:title=>'Page', :body=>'Lorem')
+      @page_three ||= Page.new(:title=>'Page', :body=>'Lorem')
+      @page_one.save
+      @page_two.save
+      @page_three.save
+    end
+
+    should "be able to be created" do
+      assert(!@page_one.new_record?)
+      assert(!@page_two.new_record?)
+      assert(!@page_three.new_record?)
+    end
+    
+    should "have different slugs" do
+      assert_equal('page', @page_one.to_param)
+      assert_equal('page--2', @page_two.to_param)
+      assert_equal('page--3', @page_three.to_param)
+    end
+  end
+  
 end
