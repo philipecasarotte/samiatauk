@@ -8,9 +8,9 @@
 		<span><%=h page.title %></span>
 		<div>
 			<% if page.children.size > 0 %>
-				<%=link_to 'Reorder children', reorder_admin_pages_url(:parent_id => page) %>
+				<%=link_to 'Reorder children', reorder_admin_pages_url(:parent_id => page.id) %>
 			<% end %>
-			<%=link_to 'New children', new_admin_page_url(:parent_id => page) %>
+			<%=link_to 'New children', new_admin_page_url(:parent_id => page.id) %>
 			<%=link_to 'Edit', edit_object_url(page) %>
 			<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete %>
 		</div>

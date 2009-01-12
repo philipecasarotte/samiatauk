@@ -4,10 +4,12 @@ class Page < ActiveRecord::Base
   
   has_friendly_id :title, :use_slug => true
   
-  acts_as_tree :order => "position, title", :counter_cache => "children_count" 
+  acts_as_tree :order => "position, title", :counter_cache => "children_count"
   acts_as_seo
   
-  named_scope :main_pages, :conditions=>'parent_id IS NULL', :order => "position, title"
+  has_many :pages, :class_name=>"Page", :foreign_key=>"parent_id", :order => "position, title", :include=>:slugs
+  
+  named_scope :main_pages, :conditions=>'parent_id IS NULL', :order => "position, title", :include=>:slugs
   
   def self.page_not_found
     find('page-not-found')

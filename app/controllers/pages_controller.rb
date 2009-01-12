@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   def method_missing(method, *args)
     @page = Page.find(method) || Page.page_not_found
-    @pages = @page.children
+    @pages = @page.pages
     send(method.underscore) if respond_to?(method.underscore)
     
     render :action => method.underscore
