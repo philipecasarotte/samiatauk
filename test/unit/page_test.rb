@@ -14,7 +14,7 @@ class PageTest < Test::Unit::TestCase
     
     should "have a permalink when saved" do
       page = Page.create(:title => "Title of Permalink", :body => "Testing text!")
-      assert_equal("title-of-permalink", page.permalink)
+      assert_equal("title-of-permalink", page.slug.name)
     end
   end
   
@@ -36,10 +36,10 @@ class PageTest < Test::Unit::TestCase
       pages(:home).title = "Home"
       pages(:home).save
       
-      assert_equal("home", pages(:home).permalink)
+      assert_equal("home", pages(:home).slug.name)
       
       pages(:home).update_attribute(:title, "Home Page")
-      assert_equal("home-page", pages(:home).permalink)
+      assert_equal("home-page", pages(:home).slug.name)
     end
   end
   

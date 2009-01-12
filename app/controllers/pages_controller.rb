@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
   
   def contact
-    @page = Page.find_by_permalink('contact')
+    @page = Page.find('contact')
     if request.post?
       Mailer.deliver_contact(params[:contact])
       flash[:notice] = 'Your message was sent.'
@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def method_missing(method, *args)
-    @page = Page.find_by_permalink(method) || Page.page_not_found
+    @page = Page.find(method) || Page.page_not_found
     @pages = @page.children
     send(method.underscore) if respond_to?(method.underscore)
     

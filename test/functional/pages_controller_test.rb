@@ -21,12 +21,12 @@ class PagesControllerTest < Test::Unit::TestCase
     end
     
     should "get show" do
-      get pages(:home).permalink
+      get pages(:home).slug.name
       assert assigns(:page)
     end
   
     should "have children for sidebar" do
-      get pages(:about).permalink
+      get pages(:about).slug.name
       assert assigns(:pages)
       assert_equal 1, assigns(:pages).size
     end
@@ -64,7 +64,7 @@ class PagesControllerTest < Test::Unit::TestCase
           @testing = "Testing"
         end
         
-        def its_a_joke
+        def it_s_a_joke
           @file_attribute = true
         end
       end
@@ -83,7 +83,7 @@ class PagesControllerTest < Test::Unit::TestCase
     end
     
     should "return the joke" do
-      get 'its-a-joke'
+      get 'it-s-a-joke'
       
       assert assigns(:file_attribute)
       assert_template "show"
