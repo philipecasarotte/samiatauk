@@ -17,7 +17,7 @@ class PagesControllerTest < Test::Unit::TestCase
     should "get index" do
       get :index
       assert assigns(:pages)
-      assert_equal 5, assigns(:pages).size
+      assert_equal 6, assigns(:pages).size
     end
     
     should "get show" do
