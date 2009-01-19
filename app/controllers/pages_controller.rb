@@ -13,7 +13,11 @@ class PagesController < ApplicationController
   end
 
   def method_missing(method, *args)
-    @page = Page.find(method) || Page.page_not_found
+    begin
+      @page = Page.find(method)
+    rescue
+      @page = Page.page_not_found
+    end
     @pages = @page.pages
     send(method.underscore) if respond_to?(method.underscore)
     

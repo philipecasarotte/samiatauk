@@ -1,8 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PageTest < Test::Unit::TestCase
-  context "A new page" do
-    should_require_attributes :title, :body
+  context "A instance of page" do
+    should_require_attributes :title
+    should_have_many :children
+    should_belong_to :parent
+    should_have_named_scope :main_pages
     
     should "have the children method" do
       assert_respond_to(pages(:about).children.create, :children)
