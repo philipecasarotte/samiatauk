@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include AuthorizedSystem
 
-
+  before_filter :before_meta_tag
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e4a0f08862e3be69853cdbeb2d48595f'
@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   protected
+  def before_meta_tag
+    @metatag = nil
+    @title = ".:: " + SITE_NAME + " ::."
+    @keyword = ""
+    @description = ""
+  end
+  
   def rescue_action_in_public(exception)
     redirect_to page_path('page-not-found')
   end
