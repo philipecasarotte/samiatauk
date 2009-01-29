@@ -1,21 +1,6 @@
 <p>
-	<%= f.label :metatag_title %>
-	<%= f.text_field :metatag_title %>
-</p>
-
-<p>
-	<%= f.label :metatag_keywords %>
-	<%= f.text_field :metatag_keywords %>
-</p>
-
-<p>
-	<%= f.label :metatag_description %>
-	<%= f.text_area :metatag_description %>
-</p>
-
-<p>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :class => "required"%>
 </p>
 <p>
   <%= f.label :body %>
@@ -23,3 +8,5 @@
 </p>
 
 <%= f.hidden_field :parent_id, :value=>params[:parent_id] %>
+
+<%= render :partial => "/admin/meta_tags/form", :locals => { :f => f } %>

@@ -2,7 +2,6 @@ class PagesController < ApplicationController
   
   def index
     @pages = Page.main_pages
-    load_meta_tag
   end
   
   def contact

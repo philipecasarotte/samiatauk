@@ -12,7 +12,7 @@
 			<% end %>
 			<%=link_to 'New children', new_admin_page_url(:parent_id => page.id) %>
 			<%=link_to 'Edit', edit_object_url(page) %>
-			<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete if :is_protected.blank? %>
+			<%=link_to 'Destroy', object_url(page), :confirm => 'Are you sure?', :method => :delete unless page.is_protected %>
 		</div>
 	</li>
 <% end %>

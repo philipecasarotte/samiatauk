@@ -2,7 +2,7 @@
 
 <%= error_messages_for :page %>
 
-<% form_for(:page, :url => collection_url) do |f| %>
+<% form_for(:page, :url => collection_url, :html => { :class => "validate" }) do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
   <p class="submit"><%= submit_tag "Create" %></p>
 <% end %>
