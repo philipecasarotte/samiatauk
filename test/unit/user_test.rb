@@ -6,6 +6,8 @@ class UserTest < ActiveSupport::TestCase
   include AuthenticatedTestHelper
   fixtures :users
 
+  should_have_named_scope :admins, :include => :roles, :conditions => "roles.name = 'admin'"
+
   def test_should_create_user
     assert_difference 'User.count' do
       user = create_user
