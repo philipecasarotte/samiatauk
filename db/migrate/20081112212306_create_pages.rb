@@ -6,7 +6,8 @@ class CreatePages < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :children_count, :default=>0
       t.integer :position, :default=>0
-      t.boolean :is_protected, :boolean, :default=>false, :null=>false
+      t.boolean :is_protected, :default => false, :null => false
+      t.boolean :is_hidden, :default => false, :null => false
       t.timestamps
     end
   end
