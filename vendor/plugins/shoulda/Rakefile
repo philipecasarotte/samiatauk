@@ -2,11 +2,13 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
-require 'lib/shoulda/context'
+
+$LOAD_PATH.unshift("lib")
+require 'shoulda'
 load 'tasks/shoulda.rake'
 
 # Test::Unit::UI::VERBOSE
-test_files_pattern = 'test/{unit,functional,other}/**/*_test.rb'
+test_files_pattern = 'test/{unit,functional,other,matchers}/**/*_test.rb'
 Rake::TestTask.new do |t|
   t.libs << 'lib'
   t.pattern = test_files_pattern
@@ -38,7 +40,7 @@ task :default => ['test']
 
 spec = Gem::Specification.new do |s|
   s.name              = "shoulda"
-  s.version           = Thoughtbot::Shoulda::VERSION
+  s.version           = Shoulda::VERSION
   s.summary           = "Making tests easy on the fingers and eyes"
   s.homepage          = "http://thoughtbot.com/projects/shoulda"
   s.rubyforge_project = "shoulda"
@@ -52,8 +54,6 @@ spec = Gem::Specification.new do |s|
 
   s.authors = ["Tammer Saleh"]
   s.email   = "tsaleh@thoughtbot.com"
-
-  s.add_dependency "activesupport", ">= 2.0.0"
 end
 
 Rake::GemPackageTask.new spec do |pkg|
