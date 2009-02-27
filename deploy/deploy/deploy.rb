@@ -6,6 +6,7 @@ set :host, "server's ip" # CHANGE ME
 set :deploy_to, "/path/to/project/directory/at/deploy/server" # CHANGE ME
 
 set :current_deployment, "#{deploy_to}/current"
+set :keep_releases, 4
 set :ssh_options, { :forward_agent => true }
 
 role :app, "#{host}"
