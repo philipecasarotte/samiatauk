@@ -48,6 +48,7 @@ module SimplesIdeias
           
           after_validation :create_permalink
           before_save :create_permalink
+          before_update :update_permalink
         end
       end
       
@@ -81,6 +82,10 @@ module SimplesIdeias
           
           def create_permalink
             write_attribute(to_permalink_name, from_permalink_value.to_s.to_permalink) unless from_permalink_value.blank? || to_permalink_value
+          end
+
+          def update_permalink
+            write_attribute(to_permalink_name, from_permalink_value.to_s.to_permalink) if changed? and !is_protected
           end
       end
     end

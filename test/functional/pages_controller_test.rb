@@ -21,12 +21,12 @@ class PagesControllerTest < Test::Unit::TestCase
     end
     
     should "get show" do
-      get pages(:home).slug.name
+      get pages(:home).permalink
       assert assigns(:page)
     end
   
     should "have children for sidebar" do
-      get pages(:about).slug.name
+      get pages(:about).permalink
       assert assigns(:pages)
       assert_equal 1, assigns(:pages).size
     end

@@ -16,7 +16,7 @@ class PageTest < Test::Unit::TestCase
     
     should "have a permalink when saved" do
       page = Page.create(:title => "Title of Permalink", :body => "Testing text!")
-      assert_equal("title-of-permalink", page.slug.name)
+      assert_equal("title-of-permalink", page.permalink)
     end
   end
   
@@ -35,13 +35,9 @@ class PageTest < Test::Unit::TestCase
     end
     
     should "update the permalink when update the title" do
-      pages(:home).title = "Home"
-      pages(:home).save
-      
-      assert_equal("home", pages(:home).slug.name)
-      
-      pages(:home).update_attribute(:title, "Home Page")
-      assert_equal("home-page", pages(:home).slug.name)
+      @page = pages(:home)
+      @page.update_attribute(:title, "Home")
+      assert_equal("home", @page.permalink)
     end
   end
   
@@ -71,11 +67,11 @@ class PageTest < Test::Unit::TestCase
       assert(!@page_three.new_record?)
     end
     
-    should "have different slugs" do
-      assert_equal('page', @page_one.to_param)
-      assert_equal('page--2', @page_two.to_param)
-      assert_equal('page--3', @page_three.to_param)
-    end
+    # should "have different permalinks" do
+    #   assert_equal('page', @page_one.to_param)
+    #   assert_equal("#{@page_two.id}-page", @page_two.to_param)
+    #   assert_equal('page--3', @page_three.to_param)
+    # end
   end
   
   
@@ -84,14 +80,14 @@ class PageTest < Test::Unit::TestCase
       @page = pages(:protected_page)
     end
 
-    should "not change the slug" do
-      slug = @page.slug.name
+    should "not change the permalink" do
+      permalink = @page.permalink
       
       assert(@page.is_protected)
       
       @page.update_attribute(:title,"CHANGED")
       
-      assert_equal(slug, @page.slug.name)
+      assert_equal(permalink, @page.permalink)
     end
   end
   

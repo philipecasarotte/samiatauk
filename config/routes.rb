@@ -9,8 +9,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => 'pages'
   end
 
-  map.anything ':action', :controller=>'pages'
   map.pages '/pages/:action', :controller => 'pages'
   map.resources :pages
   map.root :controller => 'pages', :action => 'index'
+  map.anything ':action', :controller=>'pages'
 end
