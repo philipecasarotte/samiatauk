@@ -2,6 +2,7 @@ class CreatePages < ActiveRecord::Migration
   def self.up
     create_table :pages, :force => true do |t|
       t.string :title
+      t.string :permalink
       t.text :body
       t.integer :parent_id
       t.integer :children_count, :default=>0
