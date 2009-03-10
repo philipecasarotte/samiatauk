@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PageTest < Test::Unit::TestCase
+class PageTest < ActiveSupport::TestCase
   context "An instance of page" do
     should_validate_presence_of :title
     should_have_many :children

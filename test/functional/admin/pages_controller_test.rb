@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'admin/pages_controller'
 
 class Admin::PagesControllerTest < ActionController::TestCase
 

@@ -1,42 +1,43 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'pages_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class PagesController; def rescue_action(e) raise e end; end
-
-class PagesControllerTest < Test::Unit::TestCase
+class PagesControllerTest < ActionController::TestCase
   
+  setup do
+    @controller = PagesController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+  end
+
   context "Page controller" do
   
-    setup do
-      @controller = PagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new
-    end
-  
-    should "get index" do
-      get :index
-      assert assigns(:pages)
-      assert_equal 6, assigns(:pages).size
+    context "on GET to index" do
+      setup do
+        get :index
+      end
+
+      should_assign_to(:pages) { Page.main_pages }
     end
     
-    should "get show" do
-      get pages(:home).permalink
-      assert assigns(:page)
+    context "on GET to show" do
+      setup do
+        get pages(:home).permalink
+      end
+
+      should_assign_to(:page) { Page.find_by_permalink(pages(:home).permalink) }
     end
-  
-    should "have children for sidebar" do
-      get pages(:about).permalink
-      assert assigns(:pages)
-      assert_equal 1, assigns(:pages).size
+    
+    context "with children for sidebar" do
+      setup do
+        get pages(:about).permalink
+      end
+
+      should_assign_to(:pages) { Page.find_by_permalink(pages(:about).permalink).children }
     end
+    
   end
   
   context "When a user sends the contact form" do
     setup do
-      @controller = PagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries = []
@@ -68,10 +69,6 @@ class PagesControllerTest < Test::Unit::TestCase
           @file_attribute = true
         end
       end
-      
-      @controller = PagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new
     end
     
     should "return the @testing value" do
