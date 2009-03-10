@@ -19,9 +19,9 @@ class PagesController < ApplicationController
     load_meta_tag
     send(method.underscore) if respond_to?(method.underscore)
     
-    render :action => method.underscore
+    render method.underscore
     rescue ActionView::MissingTemplate
-      render :action => 'show'
+      render 'show'
   end
   
   protected
