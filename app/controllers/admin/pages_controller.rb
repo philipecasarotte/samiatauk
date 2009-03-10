@@ -1,8 +1,7 @@
 class Admin::PagesController < Admin::AdminController
 
-  create.wants.html {redirect_to(admin_pages_path)}
-  update.wants.html {redirect_to(admin_pages_path)}
-  destroy.wants.html {redirect_to(admin_pages_path)}
+  create.wants.html {redirect_to(collection_url)}
+  update.wants.html {redirect_to(collection_url)}
 
   index.response do |format|
     format.html
