@@ -85,7 +85,15 @@ module SimplesIdeias
           end
 
           def update_permalink
-            write_attribute(to_permalink_name, from_permalink_value.to_s.to_permalink) if changed? and !is_protected
+            if changed?
+              if attributes.include?('is_protected')
+                unless is_protected
+                  write_attribute(to_permalink_name, from_permalink_value.to_s.to_permalink)
+                end
+              else
+                write_attribute(to_permalink_name, from_permalink_value.to_s.to_permalink)
+              end
+            end
           end
       end
     end
