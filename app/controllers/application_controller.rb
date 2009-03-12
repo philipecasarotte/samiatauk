@@ -24,8 +24,4 @@ class ApplicationController < ActionController::Base
     @description = ""
   end
   
-  def rescue_action_in_public(exception)
-    redirect_to page_path('page-not-found')
-  end
-  
 end
