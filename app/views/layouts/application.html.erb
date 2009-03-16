@@ -3,11 +3,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<%= metatags(@metatag_object) -%>
 	<title><%= metatag_title(@metatag_object, SITE_NAME) %></title>
 
-	<meta name="keywords" content="<%= @keywords %>" />
-	<meta name="description" content="<%= @description %>" />
+	<%= metatags(@metatag_object) -%>
 
 	<%= stylesheet_link_tag "default" %>
 
