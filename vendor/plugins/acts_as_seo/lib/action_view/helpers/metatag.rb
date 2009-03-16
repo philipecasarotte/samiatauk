@@ -18,12 +18,12 @@ module ActionView
       def metatags(object)
         object.metatags.map do |name, content|
           "<meta name=\"#{name}\" content=\"#{content}\" />"
-        end.join("\n")
+        end.join("\n") if object
       end
       
       def metatag_title(object, title="", separator="|")
-        if object.metatag_title
-          "#{title} #{separator} #{object.metatag_title}"
+        if object
+          object.metatag_title || title
         else
           title
         end

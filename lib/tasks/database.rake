@@ -30,6 +30,8 @@ namespace :db do
       }
       
       Dburns::Setup.bootstrap attributes
+      
+      Rake::Task["db:default_pages"].invoke
   end
 
   desc "Create the default pages in CMS that can't be deleted."
