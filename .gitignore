@@ -6,3 +6,5 @@ db/schema.rb
 db/*.sqlite3 
 coverage 
 doc/app/* 
+public/index.html
+public/pages/*

@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  
+ 
+  after_filter(:except => :contact) {|c| c.cache_page}
+
   def index
     @pages = Page.main_pages
   end

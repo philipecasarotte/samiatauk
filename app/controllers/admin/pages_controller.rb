@@ -1,5 +1,7 @@
 class Admin::PagesController < Admin::AdminController
 
+  cache_sweeper :page_sweeper
+  edit.before{expire_page "/pages/#{object.permalink}"}
   create.wants.html {redirect_to(collection_url)}
   update.wants.html {redirect_to(collection_url)}
 
