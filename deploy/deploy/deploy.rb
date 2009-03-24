@@ -1,161 +1,105 @@
-set :deploy_to, "/home/"
-set :application, "project-slug" # CHANGE ME
-set :uri, "project.uri" # CHANGE ME
+# =============================================================================
+# CONFIGURE OS VALORES DE ACORDO COM SUA HOSPEDAGEM
+# =============================================================================
+set :user, "deploy"
+set :password, "password-here"
+set :host, "server-ip-here"
+set :domain, "http://domain.here/"
+set :application, "application-name"
 
-set :host, "server's ip" # CHANGE ME
-set :deploy_to, "/path/to/project/directory/at/deploy/server" # CHANGE ME
+set :repository, "git://dburnsdesign.com/repos/mainline.git"
+# =============================================================================
+# NAO MEXER DAQUI PARA BAIXO
+# =============================================================================
+role :web, host
+role :app, host
+role :db,  host
 
+set :deploy_to, "/home/#{application}" 
 set :current_deployment, "#{deploy_to}/current"
-set :keep_releases, 4
-set :ssh_options, { :forward_agent => true }
 
-role :app, "#{host}"
+set :runner, nil
+set :use_sudo, false
 
-set :repository,  "public-repository" # CHANGE ME
 set :scm, :git
 
-set :user, "root"
-set :password, "root-password" # CHANGE ME
-set :sudo_prompt, ""
+set :keep_releases, 3
+
+ssh_options[:username] = user
 ssh_options[:paranoid] = false
-
-load 'deploy'
-
-namespace :deploy do
-  
-  namespace :install do
-    
-    task :packages do
-    
-      run "apt-get update"
-    
-      packages = {
-        :ruby => %w(ruby ri rdoc irb ruby1.8-dev libopenssl-ruby),
-        :mysql => %w(mysql-server libmysql++-dev),
-        :image => %w(imagemagick),
-        :web => %w(apache2 apache2-prefork-dev),
-        :util => %w(build-essential git-core)
-      }
-    
-      run "apt-get -y install #{packages.map { |k,v| v } * ' '}"
-      
-    end
-    
-    task :rubygems do
-      uri = "http://rubyforge.org/frs/download.php/45905/rubygems-1.3.1.tgz"
-      
-      steps = ["cd /tmp", 
-               "wget #{uri}", 
-               "tar xzvf rubygems-1.3.1.tgz", 
-               "cd rubygems-1.3.1", 
-               "ruby setup.rb", 
-               "cd ..",
-               "rm -Rf ruby*"]
-               
-      run steps * ' && '
-    end
-    
-    task :gems do
-      gems = %w(rails mislav-will_paginate unicode passenger mysql tlsmail)
-      steps = ["gem1.8 sources -a http://gems.github.com",
-               "gem1.8 install #{gems * ' '} --no-ri --no-rdoc"]
-               
-      run steps.join(' && ')
-    end
-    
-    task :passenger do
-      run("gem1.8 list | grep passenger") do |ch, stream, data|
-        @version = data.sub(/passenger \(([^,]+)\).*/,"\\1").strip
-      end
-      
-      passenger_module
-      configure_passenger
-    end
-
-    task :passenger_module do
-      run "cd /usr/lib/ruby/gems/1.8/gems/passenger-#{@version} && rake apache2"
-    end
-
-    task :configure_passenger do
-      passenger_config = <<-EOF
-        LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-#{@version}/ext/apache2/mod_passenger.so
-        PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-#{@version}
-        PassengerRuby /usr/bin/ruby1.8
-      EOF
-
-      put passenger_config, "/tmp/passenger"
-      run "mv /tmp/passenger /etc/apache2/conf.d/passenger"
-    end
-    
-    task :user do
-      run "useradd -p dev@1942! -d #{deploy_to} deploy"
-    end
-    
-  end
-  
-  namespace :config do
-    task :apache do
-      run "rm -f /etc/apache2/sites-enabled/000-default"
-      
-      template = File.read(File.dirname(__FILE__) + '/templates/apache.erb')
-      buffer = ERB.new(template).result(binding)
-      
-      put buffer, "/etc/apache2/sites-available/#{uri}"
-      run "ln -nfs /etc/apache2/sites-available/#{uri} /etc/apache2/sites-enabled/"
-    end
-    
-    task :directories do
-      steps = ["mkdir #{current_deployment}/public/uploads", 
-               "chmod -R 777 #{current_deployment}/public/uploads"]
-               
-      run steps * ' && '
-    end
-    
-    task :databases do
-      steps = ["cd #{current_deployment}",
-               "rake db:create:all",
-               "rake db:migrate",
-               "RAILS_ENV=test rake db:migrate",
-               "RAILS_ENV=production rake db:migrate"]
-               
-      run steps * ' && '
-    end
-    
-    task :database_yml do
-      template = File.read(File.dirname(__FILE__) + '/templates/database.erb')
-      buffer = ERB.new(template).result(binding)
-      
-      run "mkdir -p #{deploy_to}/shared/config"
-      put buffer, "#{deploy_to}/shared/config/database.yml"
-      database_yml_link
-    end
-    
-    task :database_yml_link do
-      run "ln -nfs #{deploy_to}/shared/config/database.yml #{current_deployment}/config/database.yml"
-    end
-    
-    task :permissions do
-      run "chown -R deploy:deploy #{deploy_to}"
-    end
-  end
-  
-  task :restart do
-    run "/etc/init.d/apache2 restart"
-  end
-  
+# =============================================================================
+# TAREFAS - NAO MEXER A MENOS QUE SAIBA O QUE ESTA FAZENDO
+# =============================================================================
+desc "Garante que o database.yml foi corretamente configurado"
+task :before_symlink do
+  on_rollback {}
+  run "test -d #{release_path}/tmp || mkdir -m 755 #{release_path}/tmp"
+  run "test -d #{release_path}/db || mkdir -m 755 #{release_path}/db"
+  run "cp #{deploy_to}/etc/database.yml #{release_path}/config/database.yml"
+  run "cd #{release_path} && rake db:migrate RAILS_ENV=production"
 end
 
-after 'deploy:install:packages', 'deploy:install:rubygems'
-after 'deploy:install:rubygems', 'deploy:install:gems'
-after 'deploy:install:gems', 'deploy:install:passenger'
-after 'deploy:install:passenger', 'deploy:install:user'
+desc "Garante que as configuracoes estao adequadas"
+task :before_setup do
+  ts = Time.now.strftime("%y%m%d%H%M%S")
+  
+  run "test -d #{deploy_to} || mkdir -m 755 #{deploy_to}"
+  run "test -d #{deploy_to}/etc || mkdir -m 755 #{deploy_to}/etc"
+  upload File.join(File.dirname(__FILE__), "templates/database.yml"), "#{deploy_to}/etc/database.yml"
+  upload File.join(File.dirname(__FILE__), "templates/backup.rb"), "#{deploy_to}/etc/backup.rb"
+  upload File.join(File.dirname(__FILE__), "templates/ssh_helper.rb"), "#{deploy_to}/etc/ssh_helper.rb"
+end
 
-after 'deploy', 'deploy:config:database_yml'
-after 'deploy:config:database_yml', 'deploy:config:databases'
-after 'deploy:config:databases', 'deploy:config:directories'
-after 'deploy:config:databases', 'deploy:config:apache'
-after 'deploy:config:apache', 'deploy:restart'
+desc "Prepare the production database before migration"
+task :before_cold do
+end
 
-after 'deploy:update', 'deploy:restart'
-after 'deploy:symlink', 'deploy:config:database_yml_link'
-after 'deploy:update_code', 'deploy:config:permissions'
+namespace :deploy do
+  desc "Pede restart ao servidor Passenger"
+  task :restart, :roles => :app do
+    run "touch #{deploy_to}/current/tmp/restart.txt"
+  end
+end
+
+[:start, :stop].each do |t|
+    desc "A tarefa #{t} nao eh necessaria num ambiente com Passenger"
+    task t, :roles => :app do ; end
+end
+
+namespace :log do
+  desc "tail production log files" 
+  task :tail, :roles => :app do
+    run "tail -f #{shared_path}/log/production.log" do |channel, stream, data|
+      puts  # para uma linha extra 
+      puts "#{channel[:host]}: #{data}" 
+      break if stream == :err    
+    end
+  end
+end
+
+namespace :db do
+  desc "Faz o backup remoto e download do banco de dados MySQL"
+  task :backup, :roles => :db do
+    backup_rb ||= "#{deploy_to}/etc/backup.rb"
+    run "if [ -f #{backup_rb} ]; then ruby #{backup_rb} backup #{deploy_to} ; fi"
+    get "#{deploy_to}/etc/dump.tar.gz", "dump.tar.gz"
+    run "rm #{deploy_to}/etc/dump.tar.gz"
+  end
+  
+  desc "Faz o upload e o restore remoto do banco de dados MySQL"
+  task :restore, :roles => :db do
+    unless File.exists?("dump.tar.gz")
+      puts "Backup dump.tar.gz nao encontrado"
+      exit 0
+    end
+    backup_rb ||= "#{deploy_to}/etc/locaweb_backup.rb"
+    upload "dump.tar.gz", "#{deploy_to}/etc/dump.tar.gz"
+    run "if [ -f #{backup_rb} ]; then ruby #{backup_rb} restore #{deploy_to} ; fi"
+  end
+  
+  desc "Apaga todas as tabelas do banco de dados [CUIDADO! OPERACAO SEM VOLTA!]"
+  task :drop_all, :roles => :db do
+    backup_rb ||= "#{deploy_to}/etc/backup.rb"
+    run "if [ -f #{backup_rb} ]; then ruby #{backup_rb} drop_all #{deploy_to} ; fi"
+  end
+end
