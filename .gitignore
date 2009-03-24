@@ -8,3 +8,5 @@ coverage
 doc/app/* 
 public/index.html
 public/pages/*
+public/pages/uploads
+public/pages/uploads/*
