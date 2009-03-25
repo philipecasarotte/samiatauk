@@ -48,23 +48,23 @@ class Admin::PagesControllerTest < ActionController::TestCase
 		end
 	end
 
-	context "Update" do
-		context "an invalid page" do
-			setup do
-				Page.any_instance.stubs(:valid?).returns(false)
-				post :update, :id => pages(:home)
-			end
-			should_render_template "edit"
-		end
+  context "Update" do
+    context "an invalid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(false)
+        post :update, :id => Factory(:page).id
+      end
+      should_render_template "edit"
+    end
 
-		context "a valid page" do
-			setup do
-				Page.any_instance.stubs(:valid?).returns(true)
-				post :update, :id => pages(:home)
-			end
-			should_redirect_to("list of pages") { admin_pages_path }
-		end
-	end
+    context "a valid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(true)
+        post :update, :id => Factory(:page).id
+      end
+      should_redirect_to("list of pages") { admin_pages_path }
+    end
+  end
 
 	context "Reordering pages" do
 		context "when list the main pages" do

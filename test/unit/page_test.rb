@@ -10,10 +10,11 @@ class PageTest < ActiveSupport::TestCase
     should_have_db_column :position, :type => "integer"
     
     should "have the children method" do
-      assert_respond_to(pages(:about).children.create, :children)
+      @page = Factory(:page)
+      assert_respond_to(@page.children.create, :children)
       assert_kind_of(Array, Page.new.children)
       
-      assert_equal pages(:about).children.size, 1
+      assert_equal @page.children.size, 1
     end
     
     should "have a permalink when saved" do
@@ -23,32 +24,15 @@ class PageTest < ActiveSupport::TestCase
   end
   
   context "A page instance" do
-    should "be able to have children" do
-      assert_difference "Page.count", 1 do
-        assert_difference "pages(:home).children.size", 1 do
-          pages(:home).children.create(:name=>"Sign Up", :body=>"Sign up text!")
-        end
-      end
-    end
     
-    should "update the permalink when update the name" do
-      @page = pages(:home)
+    should "update the permalink when update the title" do
+      @page = Factory(:about)
       @page.update_attribute(:name, "Home")
       assert_equal("home", @page.permalink)
     end
   end
   
-  context "Destroying page" do
-    
-    should "destroy all children" do
-      assert_difference "Page.count", -2 do
-        pages(:about).destroy
-      end
-    end
-    
-  end
-  
-  context "Pages with duplicated name" do
+  context "Pages with duplicated title" do
     setup do
       @page_one ||= Page.new(:name=>'Page', :body=>'Lorem')
       @page_two ||= Page.new(:name=>'Page', :body=>'Lorem')
@@ -75,7 +59,7 @@ class PageTest < ActiveSupport::TestCase
   
   context "When a Page is protected" do
     setup do
-      @page = pages(:protected_page)
+      @page = Factory(:page, :is_protected => true)
     end
 
     should "not change the permalink" do

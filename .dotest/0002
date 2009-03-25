@@ -1,0 +1,42 @@
+From 3807aed27956c59f1a34b737ca45b59641e2ec7b Mon Sep 17 00:00:00 2001
+From: Ricardo Shiota Yasuda <shadow11@gmail.com>
+Date: Mon, 6 Apr 2009 16:24:02 -0300
+Subject: Added test for :dependent => :destroy on page children
+
+---
+ test/unit/page_test.rb |    5 ++---
+ 1 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/test/unit/page_test.rb b/test/unit/page_test.rb
+index 5d4737cab4cda0d5120b5dbf6b05b7e2feff3ff2..fab374793dc39004f45ee8d07b6a2e0af309854a 100644
+--- a/test/unit/page_test.rb
++++ b/test/unit/page_test.rb
+@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
+ class PageTest < ActiveSupport::TestCase
+   context "An instance of page" do
+     should_validate_presence_of :name
+-    should_have_many :children
++    should_have_many :children, :dependent => :destroy
+     should_belong_to :parent
+     should_have_named_scope :main_pages
+     
+@@ -22,14 +22,13 @@ class PageTest < ActiveSupport::TestCase
+   end
+   
+   context "A page instance" do
+-    
+     should "update the permalink when update the title" do
+       @page = Factory(:about)
+       @page.update_attribute(:name, "Home")
+       assert_equal("home", @page.permalink)
+     end
+   end
+-  
++
+   context "Pages with duplicated title" do
+     setup do
+       @page_one ||= Page.new(:name=>'Page', :body=>'Lorem')
+-- 
+1.5.6.4
+
+

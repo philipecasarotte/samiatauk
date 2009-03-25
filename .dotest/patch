@@ -1,0 +1,176 @@
+---
+ config/environments/test.rb                    |    1 +
+ test/factories/pages.rb                        |   21 ++++++++++++++++
+ test/functional/admin/pages_controller_test.rb |    4 +-
+ test/functional/pages_controller_test.rb       |    8 +++---
+ test/test_helper.rb                            |    2 +-
+ test/unit/page_test.rb                         |   30 +++++------------------
+ 6 files changed, 36 insertions(+), 30 deletions(-)
+ create mode 100644 test/factories/pages.rb
+
+diff --git a/config/environments/test.rb b/config/environments/test.rb
+index 1931f3b4eb4a00072bf962294373b5d764e88e67..62c5806fd767851f7642e594524362c40e20d311 100644
+--- a/config/environments/test.rb
++++ b/config/environments/test.rb
+@@ -22,3 +22,4 @@ config.action_controller.allow_forgery_protection    = false
+ config.action_mailer.delivery_method = :test
+ 
+ config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => 'http://gems.github.com'
++config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+\ No newline at end of file
+diff --git a/test/factories/pages.rb b/test/factories/pages.rb
+new file mode 100644
+index 0000000000000000000000000000000000000000..7249709e7f5c159e8c5a238ac5c30859834993b4
+--- /dev/null
++++ b/test/factories/pages.rb
+@@ -0,0 +1,21 @@
++Factory.define :page do |p|
++  p.title 'Home'
++  p.body 'Coming Soon'
++  p.permalink 'home'
++  p.is_protected 0
++end
++
++Factory.define :about, :parent => :page do |p|
++  p.title 'About Us'
++  p.body 'About us'
++  p.permalink 'about-us'
++  p.is_protected 0
++end
++
++Factory.define :about_child, :parent => :page do |f|
++  f.parent { |parent| parent.association(:about)  }
++end
++
++Factory.define :long_page, :parent => :page do |f|
++  f.body "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed lectus ac sapien consectetur dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed hendrerit elit. Aliquam velit felis, imperdiet eu, egestas sed, consequat et, ligula. Nullam bibendum dictum metus. Maecenas ut tellus non nulla dapibus tincidunt. Curabitur ullamcorper, arcu sed feugiat elementum, ligula libero accumsan velit, bibendum pulvinar enim est at magna. Suspendisse et neque quis leo lobortis dictum. Aliquam justo mauris, ornare ac, mollis vitae, convallis vitae, metus. Nunc commodo sapien et mauris. Aliquam vitae ligula. Proin mi turpis, dignissim sed, mattis quis, dignissim sagittis, diam. Nullam a neque. Maecenas ornare vulputate metus. Suspendisse potenti. Vestibulum mattis arcu et quam."
++end
+diff --git a/test/functional/admin/pages_controller_test.rb b/test/functional/admin/pages_controller_test.rb
+index fac95b2cc404468af25c08620765da0e4ac0e173..abd725c37609018530a8a85f73df4ce82472f508 100644
+--- a/test/functional/admin/pages_controller_test.rb
++++ b/test/functional/admin/pages_controller_test.rb
+@@ -52,7 +52,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
+     context "an invalid page" do
+       setup do
+         Page.any_instance.stubs(:valid?).returns(false)
+-        post :update, :id => pages(:home)
++        post :update, :id => Factory(:page).id
+       end
+       should_render_template "edit"
+     end
+@@ -60,7 +60,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
+     context "a valid page" do
+       setup do
+         Page.any_instance.stubs(:valid?).returns(true)
+-        post :update, :id => pages(:home)
++        post :update, :id => Factory(:page).id
+       end
+       should_redirect_to("list of pages") { admin_pages_path }
+     end
+diff --git a/test/functional/pages_controller_test.rb b/test/functional/pages_controller_test.rb
+index 1f90076d9bd2c68ac10dec3a74a062e177798e61..e74c7d3018d68fad0af75708edf98c369d2e369d 100644
+--- a/test/functional/pages_controller_test.rb
++++ b/test/functional/pages_controller_test.rb
+@@ -20,18 +20,18 @@ class PagesControllerTest < ActionController::TestCase
+     
+     context "on GET to show" do
+       setup do
+-        get pages(:home).permalink
++        get Factory(:page).permalink
+       end
+ 
+-      should_assign_to(:page) { Page.find_by_permalink(pages(:home).permalink) }
++      should_assign_to(:page) { Page.find_by_permalink(Factory(:page).permalink) }
+     end
+     
+     context "with children for sidebar" do
+       setup do
+-        get pages(:about).permalink
++        get Factory(:about).permalink
+       end
+ 
+-      should_assign_to(:pages) { Page.find_by_permalink(pages(:about).permalink).children }
++      should_assign_to(:pages) { Page.find_by_permalink(Factory(:about).permalink).children }
+     end
+     
+   end
+diff --git a/test/test_helper.rb b/test/test_helper.rb
+index 56a43d76ea2e90375b946630f7c5deeb79ffe8ca..fb792bb3687f43b979d00812e8990bcc640d7747 100644
+--- a/test/test_helper.rb
++++ b/test/test_helper.rb
+@@ -35,7 +35,7 @@ class ActiveSupport::TestCase
+   #
+   # Note: You'll currently still have to declare fixtures explicitly in integration tests
+   # -- they do not yet inherit this setting
+-  fixtures :all
++  fixtures :users, :roles, :roles_users
+ 
+   # Add more helper methods to be used by all tests here...
+ end
+diff --git a/test/unit/page_test.rb b/test/unit/page_test.rb
+index 9fda1d8dfc1ef830b0a01824bd6b35054aa30886..5d4737cab4cda0d5120b5dbf6b05b7e2feff3ff2 100644
+--- a/test/unit/page_test.rb
++++ b/test/unit/page_test.rb
+@@ -8,10 +8,11 @@ class PageTest < ActiveSupport::TestCase
+     should_have_named_scope :main_pages
+     
+     should "have the children method" do
+-      assert_respond_to(pages(:about).children.create, :children)
++      @page = Factory(:page)
++      assert_respond_to(@page.children.create, :children)
+       assert_kind_of(Array, Page.new.children)
+       
+-      assert_equal pages(:about).children.size, 1
++      assert_equal @page.children.size, 1
+     end
+     
+     should "have a permalink when saved" do
+@@ -21,32 +22,15 @@ class PageTest < ActiveSupport::TestCase
+   end
+   
+   context "A page instance" do
+-    should "be able to have children" do
+-      assert_difference "Page.count", 1 do
+-        assert_difference "pages(:home).children.size", 1 do
+-          pages(:home).children.create(:name=>"Sign Up", :body=>"Sign up text!")
+-        end
+-      end
+-    end
+     
+-    should "update the permalink when update the name" do
+-      @page = pages(:home)
++    should "update the permalink when update the title" do
++      @page = Factory(:about)
+       @page.update_attribute(:name, "Home")
+       assert_equal("home", @page.permalink)
+     end
+   end
+   
+-  context "Destroying page" do
+-    
+-    should "destroy all children" do
+-      assert_difference "Page.count", -2 do
+-        pages(:about).destroy
+-      end
+-    end
+-    
+-  end
+-  
+-  context "Pages with duplicated name" do
++  context "Pages with duplicated title" do
+     setup do
+       @page_one ||= Page.new(:name=>'Page', :body=>'Lorem')
+       @page_two ||= Page.new(:name=>'Page', :body=>'Lorem')
+@@ -72,7 +56,7 @@ class PageTest < ActiveSupport::TestCase
+   
+   context "When a Page is protected" do
+     setup do
+-      @page = pages(:protected_page)
++      @page = Factory(:page, :is_protected => true)
+     end
+ 
+     should "not change the permalink" do
+-- 
+1.5.6.4
+
+
