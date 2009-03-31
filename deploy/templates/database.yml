@@ -1,0 +1,9 @@
+production:
+  adapter: mysql
+  encoding: utf8
+  database: app_production
+  username: app_site
+  password: password
+
+development:
+  production
