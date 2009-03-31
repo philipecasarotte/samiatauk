@@ -1,8 +1,8 @@
 production:
   adapter: mysql
   encoding: utf8
-  database: app_production
-  username: app_site
+  database: <%= application %>_production
+  username: <%= application %>_site
   password: password
 
 development:
