@@ -13,9 +13,4 @@ class Page < ActiveRecord::Base
   def self.page_not_found
     find_by_permalink('page-not-found')
   end
-  
-  def summary(size = 100)
-    body.summary(size)
-  end
-
 end
