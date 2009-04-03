@@ -1,0 +1,7 @@
+pagenotfound:
+    title: "Page Not Found"
+    body: "The page you requested was not found"
+    
+contact:
+    title: "Contact"
+    body: "Send a message to our staff"
