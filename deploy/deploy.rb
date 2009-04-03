@@ -1,11 +1,11 @@
 # =============================================================================
 # CONFIGURE OS VALORES DE ACORDO COM SUA HOSPEDAGEM
 # =============================================================================
-set :user, "deploy"
-set :password, "password-here"
-set :host, "server-ip-here"
-set :domain, "http://domain.here/"
-set :application, "application-name"
+set :user, "user"
+set :password, "password"
+set :host, "server_ip"
+set :domain, "domain.com"
+set :application, "app_name"
 
 set :repository, "git://dburnsdesign.com/repos/mainline.git"
 # =============================================================================
@@ -15,7 +15,8 @@ role :web, host
 role :app, host
 role :db,  host
 
-set :deploy_to, "/home/#{application}" 
+set :deploy_to, "/home/#{user}" 
+set :public_html, "/home/#{user}/public_html"
 set :current_deployment, "#{deploy_to}/current"
 
 set :runner, nil
@@ -43,11 +44,10 @@ desc "Garante que as configuracoes estao adequadas"
 task :before_setup do
   ts = Time.now.strftime("%y%m%d%H%M%S")
   
-  run "test -d #{deploy_to} || mkdir -m 755 #{deploy_to}"
-  run "test -d #{deploy_to}/etc || mkdir -m 755 #{deploy_to}/etc"
   upload File.join(File.dirname(__FILE__), "templates/database.yml"), "#{deploy_to}/etc/database.yml"
   upload File.join(File.dirname(__FILE__), "templates/backup.rb"), "#{deploy_to}/etc/backup.rb"
   upload File.join(File.dirname(__FILE__), "templates/ssh_helper.rb"), "#{deploy_to}/etc/ssh_helper.rb"
+  
 end
 
 desc "Prepare the production database before migration"

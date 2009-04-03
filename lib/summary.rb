@@ -1,5 +1,7 @@
 class String
-  def summary(size=200)
-    ApplicationController.helpers.truncate(ApplicationController.helpers.strip_tags(self).strip, :length => size)
+  def summary(size=100)
+	  text = ApplicationController.helpers.strip_tags(self).strip.gsub('  ', '')
+  	text = text[0...text[0..(size-3)].rindex(' ')] + "..." if text.size > size
+  	text
   end
 end
