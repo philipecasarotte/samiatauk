@@ -10,3 +10,5 @@ public/index.html
 public/pages/*
 public/uploads
 public/uploads/*
+public/system
+public/system/*
