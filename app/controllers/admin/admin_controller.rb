@@ -3,6 +3,8 @@ class Admin::AdminController < ResourceController::Base
   include AuthenticatedSystem
   include AuthorizedSystem
 
+  include ResourceControllerView
+
   authorize_role "admin"
 
 	layout "admin/layouts/admin"

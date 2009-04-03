@@ -7,6 +7,10 @@ module Order
   
   def reorder
     @items = collection
+
+    render "reorder"
+    rescue ActionView::MissingTemplate
+      render :file => "/admin/scaffold/reorder", :layout => "admin/layouts/admin"
   end
   
   private

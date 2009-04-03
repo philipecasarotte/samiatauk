@@ -23,10 +23,10 @@
 <%= render :partial=>"admin/layouts/menu" if logged_in? %>
 
 <div id="content">
-	<% if flash[:notice] %>
-		<p style="color: green"><%= flash[:notice] %></p>
-	<% elsif flash[:error] %>
-		<p style="color: red"><%= flash[:error] %></p>
+	<% [:error, :notice].each do |message| %>
+		<% content_tag :div, :class => message do %>
+			<%= flash[message] %>
+		<% end if flash[message] %>
 	<% end %>
 	<%= yield  %>
 </div>

@@ -1,9 +1,9 @@
 <div id="sidebar">
-	<% unless @pages.blank? %>
-	<ul>
-		<% @pages.each do |page| %>
-		<li><%= link_to page.title, page_path(page.permalink) %></li>
-		<% end %>
-	</ul>
+	<% if @pages.present? %>
+		<ul>
+			<% @pages.each do |page| %>
+				<li><%= link_to page.title, page_path(page.permalink) %></li>
+			<% end %>
+		</ul>
 	<% end %>
 </div>
