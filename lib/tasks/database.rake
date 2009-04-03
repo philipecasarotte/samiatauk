@@ -1,4 +1,5 @@
 require 'activerecord'
+require 'active_record/fixtures'
 
 namespace :db do
   desc "Migrate schema to version 0 and back up again. WARNING: Destroys all data in tables!!"
@@ -37,27 +38,21 @@ namespace :db do
   desc "Create the default pages in CMS that can't be deleted."
   task :default_pages => [:environment, :clear_default_pages] do
    puts "Creating Default Pages..."
-   get_pages    
-   @pages.each do |page|
-     create = Page.create(:title => page[:title], :body => page[:body], :is_protected => true)
-     puts "Created #{page[:title]} Page."
+   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+   Fixtures.create_fixtures("#{RAILS_ROOT}/lib/dburns", 'pages')
+   puts "Updating children count..."
+   main_pages = Page.all :conditions => 'parent_id IS NULL'
+   main_pages.each do |main_page|
+     children_count = main_page.children.count
+     ActiveRecord::Base.connection.execute("UPDATE pages p SET children_count = #{children_count} WHERE p.id = #{main_page.id}; ")
+     puts "#{main_page.title} updated to #{children_count} children."
    end
+   puts "Done"
   end
 
   task :clear_default_pages => :environment do
     puts "Destroying default pages before creating it again."
-    get_pages
-    @pages.each do |page|
-     destroy = Page.find(:first, :conditions => {:title => page[:title]}) 
-     Page.destroy(destroy.id) unless destroy.blank?
-     puts "Deleted #{page[:title]} Page." unless destroy.blank?
-    end
+    Page.destroy_all
   end
 
-  def get_pages
-    @pages = [
-                {:title => "Page Not Found", :body => "The page you requested was not found"}, 
-                {:title => "Contact", :body => "Send a message to our staff"}
-             ]
-  end
 end
