@@ -29,11 +29,6 @@ class PageTest < ActiveSupport::TestCase
       end
     end
     
-    should "have a summary method" do
-      assert_equal(100, pages(:home).summary.size)
-      assert_equal(50, pages(:home).summary(50).size)
-    end
-    
     should "update the permalink when update the title" do
       @page = pages(:home)
       @page.update_attribute(:title, "Home")
