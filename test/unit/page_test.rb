@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PageTest < ActiveSupport::TestCase
   context "An instance of page" do
     should_validate_presence_of :name
-    should_have_many :children
+    should_have_many :children, :dependent => :destroy
     should_belong_to :parent
     should_have_named_scope :main_pages
     
@@ -24,14 +24,13 @@ class PageTest < ActiveSupport::TestCase
   end
   
   context "A page instance" do
-    
     should "update the permalink when update the title" do
       @page = Factory(:about)
       @page.update_attribute(:name, "Home")
       assert_equal("home", @page.permalink)
     end
   end
-  
+
   context "Pages with duplicated title" do
     setup do
       @page_one ||= Page.new(:name=>'Page', :body=>'Lorem')
