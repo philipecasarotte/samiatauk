@@ -1,7 +1,7 @@
 class CreatePages < ActiveRecord::Migration
   def self.up
     create_table :pages, :force => true do |t|
-      t.string :title
+      t.string :name
       t.string :permalink
       t.text :body
       t.integer :parent_id

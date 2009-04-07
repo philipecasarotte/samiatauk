@@ -44,7 +44,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
   
     should "create a page" do
       assert_difference "Page.count", 1 do
-        post :create, :page => { :title=>"Test", :body=>"Testing!" }
+        post :create, :page => { :name=>"Test", :body=>"Testing!" }
         assert_redirected_to admin_pages_path
       end
     end
@@ -60,7 +60,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
     end
   
     should "update a page" do
-      put :update, :id => pages(:home).id, :page => { :title=>"Testing Again" }
+      put :update, :id => pages(:home).id, :page => { :name=>"Testing Again" }
       assert_redirected_to admin_pages_path
       assert_equal "testing-again", assigns(:page).permalink
     end

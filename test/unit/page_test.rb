@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class PageTest < ActiveSupport::TestCase
   context "An instance of page" do
-    should_validate_presence_of :title
+    should_validate_presence_of :name
     should_have_many :children
     should_belong_to :parent
     should_have_named_scope :main_pages
@@ -15,7 +15,7 @@ class PageTest < ActiveSupport::TestCase
     end
     
     should "have a permalink when saved" do
-      page = Page.create(:title => "Title of Permalink", :body => "Testing text!")
+      page = Page.create(:name => "Title of Permalink", :body => "Testing text!")
       assert_equal("title-of-permalink", page.permalink)
     end
   end
@@ -24,14 +24,14 @@ class PageTest < ActiveSupport::TestCase
     should "be able to have children" do
       assert_difference "Page.count", 1 do
         assert_difference "pages(:home).children.size", 1 do
-          pages(:home).children.create(:title=>"Sign Up", :body=>"Sign up text!")
+          pages(:home).children.create(:name=>"Sign Up", :body=>"Sign up text!")
         end
       end
     end
     
-    should "update the permalink when update the title" do
+    should "update the permalink when update the name" do
       @page = pages(:home)
-      @page.update_attribute(:title, "Home")
+      @page.update_attribute(:name, "Home")
       assert_equal("home", @page.permalink)
     end
   end
@@ -46,11 +46,11 @@ class PageTest < ActiveSupport::TestCase
     
   end
   
-  context "Pages with duplicated title" do
+  context "Pages with duplicated name" do
     setup do
-      @page_one ||= Page.new(:title=>'Page', :body=>'Lorem')
-      @page_two ||= Page.new(:title=>'Page', :body=>'Lorem')
-      @page_three ||= Page.new(:title=>'Page', :body=>'Lorem')
+      @page_one ||= Page.new(:name=>'Page', :body=>'Lorem')
+      @page_two ||= Page.new(:name=>'Page', :body=>'Lorem')
+      @page_three ||= Page.new(:name=>'Page', :body=>'Lorem')
       @page_one.save
       @page_two.save
       @page_three.save
@@ -80,7 +80,7 @@ class PageTest < ActiveSupport::TestCase
       
       assert(@page.is_protected)
       
-      @page.update_attribute(:title,"CHANGED")
+      @page.update_attribute(:name,"CHANGED")
       
       assert_equal(permalink, @page.permalink)
     end

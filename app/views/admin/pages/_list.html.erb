@@ -5,7 +5,7 @@
 		<% else %>
 			<%= image_tag "act_as_tree/simple.gif", :size => "20x16", :alt => "" %>
 		<% end %>
-		<span><%=h page.title %></span>
+		<span><%=h page.name %></span>
 		<div>
 			<%=link_to 'Reorder children', reorder_admin_pages_url(:parent_id => page.id) if page.children.size > 1  %>
 			<%=link_to 'New child', new_admin_page_url(:parent_id => page.id) %>
