@@ -14,6 +14,7 @@ class Admin::AdminController < ResourceController::Base
   protected
   
 	def access_denied
-		redirect_to new_admin_session_path
+	  flash.now[:error] = "You are not authorized"
+		redirect_to admin_login_path
 	end
 end

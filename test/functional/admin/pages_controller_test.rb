@@ -2,76 +2,70 @@ require 'test_helper'
 
 class Admin::PagesControllerTest < ActionController::TestCase
 
-  context "A user" do
-    
-    context "not logged in" do
+  def setup
+    @controller = Admin::PagesController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+    login_as(:admin)
+  end
+
+  context "List of pages" do
+
+    context "in HTML" do
       setup do
-        logged_in = false
         get :index
       end
 
-      should_respond_with :redirect
+      should_respond_with_content_type :html
     end
     
-    context "logged in but not authorized" do
+    context "via Ajax" do
       setup do
-        login_as(:quentin)
-        get :index
+        get :index, :format => 'js'
       end
 
-      should_respond_with :redirect
+      should_respond_with_content_type :js
+      should_render_without_layout
+    end
+    
+  end
+  
+  
+
+  context "Create" do
+    context "an invalid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(false)
+        post :create
+      end
+      should_render_template "new"
+    end
+
+    context "a valid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(true)
+        post :create
+      end
+      should_redirect_to("list of pages") { admin_pages_path }
     end
   end
 
-  context "At the Admin environment" do 
-    
-    setup do
-      @controller = Admin::PagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new
-      login_as(:admin)
-    end
-
-    should "get index" do
-      get :index
-      assert_response :success
-    end
-
-    should "get new" do
-      get :new
-      assert_response :success
-    end
-  
-    should "create a page" do
-      assert_difference "Page.count", 1 do
-        post :create, :page => { :title=>"Test", :body=>"Testing!" }
-        assert_redirected_to admin_pages_path
+  context "Update" do
+    context "an invalid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(false)
+        post :update, :id => pages(:home)
       end
+      should_render_template "edit"
     end
 
-    should "show page" do
-      get :show, :id => pages(:home).id
-      assert_response :success
-    end
-
-    should "get page" do
-      get :edit, :id => pages(:home).id
-      assert_response :success
-    end
-  
-    should "update a page" do
-      put :update, :id => pages(:home).id, :page => { :title=>"Testing Again" }
-      assert_redirected_to admin_pages_path
-      assert_equal "testing-again", assigns(:page).permalink
-    end
-  
-    should "delete a page" do
-      assert_difference "Page.count", -1 do
-        delete :destroy, :id => pages(:home).id
-        assert_redirected_to admin_pages_path
+    context "a valid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(true)
+        post :update, :id => pages(:home)
       end
+      should_redirect_to("list of pages") { admin_pages_path }
     end
-    
   end
 
 end
