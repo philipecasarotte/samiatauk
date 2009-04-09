@@ -45,7 +45,7 @@ namespace :db do
    main_pages.each do |main_page|
      children_count = main_page.children.count
      ActiveRecord::Base.connection.execute("UPDATE pages p SET children_count = #{children_count} WHERE p.id = #{main_page.id}; ")
-     puts "#{main_page.title} updated to #{children_count} children."
+     puts "#{main_page.name} updated to #{children_count} children."
    end
    puts "Done"
   end
