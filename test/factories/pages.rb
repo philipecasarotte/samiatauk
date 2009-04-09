@@ -1,12 +1,12 @@
 Factory.define :page do |p|
-  p.title 'Home'
+  p.name 'Home'
   p.body 'Coming Soon'
   p.permalink 'home'
   p.is_protected 0
 end
 
 Factory.define :about, :parent => :page do |p|
-  p.title 'About Us'
+  p.name 'About Us'
   p.body 'About us'
   p.permalink 'about-us'
   p.is_protected 0

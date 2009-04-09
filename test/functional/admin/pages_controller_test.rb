@@ -52,7 +52,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
     context "an invalid page" do
       setup do
         Page.any_instance.stubs(:valid?).returns(false)
-        post :update, :id => Factory(:page).id
+        post :update, :id => Page.first.id
       end
       should_render_template "edit"
     end
@@ -60,7 +60,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
     context "a valid page" do
       setup do
         Page.any_instance.stubs(:valid?).returns(true)
-        post :update, :id => Factory(:page).id
+        post :update, :id => Page.first.id
       end
       should_redirect_to("list of pages") { admin_pages_path }
     end
