@@ -29,8 +29,6 @@ class Admin::PagesControllerTest < ActionController::TestCase
     end
     
   end
-  
-  
 
   context "Create" do
     context "an invalid page" do
