@@ -4,4 +4,9 @@ class PageSweeper < ActionController::Caching::Sweeper
   def after_save(page)
     ["/pages/#{page.permalink}", '/index'].each{|action| expire_page(action) }
   end
+
+  def after_destroy(page)
+    ["/pages/#{page.permalink}", '/index'].each{|action| expire_page(action) }
+  end
+
 end

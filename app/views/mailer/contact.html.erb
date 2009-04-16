@@ -3,7 +3,7 @@
 <table>
 	<% @params.each do |param, value| %>
 		<tr>
-			<th align="right" valign="top"><%= param.to_s.titlecase %></td>
+			<td align="right" valign="top"><%= param.to_s.titlecase %></td>
 			<td valign="top"><%= h(value) %></td>
 		</tr>
 	<% end %>
