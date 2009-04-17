@@ -1,7 +1,7 @@
 <h1>Listing Pages</h1>
 
 <ul class="act_as_tree">
-	<%= render :partial => "list", :locals => { :pages => @pages } %>
+	<%= render :partial => @pages %>
 </ul>
 
 <%= link_to 'New Page', new_object_url %> |
