@@ -103,3 +103,5 @@ namespace :db do
     run "if [ -f #{backup_rb} ]; then ruby #{backup_rb} drop_all #{deploy_to} ; fi"
   end
 end
+
+after "deploy:update", "deploy:cleanup"
