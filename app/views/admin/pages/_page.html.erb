@@ -1,6 +1,6 @@
 <li id="page_<%= page.id %>">
 	<% if page.children.size > 0 %>
-		<%=link_to image_tag("act_as_tree/open.gif", :size => "20x16", :alt => ""), formatted_admin_pages_url(:parent_id => page, :format => :js), :class => "first" %>
+		<%=link_to image_tag("act_as_tree/open.gif", :size => "20x16", :alt => ""), admin_pages_url(:parent_id => page, :format => :js), :class => "first" %>
 	<% else %>
 		<%= image_tag "act_as_tree/simple.gif", :size => "20x16", :alt => "" %>
 	<% end %>

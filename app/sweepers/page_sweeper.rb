@@ -10,7 +10,9 @@ class PageSweeper < ActionController::Caching::Sweeper
   end
 
   def clear_page_cache(page)
-    ["/pages/#{page.permalink}", '/index'].each{|action| expire_page(action) }
+    expire_page('/index')
+    dirs = %w{ pages }
+    sweep_directory(dirs)
   end
 
 end
