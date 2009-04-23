@@ -68,6 +68,8 @@ form ul 				{margin-left: 10px;}
 
 /* MESSAGES */
 label.error  {color:red; font-weight:normal;}
+div.notice {border:solid 2px green;background-color:#B2DFB8;color:green;padding:3px 5px;}
+div.error {border:solid 2px red;background-color:#FDB5AF;color:red;padding:3px 5px;}
 
 /* act_as_tree */
 .act_as_tree {margin:10px 0;}
