@@ -14,11 +14,6 @@ $(function (){
 		return false;
 	});
 
-	// validate
-	$(".validate").each(function(){
-		$(this).validate();
-	});
-	
 	// act_as_tree
 	$(".act_as_tree>li:last").css("background", "none").parent().find(".first").click(function() {
 		if ($(this).hasClass("first")) {
