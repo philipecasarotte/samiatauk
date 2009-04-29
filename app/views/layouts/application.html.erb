@@ -6,18 +6,19 @@
 	<title><%= metatag_title(@metatag_object, SITE_NAME) %></title>
 
 	<%= metatags(@metatag_object) -%>
-	<meta http-equiv="content-language" content="en">
-	<meta name="author" content="DBurns Design - Professional Website Design in Los Angeles, California">
-	<meta name="distribution" content="global">
-	<meta name="revisit-after" content="30 days">
-	<meta name="copyright" content="DBurns Design">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-language" content="en"/>
+	<meta name="author" content="DBurns Design - Professional Website Design in Los Angeles, California"/>
+	<meta name="distribution" content="global"/>
+	<meta name="revisit-after" content="30 days"/>
+	<meta name="copyright" content="DBurns Design"/>
 
 	<%= stylesheet_link_tag "default" %>
 
 	<link href="/favicon.ico" type="image/x-icon" rel="icon"/>
 	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
-	<%= javascript_include_tag :defaults, "plugins/crossbrowser", "http://www.google-analytics.com/ga.js" %>
+	<%= javascript_include_tag :defaults, "plugins/crossbrowser", "http://www.google-analytics.com/ga" %>
 	<%= yield :head %>
 </head>
 <body>
