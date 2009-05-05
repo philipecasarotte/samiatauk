@@ -1,11 +1,13 @@
 <h1>Listing <%= 'Admin' if params[:role]=='admin' %> Users</h1>
 
-<table>
-  <tr>
-    <th>Login</th>
-    <th>Name</th>
-    <th>Email</th>
-  </tr>
+<table cellspacing="0" class="display" id="table">
+  <thead>
+		<tr>
+	    <th>Login</th>
+	    <th>Name</th>
+	    <th>Email</th>
+	  </tr>
+  </thead>
   <%- @users.each do |user|%>
     <tr>
       <td><%=h user.login %></td>
@@ -20,3 +22,5 @@
 <br/>
 
 <%= link_to 'New User', new_object_url %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>
