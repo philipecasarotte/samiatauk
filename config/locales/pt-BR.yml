@@ -165,7 +165,7 @@ pt-BR:
         password_confirmation: "Confirmação de senha"
         metatag_title: "Título da Metatag"
         metatag_keywords: "Palavras-chaves da Metatag"
-        metatag_descritpion: "Descrição da Metatag"
+        metatag_description: "Descrição da Metatag"
     errors:
       template:
         header:
