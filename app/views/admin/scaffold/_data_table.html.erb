@@ -1,0 +1,12 @@
+<% content_for :head do -%>
+	<% javascript_tag do -%>
+	$(function(){
+		$("#table").dataTable( {
+			"aaSorting": [[ 0, "asc" ]],
+			"sPaginationType": "full_numbers",
+			"bStateSave": true,
+			"bInfo": false
+		}).css("width", "auto");
+	});
+	<% end -%>
+<% end -%>
