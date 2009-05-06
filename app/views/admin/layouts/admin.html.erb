@@ -10,7 +10,7 @@
 	<link href="/favicon.ico" type="image/x-icon" rel="icon"/>
 	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
-	<%= javascript_include_tag :defaults, "plugins/superfish", "plugins/metadata", "plugins/validate", "admin/default" %>
+	<%= javascript_include_tag :defaults, "plugins/superfish", "plugins/metadata", "plugins/validate", validate_i18n, "admin/default" %>
 	<%= javascript_include_tag :fckeditor %>
 	<%= yield :head %>
 </head>
@@ -31,7 +31,7 @@
 	<%= yield  %>
 </div>
 
-<div id="footer">Created by <%= link_to "DBurns Design", "http://www.dburnsdesign.com", :target => "_blank" %></div>
+<div id="footer"><%=t :created_by %> <%= link_to "DBurns Design", "http://www.dburnsdesign.com", :target => "_blank" %></div>
 
 </body>
 </html>

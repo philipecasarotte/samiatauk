@@ -1,4 +1,4 @@
-<h1>Reorder <%= @items.first.class.to_s.pluralize %></h1>
+<h1><%=t :reorder %> <%= @items.first.class.human_name.to_s.pluralize %></h1>
 
 <ul id="order">
 	<% @items.each do |item| %>
@@ -10,4 +10,4 @@
       :complete => visual_effect(:highlight, 'order'), 
       :url => { :action => "order" } %>
 
-<p><%= link_to "Back", collection_url %></p>
+<p><%= link_to t(:back), collection_url %></p>

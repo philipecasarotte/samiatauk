@@ -51,7 +51,7 @@ class PagesControllerTest < ActionController::TestCase
 
     should "send contact e-mail" do
       assert_sent_email do |email|
-        email.from.include?('dev.dburns@gmail.com') && email.subject =~ /Contact From/
+        email.from.include?('dev.dburns@gmail.com') && email.subject =~ /Contact from/
       end
     end
     

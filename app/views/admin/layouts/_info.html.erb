@@ -1,5 +1,5 @@
 <p id="info">
-	Welcome, <%= current_user.name %><br/>
-	[ <%= link_to "Frontend", root_path %> ]
-	[ <%= link_to "Logout", admin_logout_path %> ]
+	<%=t :welcome %>, <%= current_user.name %><br/>
+	[ <%= link_to t(:frontend), root_path %> ]
+	[ <%= link_to t(:logout), admin_logout_path %> ]
 </p>

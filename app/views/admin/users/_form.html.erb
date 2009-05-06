@@ -19,7 +19,7 @@
   <%= f.password_field :password_confirmation, :class => "{" + ((params[:action] == "edit") ? "" : "required:true, ") + "equalTo: '#user_password'}" %>
 </p>
 <p>
-  <%= f.label :roles_users, 'Permissions (Roles)' %>
+  <%= f.label :roles_users, t(:permissions) %>
   <% Role.all.each do |role| %>
 	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
 	<%=h role.name %>

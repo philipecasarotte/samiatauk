@@ -1,10 +1,10 @@
-<h1>New <%= @object.class %></h1>
+<h1><%=t :new %> <%= @object.class.human_name %></h1>
 
 <%= error_messages_for @object.class.to_s.underscore.to_sym %>
 
 <% form_for(@object, :url => collection_url, :html => { :class => "validate", :multipart => true }) do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
-  <p class="submit"><%= submit_tag "Create" %></p>
+  <p class="submit"><%= submit_tag t(:create) %></p>
 <% end %>
 <br/>
-<%= link_to 'Back', collection_url %>
+<%= link_to t(:back), collection_url %>

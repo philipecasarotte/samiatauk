@@ -1,4 +1,4 @@
-<h1>Log In</h1>
+<h1><%=t :log_in %></h1>
 
 <% form_tag admin_session_path do -%>
 	<p>
@@ -7,7 +7,7 @@
 	</p>
 
 	<p>
-		<%= label_tag 'password' %>
+		<%= label_tag t(:password) %>
 		<%= password_field_tag 'password', nil %>
 	</p>
 

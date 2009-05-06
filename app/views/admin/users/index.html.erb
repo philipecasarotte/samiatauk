@@ -1,10 +1,10 @@
-<h1>Listing <%= 'Admin' if params[:role]=='admin' %> Users</h1>
+<h1><%= t(:listing) %> <%= 'Admin' if params[:role]=='admin' %> <%=t :users %></h1>
 
 <table>
   <tr>
     <th>Login</th>
-    <th>Name</th>
-    <th>Email</th>
+    <th><%=t :user_name %></th>
+    <th><%=t :user_email %></th>
   </tr>
   <%- @users.each do |user|%>
     <tr>
@@ -12,11 +12,11 @@
       <td><%=h user.name %></td>
       <td><%=h user.email %></td>
     
-      <td><%=link_to 'Edit', edit_object_url(user) %></td>
-      <td><%=link_to 'Destroy', object_url(user), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=link_to t(:edit), edit_object_url(user) %></td>
+      <td><%=link_to t(:destroy), object_url(user), :confirm => t(:are_you_sure), :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 <br/>
 
-<%= link_to 'New User', new_object_url %>
+<%= link_to t(:new_user), new_object_url %>

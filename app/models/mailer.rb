@@ -21,7 +21,7 @@ class Mailer < ActionMailer::Base
     # @recipients = SITE_EMAIL     # UNCOMMENT THIS IN PRODUCTION!
     @from = params[:email] if params[:email]
     headers['Reply-To'] = params[:email] if params[:email]
-    @subject = "Contact From #{SITE_DOMAIN}"
+    @subject = I18n.t(:contact_from) + " #{SITE_DOMAIN}"
     @sent_on = Time.now
     @content_type = 'text/html'
     
