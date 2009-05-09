@@ -7,6 +7,8 @@ class PageTest < ActiveSupport::TestCase
     should_belong_to :parent
     should_have_named_scope :main_pages
     
+    should_have_db_column :position, :type => "integer"
+    
     should "have the children method" do
       assert_respond_to(pages(:about).children.create, :children)
       assert_kind_of(Array, Page.new.children)
@@ -62,11 +64,13 @@ class PageTest < ActiveSupport::TestCase
       assert(!@page_three.new_record?)
     end
     
-    # should "have different permalinks" do
-    #   assert_equal('page', @page_one.to_param)
-    #   assert_equal("#{@page_two.id}-page", @page_two.to_param)
-    #   assert_equal('page--3', @page_three.to_param)
-    # end
+    should "have different permalinks" do
+      assert_equal('page', @page_one.permalink)
+      assert_equal("page-2", @page_two.permalink)
+      assert_equal('page-3', @page_three.permalink)
+      
+      assert_equal("#{@page_one.id}-page", @page_one.to_param)
+    end
   end
   
   
