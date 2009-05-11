@@ -73,7 +73,6 @@ class PageTest < ActiveSupport::TestCase
     end
   end
   
-  
   context "When a Page is protected" do
     setup do
       @page = pages(:protected_page)
@@ -90,4 +89,13 @@ class PageTest < ActiveSupport::TestCase
     end
   end
   
+  context "When a Page has especial characters" do
+    setup do
+      @page = Page.create(:name => "Página & $ * é nóis")
+    end
+
+    should "accented to permalink" do
+      assert_equal("pagina-e-nois", @page.permalink)
+    end
+  end
 end
