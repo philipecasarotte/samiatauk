@@ -1,7 +1,6 @@
 class Admin::PagesController < Admin::AdminController
 
   cache_sweeper :page_sweeper
-  edit.before{expire_page "/pages/#{object.permalink}"}
   create.wants.html {redirect_to(collection_url)}
   update.wants.html {redirect_to(collection_url)}
 
@@ -11,7 +10,7 @@ class Admin::PagesController < Admin::AdminController
   end
 
   include Order
-  
+
   protected
   def collection
     @collection = Page.find(params[:parent_id]).pages
@@ -19,3 +18,4 @@ class Admin::PagesController < Admin::AdminController
     @collection = Page.main_pages
   end
 end
+

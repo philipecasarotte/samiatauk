@@ -1,18 +1,10 @@
-class PageSweeper < ActionController::Caching::Sweeper
-  observe Page
+class PageSweeper < ApplicationSweeper
+  observe :page
 
-  def after_save(page)
-    clear_page_cache(page)
-  end
-
-  def after_destroy(page)
-    clear_page_cache(page)
-  end
-
-  def clear_page_cache(page)
+  def after_clear_cache(model)
     expire_page('/index')
-    dirs = %w{ pages }
-    sweep_directory(dirs)
+    sweep_directory(index_model_path(model), "/", "system", "images", "javascripts")
   end
 
 end
+

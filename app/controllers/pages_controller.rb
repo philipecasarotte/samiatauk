@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
- 
+
   after_filter(:except => :contact) {|c| c.cache_page}
 
   def index
     @pages = Page.main_pages
   end
-  
+
   def contact
     @page = Page.find_by_permalink('contact')
     if request.post?
@@ -20,10 +20,11 @@ class PagesController < ApplicationController
     @pages = @page.pages || []
     @metatag_object = @page
     send(method.underscore) if respond_to?(method.underscore)
-    
+
     render method.underscore
     rescue ActionView::MissingTemplate
       render 'show'
   end
-  
+
 end
+
