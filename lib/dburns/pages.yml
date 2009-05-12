@@ -1,10 +1,8 @@
 pagenotfound:
     name: "Page Not Found"
     body: "The page you requested was not found"
-    permalink: "page-not-found"
 
 contact:
     name: "Contact"
     body: "Send a message to our staff"
-    permalink: "contact"
 

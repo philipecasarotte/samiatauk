@@ -2,7 +2,7 @@ class ApplicationSweeper < ActionController::Caching::Sweeper
   include ActionController::UrlWriter
 
   def before_save(model)
-    model = model.class.send :find, model.id
+    model = model.class.send :find, model.id rescue nil
     clear_cache(model)
   end
 
