@@ -1,25 +1,26 @@
 <h1><%= t(:listing) %> <%= 'Admin' if params[:role]=='admin' %> <%=t :users %></h1>
 
-<table cellspacing="0" class="display" id="table">
-  <thead>
+<table id="table">
+	<thead>
 		<tr>
-	    <th>Login</th>
-	    <th><%=t :user_name %></th>
-	    <th><%=t :user_email %></th>
-	  </tr>
-  </thead>
-  <%- @users.each do |user|%>
-    <tr>
-      <td><%=h user.login %></td>
-      <td><%=h user.name %></td>
-      <td><%=h user.email %></td>
-    
-      <td><%=link_to t(:edit), edit_object_url(user) %></td>
-      <td><%=link_to t(:destroy), object_url(user), :confirm => t(:are_you_sure), :method => :delete %></td>
-    </tr>
-  <% end %>
+			<th>Login</th>
+			<th><%=t :user_name %></th>
+			<th><%=t :user_email %></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%- @users.each do |user|%>
+			<tr>
+				<td><%=h user.login %></td>
+				<td><%=h user.name %></td>
+				<td><%=h user.email %></td>
+
+				<td><%=link_to t(:edit), edit_object_url(user) %></td>
+				<td><%=link_to t(:destroy), object_url(user), :confirm => t(:are_you_sure), :method => :delete %></td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>
-<br/>
 
 <%= link_to t(:new_user), new_object_url %>
 

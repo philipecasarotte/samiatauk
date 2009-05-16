@@ -21,7 +21,8 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables display
  */
-#table_wrapper table {margin:10px 0; clear:both; background-color:#393939;}
+#table_wrapper table {margin:10px 0; clear:both; background-color:#FFF; border-collapse:separate; border-spacing:1px 0;}
+#table_wrapper table thead{background-color:#393939;}
 #table_wrapper table thead th {cursor:pointer;}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
