@@ -66,26 +66,27 @@ class Admin::PagesControllerTest < ActionController::TestCase
     end
   end
 
-	context "Reordering pages" do
-		context "when list the main pages" do
-			setup do
-				get :reorder
-			end
-			should_assign_to(:items) { Page.main_pages }
-			should_render_template :reorder
-		end
+	context "Reordering" do
+    context "the main pages" do
+      setup do
+        get :reorder
+      end
+      should_assign_to(:items) { Page.main_pages }
+      should_render_template :reorder
+    end
 
-		context "when list children" do
+		context "page children" do
 			setup do
-				get :reorder, :parent_id => Factory(:about).id
+			  @page = Factory(:about)
+				get :reorder, :parent_id => @page.id
 			end
-			should_assign_to(:items) { Page.find(pages(:about).id).pages }
-			should_render_template :reorder
+			should_assign_to(:items) { @page.pages }
+      should_render_template :reorder
 		end
 		
-		context "when save" do
+		context "pages and saving" do
 			setup do
-				post :order, :order => [pages(:home).id, pages(:about).id]
+				post :order, :order => [Factory(:page).id, Factory(:about).id]
 			end
 			should_render_without_layout
 		end
