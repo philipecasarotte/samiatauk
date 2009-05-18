@@ -77,7 +77,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
 		context "when list children" do
 			setup do
-				get :reorder, :parent_id => pages(:about).id
+				get :reorder, :parent_id => Factory(:about).id
 			end
 			should_assign_to(:items) { Page.find(pages(:about).id).pages }
 			should_render_template :reorder
