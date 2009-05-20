@@ -30,6 +30,13 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
 	end
 
+	context "New" do
+		setup do
+			get :new
+		end
+		should_render_template :new
+	end
+
 	context "Create" do
 		context "an invalid page" do
 			setup do
@@ -46,6 +53,13 @@ class Admin::PagesControllerTest < ActionController::TestCase
 			end
 			should_redirect_to("list of pages") { admin_pages_path }
 		end
+	end
+
+	context "edit" do
+		setup do
+			get :edit, :id => pages(:about)
+		end
+		should_render_template :edit
 	end
 
 	context "Update" do
