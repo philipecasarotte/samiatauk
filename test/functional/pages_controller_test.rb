@@ -20,18 +20,19 @@ class PagesControllerTest < ActionController::TestCase
 
     context "on GET to show" do
       setup do
-        get pages(:home).permalink
+        @page = Factory(:page)
+        get @page.permalink
       end
 
-      should_assign_to(:page) { Page.find_by_permalink(pages(:home).permalink) }
+      should_assign_to(:page) { Page.find_by_permalink(@page.permalink) }
     end
 
     context "with children for sidebar" do
       setup do
-        get pages(:about).permalink
+        get Factory(:about).permalink
       end
 
-      should_assign_to(:pages) { Page.find_by_permalink(pages(:about).permalink).children }
+      should_assign_to(:pages) { Page.find_by_permalink(Factory(:about).permalink).children }
     end
 
   end

@@ -57,49 +57,50 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
 	context "edit" do
 		setup do
-			get :edit, :id => pages(:about)
+			get :edit, :id => Factory(:about)
 		end
 		should_render_template :edit
 	end
 
-	context "Update" do
-		context "an invalid page" do
-			setup do
-				Page.any_instance.stubs(:valid?).returns(false)
-				post :update, :id => pages(:home)
-			end
-			should_render_template "edit"
-		end
+  context "Update" do
+    context "an invalid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(false)
+        post :update, :id => Page.first.id
+      end
+      should_render_template "edit"
+    end
 
-		context "a valid page" do
-			setup do
-				Page.any_instance.stubs(:valid?).returns(true)
-				post :update, :id => pages(:home)
-			end
-			should_redirect_to("list of pages") { admin_pages_path }
-		end
-	end
+    context "a valid page" do
+      setup do
+        Page.any_instance.stubs(:valid?).returns(true)
+        post :update, :id => Page.first.id
+      end
+      should_redirect_to("list of pages") { admin_pages_path }
+    end
+  end
 
-	context "Reordering pages" do
-		context "when list the main pages" do
-			setup do
-				get :reorder
-			end
-			should_assign_to(:items) { Page.main_pages }
-			should_render_template :reorder
-		end
+	context "Reordering" do
+    context "the main pages" do
+      setup do
+        get :reorder
+      end
+      should_assign_to(:items) { Page.main_pages }
+      should_render_template :reorder
+    end
 
-		context "when list children" do
+		context "page children" do
 			setup do
-				get :reorder, :parent_id => pages(:about).id
+			  @page = Factory(:about)
+				get :reorder, :parent_id => @page.id
 			end
-			should_assign_to(:items) { Page.find(pages(:about).id).pages }
-			should_render_template :reorder
+			should_assign_to(:items) { @page.pages }
+      should_render_template :reorder
 		end
 		
-		context "when save" do
+		context "pages and saving" do
 			setup do
-				post :order, :order => [pages(:home).id, pages(:about).id]
+				post :order, :order => [Factory(:page).id, Factory(:about).id]
 			end
 			should_render_without_layout
 		end
