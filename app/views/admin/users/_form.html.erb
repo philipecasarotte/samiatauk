@@ -21,7 +21,7 @@
 <p>
   <%= f.label :roles_users, t(:permissions) %>
   <% Role.all.each do |role| %>
-	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role), :id => "role_#{role.id}" %>
 	<%=h role.name %>
   <% end %> 
 </p>
