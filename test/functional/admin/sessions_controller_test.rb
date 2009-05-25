@@ -9,7 +9,8 @@ class Admin::SessionsControllerTest < ActionController::TestCase
   fixtures :users
 
   def test_should_login_and_redirect
-    post :create, :login => 'quentin', :password => 'monkey'
+    user = Factory(:user)
+    post :create, :login => user.login, :password => user.password
     assert session[:user_id]
     assert_response :redirect
   end
@@ -28,8 +29,9 @@ class Admin::SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_remember_me
+    user = Factory(:user)
     @request.cookies["auth_token"] = nil
-    post :create, :login => 'quentin', :password => 'monkey', :remember_me => "1"
+    post :create, :login => user.login, :password => user.password, :remember_me => "1"
     assert_not_nil @response.cookies["auth_token"]
   end
 
@@ -46,22 +48,24 @@ class Admin::SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_login_with_cookie
-    users(:quentin).remember_me
-    @request.cookies["auth_token"] = cookie_for(:quentin)
+    user = Factory(:user)
+    user.remember_me
+    @request.cookies["auth_token"] = cookie_for(user)
     get :new
     assert @controller.send(:logged_in?)
   end
 
   def test_should_fail_expired_cookie_login
-    users(:quentin).remember_me
-    users(:quentin).update_attribute :remember_token_expires_at, 5.minutes.ago
-    @request.cookies["auth_token"] = cookie_for(:quentin)
+    user = Factory(:user)
+    user.remember_me
+    user.update_attribute :remember_token_expires_at, 5.minutes.ago
+    @request.cookies["auth_token"] = cookie_for(user)
     get :new
     assert !@controller.send(:logged_in?)
   end
 
   def test_should_fail_cookie_login
-    users(:quentin).remember_me
+    Factory(:user).remember_me
     @request.cookies["auth_token"] = auth_token('invalid_auth_token')
     get :new
     assert !@controller.send(:logged_in?)
@@ -73,6 +77,6 @@ class Admin::SessionsControllerTest < ActionController::TestCase
     end
     
     def cookie_for(user)
-      auth_token users(user).remember_token
+      auth_token user.remember_token
     end
 end
