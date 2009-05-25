@@ -20,13 +20,16 @@ class Admin::PagesControllerTest < ActionController::TestCase
 			should_respond_with_content_type :html
 		end
 		
-		context "via Ajax" do
-			setup do
-				get :index, :format => 'js'
-			end
-			should_render_template :index
-			should_respond_with_content_type :js
-		end
+    context "via Ajax" do
+      setup do
+        @page = Factory.create(:about)
+        @child = Factory.create(:about_child)
+        get :index, :format => 'js'
+      end
+    
+      should_render_template :index
+      should_respond_with_content_type :js
+    end
 
 	end
 
@@ -65,8 +68,9 @@ class Admin::PagesControllerTest < ActionController::TestCase
   context "Update" do
     context "an invalid page" do
       setup do
+        page = Factory(:page)
         Page.any_instance.stubs(:valid?).returns(false)
-        post :update, :id => Page.first.id
+        post :update, :id => Page.first
       end
       should_render_template "edit"
     end
@@ -74,7 +78,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
     context "a valid page" do
       setup do
         Page.any_instance.stubs(:valid?).returns(true)
-        post :update, :id => Page.first.id
+        post :update, :id => Factory(:page)
       end
       should_redirect_to("list of pages") { admin_pages_path }
     end

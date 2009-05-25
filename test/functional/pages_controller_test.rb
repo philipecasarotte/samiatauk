@@ -42,6 +42,7 @@ class PagesControllerTest < ActionController::TestCase
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries = []
+      Factory.create(:page, :name => 'Contact')
       post :contact, 'contact' => {'name' => "Ricardo", 'email' => "dev.dburns@gmail.com", 'message' => 'Hello!'}
     end
 
@@ -63,7 +64,7 @@ class PagesControllerTest < ActionController::TestCase
     setup do
       PagesController.class_eval do
         def testing
-          @testing = "Testing"
+          @testing = 'Testing'
         end
 
         def it_s_a_joke
@@ -73,6 +74,8 @@ class PagesControllerTest < ActionController::TestCase
     end
 
     should "return the @testing value" do
+      Factory(:page, :name => 'Testing')
+
       assert_respond_to(@controller, :testing)
 
       get 'testing'
@@ -81,7 +84,11 @@ class PagesControllerTest < ActionController::TestCase
     end
 
     should "return the joke" do
-      get 'it-s-a-joke'
+      page = Factory(:page, :name => "it-s-a-joke")
+
+      assert_respond_to(@controller, :it_s_a_joke)
+
+      get page.permalink
 
       assert assigns(:file_attribute)
       assert_template "show"
@@ -89,4 +96,3 @@ class PagesControllerTest < ActionController::TestCase
   end
 
 end
-
