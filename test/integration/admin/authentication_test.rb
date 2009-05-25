@@ -2,12 +2,10 @@ require 'test_helper'
 
 class Admin::AuthenticationTest < ActionController::IntegrationTest
 
-  fixtures :users
-
   context "At the admin environment" do
 
     setup do
-      visit admin_login_url
+      visit '/admin/login'
     end
 
     context "logging in with valid username and password" do
