@@ -53,11 +53,11 @@ class PagesControllerTest < ActionController::TestCase
 
     should "send contact e-mail" do
       assert_sent_email do |email|
-        email.from.include?('dev.dburns@gmail.com') && email.subject =~ /Contact from/
+        email.from.include?('dev.dburns@gmail.com') && email.subject.match(I18n.t(:contact_from))
       end
     end
 
-    should_set_the_flash_to(/Your message was sent/i)
+    should_set_the_flash_to(I18n.t(:message_sent))
   end
 
   context "Trying to get a page with a existing method" do
