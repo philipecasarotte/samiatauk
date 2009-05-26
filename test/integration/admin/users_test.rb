@@ -22,17 +22,17 @@ class Admin::UsersTest < ActionController::IntegrationTest
   context "Creating a normal user" do
     setup do
       visit 'admin/users'
-      click_link 'New User'
+      click_link I18n.t(:new_user)
       fill_in "Login", :with => 'danieltburns'
-      fill_in "Name", :with => 'Daniel'
+      fill_in I18n.t(:name, :scope => 'activerecord.attributes._all'), :with => 'Daniel'
       fill_in "Email", :with => 'burns@example.com'
-      fill_in "Password", :with => 'bundinha'
-      fill_in "Password Confirmation", :with => 'bundinha'  
+      fill_in I18n.t(:password), :with => 'bundinha'
+      fill_in I18n.t(:password_confirmation, :scope => 'activerecord.attributes._all'), :with => 'bundinha'  
       click_button I18n.t(:create)
     end
 
     should "add the user to the list" do
-      assert_contain 'Successfully created'
+      assert_contain I18n.t(:success_create)
       assert_contain 'danieltburns'
     end
     
@@ -43,19 +43,19 @@ class Admin::UsersTest < ActionController::IntegrationTest
     setup do
       role = Factory(:admin_role)
       visit 'admin/users'
-      click_link 'New User'
+      click_link I18n.t(:new_user)
       fill_in "Login", :with => 'danieltburns'
-      fill_in "Name", :with => 'Daniel'
+      fill_in I18n.t(:name, :scope => 'activerecord.attributes._all'), :with => 'Daniel'
       fill_in "Email", :with => 'burns@example.com'
-      fill_in "Password", :with => 'bundinha'
-      fill_in "Password Confirmation", :with => 'bundinha'
+      fill_in I18n.t(:password), :with => 'bundinha'
+      fill_in I18n.t(:password_confirmation, :scope => 'activerecord.attributes._all'), :with => 'bundinha'
       check "role_#{role.id}"
       click_button I18n.t(:create)
       click_link I18n.t(:menu_admins)
     end
 
     should "add the user to the admin list" do
-      assert_contain "Listing Admin Users"
+      assert_contain I18n.t(:listing) + " Admin " + I18n.t(:users)
       assert_contain 'danieltburns'
     end
   end
@@ -68,7 +68,7 @@ class Admin::UsersTest < ActionController::IntegrationTest
       visit 'admin/users'
       
       click_link I18n.t(:edit)
-      fill_in "Name", :with => "Daniel T Burns"
+      fill_in I18n.t(:name, :scope => "activerecord.attributes._all" ), :with => "Daniel T Burns"
       click_button I18n.t(:update)
     end
 

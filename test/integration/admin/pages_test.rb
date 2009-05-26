@@ -22,13 +22,13 @@ class Admin::PagesTest < ActionController::IntegrationTest
   context "Creating a valid page" do
     setup do
       visit 'admin/pages'
-      click_link 'New Page'
-      fill_in "Name", :with => 'Terms of Use'
+      click_link I18n.t(:new_page)
+      fill_in I18n.t(:name, :scope => 'activerecord.attributes._all'), :with => 'Terms of Use'
       click_button I18n.t(:create)
     end
 
     should "add the page to the list" do
-      assert_contain 'Successfully created'
+      assert_contain I18n.t(:success_create)
       assert_contain 'Terms of Use'
     end
     
@@ -42,7 +42,7 @@ class Admin::PagesTest < ActionController::IntegrationTest
       visit 'admin/pages'
       
       click_link_within "#page_#{@page.id} > div", I18n.t(:edit)
-      fill_in "Name", :with => "About Us"
+      fill_in I18n.t(:name, :scope => 'activerecord.attributes._all'), :with => "About Us"
       click_button I18n.t(:update)
     end
 
