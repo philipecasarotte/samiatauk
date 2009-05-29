@@ -43,6 +43,6 @@ class ApplicationSweeper < ActionController::Caching::Sweeper
   end
 
   def old_model(model)
-    @old_model ||= (model.class.send :find, model.id rescue nil)
+    @old_model ||= (model.class.send :find, model.id rescue model)
   end
 end
