@@ -1,13 +1,23 @@
 class ApplicationSweeper < ActionController::Caching::Sweeper
   include ActionController::UrlWriter
 
+  class << self
+    def has_permalink
+      self.class_eval do
+        def model_path(model)
+          send "#{model.class.name.underscore}_path", model.permalink rescue nil
+        end
+      end
+    end
+  end
+
   def before_save(model)
-    model = model.class.send :find, model.id rescue nil
+    model = old_model(model)
     clear_cache(model)
   end
 
   def before_destroy(model)
-    model = model.class.send :find, model.id
+    model = old_model(model)
     clear_cache(model)
   end
 
@@ -33,7 +43,6 @@ class ApplicationSweeper < ActionController::Caching::Sweeper
   end
 
   def old_model(model)
-    @old_model = model.class.send :find, model.id
+    @old_model ||= (model.class.send :find, model.id rescue nil)
   end
 end
-
