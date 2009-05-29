@@ -1,4 +1,4 @@
-<h1><%=t :reorder %> <%= @items.first.class.human_name.to_s.pluralize %></h1>
+<h1><%=t :reorder %> <%= @items.first.class.human_name.to_s.pluralize rescue "" %></h1>
 
 <ul id="order">
 	<% @items.each do |item| %>

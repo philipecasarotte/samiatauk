@@ -20,18 +20,19 @@ class PagesControllerTest < ActionController::TestCase
 
     context "on GET to show" do
       setup do
-        get pages(:home).permalink
+        @page = Factory(:page)
+        get @page.permalink
       end
 
-      should_assign_to(:page) { Page.find_by_permalink(pages(:home).permalink) }
+      should_assign_to(:page) { Page.find_by_permalink(@page.permalink) }
     end
 
     context "with children for sidebar" do
       setup do
-        get pages(:about).permalink
+        get Factory(:about).permalink
       end
 
-      should_assign_to(:pages) { Page.find_by_permalink(pages(:about).permalink).children }
+      should_assign_to(:pages) { Page.find_by_permalink(Factory(:about).permalink).children }
     end
 
   end
@@ -41,6 +42,7 @@ class PagesControllerTest < ActionController::TestCase
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries = []
+      Factory.create(:page, :name => 'Contact')
       post :contact, 'contact' => {'name' => "Ricardo", 'email' => "dev.dburns@gmail.com", 'message' => 'Hello!'}
     end
 
@@ -51,18 +53,18 @@ class PagesControllerTest < ActionController::TestCase
 
     should "send contact e-mail" do
       assert_sent_email do |email|
-        email.from.include?('dev.dburns@gmail.com') && email.subject =~ /Contact from/
+        email.from.include?('dev.dburns@gmail.com') && email.subject.match(I18n.t(:contact_from))
       end
     end
 
-    should_set_the_flash_to(/Your message was sent/i)
+    should_set_the_flash_to(I18n.t(:message_sent))
   end
 
   context "Trying to get a page with a existing method" do
     setup do
       PagesController.class_eval do
         def testing
-          @testing = "Testing"
+          @testing = 'Testing'
         end
 
         def it_s_a_joke
@@ -72,6 +74,8 @@ class PagesControllerTest < ActionController::TestCase
     end
 
     should "return the @testing value" do
+      Factory(:page, :name => 'Testing')
+
       assert_respond_to(@controller, :testing)
 
       get 'testing'
@@ -80,7 +84,11 @@ class PagesControllerTest < ActionController::TestCase
     end
 
     should "return the joke" do
-      get 'it-s-a-joke'
+      page = Factory(:page, :name => "it-s-a-joke")
+
+      assert_respond_to(@controller, :it_s_a_joke)
+
+      get page.permalink
 
       assert assigns(:file_attribute)
       assert_template "show"
@@ -88,4 +96,3 @@ class PagesControllerTest < ActionController::TestCase
   end
 
 end
-

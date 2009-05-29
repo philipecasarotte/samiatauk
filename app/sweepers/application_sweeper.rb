@@ -29,8 +29,8 @@ class ApplicationSweeper < ActionController::Caching::Sweeper
   def clear_cache(model)
     index_path = index_model_path(model)
     path = model_path(model)
-    expire_page(path)
-    expire_page(index_path)
+    expire_page(path) if path
+    expire_page(index_path) if index_path
     after_clear_cache(model)
   end
 

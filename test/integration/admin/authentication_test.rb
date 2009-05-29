@@ -1,19 +1,18 @@
 require 'test_helper'
 
-class AdminAuthenticationTest < ActionController::IntegrationTest
-
-  fixtures :users
+class Admin::AuthenticationTest < ActionController::IntegrationTest
 
   context "At the admin environment" do
 
     setup do
-      visit admin_login_url
+      visit '/admin/login'
     end
 
     context "logging in with valid username and password" do
       setup do
-        fill_in "Login", :with => users(:admin).login
-        fill_in "password", :with => 'monkey'
+        admin = Factory(:admin)
+        fill_in "Login", :with => admin.login
+        fill_in "password", :with => admin.password
         click_button 'Log in'
       end
       should_set_the_flash_to "Logged in successfully"

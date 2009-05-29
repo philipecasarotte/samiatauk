@@ -43,7 +43,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
 	context "edit" do
 		setup do
-			get :edit, :id => users(:quentin)
+			get :edit, :id => User.first
 		end
 		should_render_template :edit
 	end
@@ -52,7 +52,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 		context "an invalid user" do
 			setup do
 				User.any_instance.stubs(:valid?).returns(false)
-				post :update, :id => users(:quentin)
+				post :update, :id => User.first
 			end
 			should_render_template "edit"
 		end
@@ -60,7 +60,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 		context "a valid user" do
 			setup do
 				User.any_instance.stubs(:valid?).returns(true)
-				post :update, :id => users(:quentin)
+				post :update, :id => User.first
 			end
 			should_redirect_to("list of users") { admin_users_path }
 		end

@@ -35,11 +35,20 @@ class ActiveSupport::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
+  # fixtures :all
 
   # Add more helper methods to be used by all tests here...
   Webrat.configure do |config|
     config.mode = :rails
+  end
+
+  # simulated an admin logged in
+  def admin_is_logged_in
+    admin = Factory(:admin)
+    visit '/admin/login'
+    fill_in "Login", :with => admin.login
+    fill_in "password", :with => admin.password
+    click_button 'Log in'
   end
   
 end

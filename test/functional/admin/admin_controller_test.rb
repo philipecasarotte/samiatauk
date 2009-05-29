@@ -17,7 +17,7 @@ class Admin::AdminControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_set_the_flash_to "You are not authorized"
+      should_set_the_flash_to I18n.t(:not_authorized)
       should_redirect_to('login page') { admin_login_path }
     end
     
@@ -27,9 +27,19 @@ class Admin::AdminControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_set_the_flash_to "You are not authorized"
+      should_set_the_flash_to I18n.t(:not_authorized)
       should_redirect_to('login page') { admin_login_path }
     end
+    
+    context "logged in and authorized" do
+      setup do
+        login_as(:admin)
+        get :index
+      end
+
+      should_respond_with :success
+    end
+    
   end
 
 end
