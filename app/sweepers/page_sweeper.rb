@@ -1,5 +1,6 @@
 class PageSweeper < ApplicationSweeper
   observe :page
+  has_permalink
 
   def after_clear_cache(model)
     expire_page('/index')
@@ -7,4 +8,3 @@ class PageSweeper < ApplicationSweeper
   end
 
 end
-
