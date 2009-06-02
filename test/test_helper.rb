@@ -2,8 +2,6 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
-include AuthenticatedTestHelper
-
 class ActiveSupport::TestCase
 
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -42,13 +40,17 @@ class ActiveSupport::TestCase
     config.mode = :rails
   end
 
+  include RoleRequirementTestHelper
+  
+  require "authlogic/test_case"
+
   # simulated an admin logged in
   def admin_is_logged_in
     admin = Factory(:admin)
     visit '/admin/login'
     fill_in "Login", :with => admin.login
-    fill_in "password", :with => admin.password
-    click_button 'Log in'
+    fill_in I18n.t(:password), :with => admin.password
+    click_button 'Login'
   end
   
 end

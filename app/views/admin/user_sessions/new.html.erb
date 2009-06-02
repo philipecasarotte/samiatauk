@@ -1,0 +1,12 @@
+<h1><%=t :log_in %></h1>
+
+<% form_for @user_session, :url => admin_user_session_path do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :login %>
+  <%= f.text_field :login %><br />
+  <br />
+  <%= f.label :password %>
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.submit "Login" %>
+<% end %>

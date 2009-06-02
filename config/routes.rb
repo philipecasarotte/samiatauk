@@ -1,11 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
-    admin.logout '/logout', :controller => 'sessions', :action => 'destroy'
-    admin.login '/login', :controller => 'sessions', :action => 'new'
+    admin.login 'login', :controller => "user_sessions", :action => "new"
+    admin.logout 'logout', :controller => "user_sessions", :action => "destroy"
+    admin.resource :user_session
     admin.resources :pages, :collection=>{ :reorder=>:get, :order=>:post }
     admin.resources :users
-    admin.resource :session
     admin.root :controller => 'pages'
   end
 

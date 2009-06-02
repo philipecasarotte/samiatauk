@@ -1,5 +1,4 @@
-require File.dirname(__FILE__) + '/../../test_helper'
-require 'admin/admin_controller'
+require 'test_helper'
 
 class Admin::AdminControllerTest < ActionController::TestCase
 
@@ -23,17 +22,19 @@ class Admin::AdminControllerTest < ActionController::TestCase
     
     context "logged in but not authorized" do
       setup do
-        login_as(:quentin)
+        activate_authlogic
+        UserSession.create(Factory(:user))
         get :index
       end
 
-      should_set_the_flash_to I18n.t(:not_authorized)
-      should_redirect_to('login page') { admin_login_path }
+      should_render_without_layout
+      should_respond_with :unauthorized
     end
     
     context "logged in and authorized" do
       setup do
-        login_as(:admin)
+        activate_authlogic
+        UserSession.create(Factory(:admin))
         get :index
       end
 

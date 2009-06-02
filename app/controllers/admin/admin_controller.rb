@@ -1,21 +1,13 @@
 class Admin::AdminController < ResourceController::Base
-
-  include AuthenticatedSystem
-  include AuthorizedSystem
-
+  include RoleRequirementSystem
   include ResourceControllerView
+  
+  before_filter :require_user
 
-  authorize_role "admin"
+  require_role "admin"
+
 
 	layout "admin/layouts/admin"
 
-  before_filter :login_required
-
-  protected
-
-	def access_denied
-	  flash.now[:error] = t(:not_authorized)
-		redirect_to admin_login_path
-	end
 end
 
