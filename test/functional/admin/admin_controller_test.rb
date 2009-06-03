@@ -27,8 +27,8 @@ class Admin::AdminControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_render_without_layout
-      should_respond_with :unauthorized
+      should_set_the_flash_to I18n.t(:unauthorized)
+      should_redirect_to('login page') { admin_login_path }
     end
     
     context "logged in and authorized" do

@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        flash[:notice] = I18n.t(:not_authorized)
+        flash[:error] = I18n.t(:not_authorized)
         redirect_to admin_login_url
         return false
       end
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     def require_no_user
       if current_user
         store_location
-        flash[:notice] = I18n.t(:not_authorized)
+        flash[:error] = I18n.t(:not_authorized)
         redirect_to admin_root_url
         return false
       end
