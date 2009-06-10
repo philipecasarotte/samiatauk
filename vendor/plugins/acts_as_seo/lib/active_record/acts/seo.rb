@@ -3,36 +3,39 @@ module ActiveRecord
     module SEO
       def self.included(base)
         base.extend(ClassMethods)
-        base.send(:include, InstanceMethods)
       end
-  
+      
       module InstanceMethods
-        attr_accessor :metatag_title, :metatag_description, :metatag_keywords
+        def metatag
+          seo || build_seo
+        end
         
-        def create_metatags
-      	  build_metatag(:title => @metatag_title, 
-      	                :keywords => @metatag_keywords, 
-      	                :description => @metatag_description)
-      	end
-      	
-        def update_metatags
-            metatag.update_attributes(:title => @metatag_title, 
-                                      :keywords => @metatag_keywords, 
-                                      :description => @metatag_description)
-          rescue
-            create_metatags
+        def save_metatag
+          metatag.save
         end
         
         def metatag_title
-            metatag.title rescue @metatag_title
+          metatag.title
         end
         
         def metatag_description
-            metatag.description rescue @metatag_description
+          metatag.description
         end
         
         def metatag_keywords
-          metatag.keywords rescue @metatag_keywords
+          metatag.keywords
+        end
+        
+        def metatag_title=(title)
+          metatag.title=title
+        end
+        
+        def metatag_description=(description)
+          metatag.description=description
+        end
+        
+        def metatag_keywords=(keywords)
+          metatag.keywords=keywords
         end
         
         def metatags
@@ -41,17 +44,21 @@ module ActiveRecord
           mt << ['keywords', metatag.keywords] rescue nil
           mt
         end
-
       end
       
       module ClassMethods
         def acts_as_seo
-          before_create :create_metatags
-          before_update :update_metatags
-          has_one :metatag, :as => :metatagable
-      	end
+          include ActiveRecord::Acts::SEO::InstanceMethods
+          
+          options = {:as => :metatagable, :class_name => "Metatag"}
+          if Rails.version < "2.3.2"
+            before_save :save_metatag
+          else
+            options[:autosave] = true
+          end
+          has_one :seo, options
+        end
       end
-  
     end
   end
 end
