@@ -11,5 +11,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.pages '/pages/:action', :controller => 'pages'
   map.resources :pages
+
+  map.not_found '/404', :controller => 'pages', :action => '404'
+  map.application_error '/500', :controller => 'pages', :action => '500'
+  map.unprocessable_entity '/422', :controller => 'pages', :action => '422'
   map.root :controller => 'pages', :action => 'index'
 end
+
