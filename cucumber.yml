@@ -1,0 +1,3 @@
+autotest-all: --require features --color --format progress features
+autotest: --color --format progress
+default: --color --format pretty
