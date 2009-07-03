@@ -14,8 +14,19 @@ module NavigationHelpers
       new_admin_path
     when /the login page/
       admin_login_path
+    when /the admin list of admin users/
+      admin_users_path(:role => 'admin')
+    when /the admin list of users/
+      admin_users_path
+    when /the admin list of pages/
+      admin_pages_path
+    when /the Home page/
+      '/pages/home'
+    when /the About Us page/
+      '/pages/about-us'
+    when /the Contact page/
+      '/pages/contact'
 
-    
     # Add more mappings here.
     # Here is a more fancy example:
     #
@@ -27,6 +38,7 @@ module NavigationHelpers
         "Now, go and add a mapping in #{__FILE__}"
     end
   end
+  
 end
 
 World(NavigationHelpers)

@@ -1,3 +1,11 @@
+Given /^I am logged in as (.+)$/ do |u|
+  user = Factory(u)
+  When %{I go to the login page}
+  And %{I fill in "Login" with "#{user.login}"}
+  And %{I fill in "Password" with "#{user.password}"}
+  And %{I press "Login"}
+end
+
 Given /^no user exists with a login of "([^\"]*)"$/ do |login|
   assert_nil User.find_by_login(login)
 end
