@@ -202,12 +202,12 @@ pt-BR:
 
   authlogic:
     error_messages:
-      login_blank: can not be blank
+      login_blank: não pode ser vazio
       login_not_found: não é válido
-      login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+      login_invalid: deve ter somente letras e números.
       consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded, account is disabled.
-      email_invalid: should look like an email address.
-      password_blank: can not be blank
+      email_invalid: deve se parecer com um endereço de email.
+      password_blank: não pode ser vazio
       password_invalid: não é valida
       not_active: Your account is not active
       not_confirmed: Your account is not confirmed

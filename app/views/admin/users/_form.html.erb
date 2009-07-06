@@ -1,27 +1,27 @@
 <p>
   <%= f.label :login %>
-  <%= f.text_field :login, :class => "{required:true, login:true}" %>
+  <%= f.text_field :login %>
 </p>
 <p>
   <%= f.label :name %>
-  <%= f.text_field :name, :class => "{required:true}" %>
+  <%= f.text_field :name %>
 </p>
 <p>
   <%= f.label :email %>
-  <%= f.text_field :email, :class => "{required:true, email:true}" %>
+  <%= f.text_field :email %>
 </p>
 <p>
   <%= f.label :password %>
-  <%= f.password_field :password, :class => "{" + ((params[:action] == "edit") ? "" : "required:true, ") + "minlength:6}" %>
+  <%= f.password_field :password %>
 </p>
 <p>
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, :class => "{" + ((params[:action] == "edit") ? "" : "required:true, ") + "equalTo: '#user_password'}" %>
+  <%= f.password_field :password_confirmation %>
 </p>
 <p>
   <%= f.label :roles_users, t(:permissions) %>
   <% Role.all.each do |role| %>
 	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role), :id => "role_#{role.id}" %>
-	<%= label_tag role.name, :id => "role_#{role.id}" %>
+	<%= label_tag role.name, role.name, :id => "role_#{role.id}" %>
   <% end %> 
 </p>

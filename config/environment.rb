@@ -82,6 +82,7 @@ Rails::Initializer.run do |config|
   $VERBOSE = old_verbose
 end
 
+LiveValidations.use :jquery_validations
 
 require 'order'
 require 'summary'
