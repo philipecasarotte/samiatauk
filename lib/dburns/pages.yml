@@ -1,8 +1,27 @@
-pagenotfound:
-    name: "Page Not Found"
-    body: "The page you requested was not found"
-
 contact:
-    name: "Contact"
-    body: "Send a message to our staff"
+  name: "Contact"
+  body: "Coming soon"
+  permalink: "404"
+  parent:
+  is_protected: 1
 
+page_not_found:
+  name: "Page Not Found"
+  body: "Coming soon"
+  permalink: "404"
+  parent:
+  is_protected: 1
+
+unexpected_error:
+  name: "Unexpected Error"
+  body: "Coming soon"
+  permalink: "500"
+  parent:
+  is_protected: 1
+
+unprocessable_entity:
+  name: "Unprocessable Entity"
+  body: "Coming soon"
+  permalink: "422"
+  parent:
+  is_protected: 1
