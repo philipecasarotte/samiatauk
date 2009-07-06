@@ -1,7 +1,7 @@
 contact:
   name: "Contact"
   body: "Coming soon"
-  permalink: "404"
+  permalink: "contact"
   parent:
   is_protected: 1
 
