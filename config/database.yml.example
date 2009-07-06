@@ -5,7 +5,7 @@ development:
   username: root
   password:
 
-test:
+test: &TEST
   adapter: mysql
   encoding: utf8
   database: pages_test
