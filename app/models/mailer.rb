@@ -18,9 +18,9 @@ class Mailer < ActionMailer::Base
   
   def contact(params)
     @recipients = 'dev.dburns@gmail.com' 
-    # @recipients = SITE_EMAIL     # UNCOMMENT THIS IN PRODUCTION!
+    #@recipients = SITE_EMAIL
     @from = params[:email] if params[:email]
-    headers['Reply-To'] = params[:email] if params[:email]
+    @reply_to = params[:email] if params[:email]
     @subject = I18n.t(:contact_from) + " #{SITE_DOMAIN}"
     @sent_on = Time.now
     @content_type = 'text/html'
