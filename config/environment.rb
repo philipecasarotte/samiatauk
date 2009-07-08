@@ -73,10 +73,10 @@ Rails::Initializer.run do |config|
   old_verbose = $VERBOSE
   $VERBOSE = nil
 
-  SITE_NAME = '* PLACE SITE NAME HERE *'
-  SITE_DOMAIN = 'CHANGEME.com'
+  SITE_NAME = 'Litl Apps'
+  SITE_DOMAIN = 'litlapps.com'
   SITE_URL = "http://www.#{SITE_DOMAIN}/"
-  SITE_EMAIL = "contact@#{SITE_DOMAIN}"
+  SITE_EMAIL = "webmaster@#{SITE_DOMAIN}"
   SITE_META_KEYWORDS = ""
 
   $VERBOSE = old_verbose
