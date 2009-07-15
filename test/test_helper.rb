@@ -44,13 +44,4 @@ class ActiveSupport::TestCase
   
   require "authlogic/test_case"
 
-  # simulated an admin logged in
-  def admin_is_logged_in
-    admin = Factory(:admin)
-    visit '/admin/login'
-    fill_in "Login", :with => admin.login
-    fill_in I18n.t(:password), :with => admin.password
-    click_button 'Login'
-  end
-  
 end
