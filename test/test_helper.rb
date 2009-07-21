@@ -43,5 +43,5 @@ class ActiveSupport::TestCase
   include RoleRequirementTestHelper
   
   require "authlogic/test_case"
-
+  require "mocha"
 end
