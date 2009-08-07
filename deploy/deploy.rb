@@ -67,7 +67,8 @@ namespace :deploy do
       ln -s #{shared_path}/system #{current_path}/public/system &&
       ln -s #{shared_path}/pids #{current_path}/tmp/pids &&
       ln -s #{deploy_to}/etc/database.yml #{current_path}/config/database.yml &&
-      cd #{current_path} && rake db:migrate RAILS_ENV=production
+      cd #{current_path} && rake db:migrate RAILS_ENV=production &&
+      rm -f $(find public -name *.html | grep -v public/javascripts)
     CMD
   end
 
