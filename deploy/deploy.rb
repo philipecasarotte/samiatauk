@@ -48,6 +48,7 @@ namespace :deploy do
   task :setup, :except => { :no_release => true } do
     dirs = [deploy_to, shared_path]
     dirs += shared_children.map { |d| File.join(shared_path, d) }
+    run "mkdir -p #{dirs.join(' ')} && chmod g+w #{dirs.join(' ')}"
     run "git clone #{repository} #{current_path}"
     run "test -d #{current_path}/tmp || mkdir -m 755 #{current_path}/tmp"
     run "test -d #{current_path}/db || mkdir -m 755 #{current_path}/db"
