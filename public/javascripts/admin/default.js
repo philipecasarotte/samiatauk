@@ -47,6 +47,7 @@ function act_as_tree_start_efect(){
 	$(".act_as_tree div").hover(function () {
 		clearTimeout(act_as_tree_id);
 	},function () {
-		act_as_tree_id = setTimeout(act_as_tree_close_menu, 10, $(this));
+		var obj = $(this);
+		act_as_tree_id = setTimeout(function(){act_as_tree_close_menu(obj);}, 500);
 	});
 }
