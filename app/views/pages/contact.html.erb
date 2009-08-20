@@ -2,19 +2,19 @@
 
 <%= @page.body %>
 
-<% form_for('contact') do |f| %>
+<% form_for('contact', :html => {:class => "validate"}) do |f| %>
 	<p>
 		<%= f.label(:name) %>
-		<%= f.text_field :name %>
+		<%= f.text_field :name, :class => "required" %>
 	</p>
 	<p>
 		<%= f.label(:email) %>
-		<%= f.text_field :email %>
+		<%= f.text_field :email, :class => "required email" %>
 	</p>
 	
 	<p>
 		<%= f.label(:message) %>
-		<%= f.text_area :message %>
+		<%= f.text_area :message, :class => "required" %>
 	</p>
 	
 	<% [:error, :notice].each do |message| %>
@@ -25,3 +25,4 @@
 
 	<%= submit_tag("Submit") %>
 <% end %>
+<%= javascript "plugins/metadata", "plugins/validate" %>
