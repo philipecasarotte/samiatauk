@@ -1,0 +1,55 @@
+require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
+
+describe Admin::UsersController do
+
+  mock_models :user
+
+  before(:each) do
+    activate_authlogic
+    UserSession.create(Factory(:admin))
+  end
+
+  describe :get => :index do
+    should_assign_to :users
+    should_render_template :index
+    should_respond_with_content_type :html
+  end
+  
+  describe :get => :new do
+    should_render_template :new
+  end
+
+  describe :post => :create, :user => { :name => 'Whatever' } do
+    expects :new, :on => User, :with => {'name' => 'Whatever'}, :returns => mock_user
+
+    describe "with valid parameters" do
+      expects :save,  :on => mock_user, :returns => true
+      should_redirect_to { admin_users_path }
+    end
+
+    describe "with invalid parameters" do
+      expects :save,  :on => mock_user, :returns => false
+      should_render_template :new
+    end
+  end
+  
+  # describe :get => :edit, :id => Factory(:quentin) do
+  #   should_assign_to :user
+  #   should_render_template :edit
+  # end
+
+  # describe :put => :update, :id => Factory(:quentin), :user => { :login => 'whatever' } do
+  # 
+  #   describe "with valid parameters" do
+  #     expects :update_attributes,  :on => mock_user, :returns => user_proc
+  #     should_assign_to :user, :with => user_proc
+  #     should_redirect_to { admin_users_path }
+  #   end
+  # 
+  #   describe "with valid parameters" do
+  #     expects :update_attributes,  :on => mock_user, :returns => false
+  #     should_render_template :edit
+  #   end
+  # end
+  
+end
