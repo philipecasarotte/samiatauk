@@ -33,20 +33,29 @@ describe Admin::UsersController do
     end
   end
   
-  # describe :get => :edit, :id => Factory(:quentin) do
+  # FIXME
+  #
+  # The below code was supposed to work for normal controllers, but it seems
+  # to conflict with the factory used for login, as the model doesn't receive
+  # the correct parameters for find
+  #
+  # describe :get => :edit, :id => '1' do
+  #   expects :find, :on => User, :with => '1', :returns => mock_user
   #   should_assign_to :user
   #   should_render_template :edit
   # end
-
-  # describe :put => :update, :id => Factory(:quentin), :user => { :login => 'whatever' } do
+  # 
+  # describe :put => :update, :id => '1', :user => { :login => 'whatever' } do
   # 
   #   describe "with valid parameters" do
+  #     expects :find, :on => User, :with => '1', :returns => mock_user
   #     expects :update_attributes,  :on => mock_user, :returns => user_proc
   #     should_assign_to :user, :with => user_proc
   #     should_redirect_to { admin_users_path }
   #   end
   # 
   #   describe "with valid parameters" do
+  #     expects :find, :on => User, :with => '1', :returns => mock_user
   #     expects :update_attributes,  :on => mock_user, :returns => false
   #     should_render_template :edit
   #   end
