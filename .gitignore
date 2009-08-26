@@ -5,7 +5,7 @@ tmp/*
 db/schema.rb
 .DS_Store
 db/*.sqlite3 
-coverage 
+coverage
 doc/app/* 
 public/index.html
 public/pages/*

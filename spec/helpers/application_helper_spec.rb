@@ -9,6 +9,11 @@ describe ApplicationHelper, :type => :helper do
       helper.validate_i18n.should == "plugins/validate_en"
     end
 
+    it "should not call javascript validation language file for English" do
+      I18n.locale = nil
+      helper.validate_i18n.should == "plugins/validate_en"
+    end
+
     it "should get the javascript validation language file for Brazilian Portuguese" do
       I18n.locale = "pt-BR"
       helper.validate_i18n.should == "plugins/validate_pt-BR"
