@@ -5,8 +5,8 @@ describe Admin::UsersController do
   mock_models :user
 
   before(:each) do
-    activate_authlogic
-    UserSession.create(Factory(:admin))
+    controller.stub!(:current_user).and_return(mock_user)
+    mock_user.should_receive(:has_role?).with("admin").and_return(true)
   end
 
   describe :get => :index do
@@ -24,6 +24,7 @@ describe Admin::UsersController do
 
     describe "with valid parameters" do
       expects :save,  :on => mock_user, :returns => true
+      should_set_the_flash :to => "Successfully created!"
       should_redirect_to { admin_users_path }
     end
 
@@ -39,26 +40,26 @@ describe Admin::UsersController do
   # to conflict with the factory used for login, as the model doesn't receive
   # the correct parameters for find
   #
-  # describe :get => :edit, :id => '1' do
-  #   expects :find, :on => User, :with => '1', :returns => mock_user
-  #   should_assign_to :user
-  #   should_render_template :edit
-  # end
-  # 
-  # describe :put => :update, :id => '1', :user => { :login => 'whatever' } do
-  # 
-  #   describe "with valid parameters" do
-  #     expects :find, :on => User, :with => '1', :returns => mock_user
-  #     expects :update_attributes,  :on => mock_user, :returns => user_proc
-  #     should_assign_to :user, :with => user_proc
-  #     should_redirect_to { admin_users_path }
-  #   end
-  # 
-  #   describe "with valid parameters" do
-  #     expects :find, :on => User, :with => '1', :returns => mock_user
-  #     expects :update_attributes,  :on => mock_user, :returns => false
-  #     should_render_template :edit
-  #   end
-  # end
+  describe :get => :edit, :id => "1" do
+    expects :find, :on => User, :with => '1', :returns => mock_user
+    should_assign_to :user, :with => mock_user
+    should_render_template :edit
+  end
+  
+  describe :put => :update, :id => '1', :user => { :login => 'whatever' } do
+  
+    describe "with valid parameters" do
+      expects :find, :on => User, :with => '1', :returns => mock_user
+      expects :update_attributes,  :on => mock_user, :returns => user_proc
+      should_assign_to :user, :with => user_proc
+      should_redirect_to { admin_users_path }
+    end
+  
+    describe "with valid parameters" do
+      expects :find, :on => User, :with => '1', :returns => mock_user
+      expects :update_attributes,  :on => mock_user, :returns => false
+      should_render_template :edit
+    end
+  end
   
 end

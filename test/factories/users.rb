@@ -19,7 +19,6 @@ Factory.define :user do |u|
   u.password_salt salt = Authlogic::Random.hex_token
   u.crypted_password Authlogic::CryptoProviders::Sha512.encrypt("secret" + salt)
   u.perishable_token Authlogic::Random.friendly_token
-  u.persistence_token Factory.next(:persistence_token)
 end
 
 Factory.define :quentin, :parent => :user do |u|
@@ -41,5 +40,4 @@ Factory.define :admin, :parent => :user do |u|
   u.password_salt salt = Authlogic::Random.hex_token
   u.crypted_password Authlogic::CryptoProviders::Sha512.encrypt("monkey" + salt)
   u.roles { [ Factory.create(:admin_role) ] }
-  u.persistence_token Authlogic::Random.hex_token.to_s
 end
