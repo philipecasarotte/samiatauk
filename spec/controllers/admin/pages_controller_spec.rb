@@ -15,8 +15,8 @@ describe Admin::PagesController do
   end
 
   describe :get => :index do
-    expects :find, :on => Page, :with => nil, :returns => mock_page
-    expects :pages, :on => mock_page, :returns => mock_page
+    expects :find, :on => Page, :returns => mock_page
+    # expects :pages, :on => mock_page, :returns => mock_page
     should_assign_to :collection, :with => mock_page
  
     describe "in HTML" do
@@ -73,15 +73,13 @@ describe Admin::PagesController do
   end
   
   describe :get => :reorder do
-    expects :find, :on => Page, :with => nil, :returns => mock_page
-    expects :pages, :on => mock_page, :returns => mock_page
+    expects :find, :on => Page, :returns => mock_page
     should_assign_to :items, :with => mock_page
     should_render_template :reorder
   end
 
   describe :get => :reorder, :parent_id => "1" do
-    expects :find, :on => Page, :with => "1", :returns => mock_page
-    expects :pages, :on => mock_page, :returns => mock_page
+    expects :find_all_by_parent_id, :on => Page, :with => "1", :returns => mock_page
     should_assign_to :items, :with => mock_page
     should_render_template :reorder
   end

@@ -13,9 +13,7 @@ class Admin::PagesController < Admin::AdminController
 
   protected
   def collection
-    @collection = Page.find(params[:parent_id]).pages
-    rescue
-    @collection = Page.main_pages
+    @collection = Page.find_all_by_parent_id(params[:parent_id]) || Page.main_pages
   end
 end
 

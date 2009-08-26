@@ -14,6 +14,12 @@ describe Admin::UsersController do
     should_render_template :index
     should_respond_with_content_type :html
   end
+
+  describe :get => :index, :role => 'admin' do
+    should_assign_to :users
+    should_render_template :index
+    should_respond_with_content_type :html
+  end
   
   describe :get => :new do
     should_render_template :new
