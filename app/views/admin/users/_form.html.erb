@@ -1,27 +1,27 @@
 <p>
-  <%= f.label :login %>
-  <%= f.text_field :login %>
+	<%= f.label :login %>
+	<%= f.text_field :login %>
 </p>
 <p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
 </p>
 <p>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
 </p>
 <p>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
 </p>
 <p>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
 </p>
-<p>
-  <%= f.label :roles_users, t(:permissions) %>
-  <% Role.all.each do |role| %>
-	<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role), :id => "role_#{role.id}" %>
-	<%= label_tag role.name, role.name, :id => "role_#{role.id}" %>
-  <% end %> 
-</p>
+<div class="checkbox">
+	<p><%= t(:permissions) %></p>
+	<% Role.all.each do |role| %>
+		<%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role), :id => "role_#{role.id}" %>
+		<%= label_tag role.name, role.name, :for => "role_#{role.id}" %><br />
+	<% end %> 
+</div>

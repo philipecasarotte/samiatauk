@@ -82,3 +82,7 @@ div.error {border:solid 2px red;background-color:#FDB5AF;color:red;padding:3px 5
 .act_as_tree div {position:absolute; top:0; left:0; display:none; background:white; border:1px solid black; z-index:1;}
 .act_as_tree div a {padding:5px 10px;display:block; width:100px; font-weight:normal; color:black;}
 .act_as_tree div a:hover {background:black; color:white;}
+
+/* checkbox */
+.checkbox p     { margin:10px 0 5px 0; font-weight:bold; }
+.checkbox label { display:inline; font-weight:normal; }
