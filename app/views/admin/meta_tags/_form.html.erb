@@ -1,15 +1,5 @@
-<h2>SEO</h2>
-<p>
-	<%= f.label :metatag_title %>
-	<%= f.text_field :metatag_title %>
-</p>
-
-<p>
-	<%= f.label :metatag_keywords %>
-	<%= f.text_field :metatag_keywords %>
-</p>
-
-<p>
-	<%= f.label :metatag_description %>
-	<%= f.text_area :metatag_description %>
-</p>
+<% f.inputs :name => "SEO", :class => "seo" do %>
+	<%= f.input :metatag_title, :required => false %>
+	<%= f.input :metatag_keywords, :required => false %>
+	<%= f.input :metatag_description, :required => false %>
+<% end -%>

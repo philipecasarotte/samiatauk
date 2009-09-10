@@ -13,7 +13,7 @@ end
 
 When /^I check the role "([^\"]*)"$/ do |role|
   r = Role.find_by_name(role)
-  When %{I check "role_#{r.id}"}
+  When %{I check "user_role_ids_#{r.id}"}
 end
 
 Then /^I should have ([0-9]+) users?$/ do |count|

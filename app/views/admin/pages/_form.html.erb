@@ -1,12 +1,10 @@
-<p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</p>
-<p>
-  <%= f.label :body %>
-  <%= fckeditor_textarea "page", "body", :height => "400px" %>
-</p>
-
-<%= f.hidden_field :parent_id, :value=>params[:parent_id] %>
+<% f.inputs  do %>
+	<%= f.input :name %>
+	<%= f.hidden_field :parent_id, :value => params[:parent_id] %>
+	<li>
+	  <%= f.label :body %>
+	  <%= fckeditor_textarea "page", "body", :height => "400px" %>
+	</li>
+<% end -%>
 
 <%= render :partial => "/admin/meta_tags/form", :locals => { :f => f } %>

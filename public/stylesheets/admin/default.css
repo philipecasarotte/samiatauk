@@ -1,8 +1,5 @@
-*{margin:0;padding:0;}
-body {background: #FFF url('/images/admin/background.jpg') repeat-x; color:#fff; font:12px Verdana, Arial, Tahoma, sans-serif;}
-
-select option{padding:0 5px;}
-optgroup option{padding:0 20px;}
+*     {margin:0;padding:0;}
+body  {background: #FFF url('/images/admin/background.jpg') repeat-x; color:#fff; font:12px Verdana, Arial, Tahoma, sans-serif;}
 
 .clear  {clear:both;}
 
@@ -10,10 +7,8 @@ a       {color:#FF0000;text-decoration:none;font-weight:bold;}
 a:hover {color:#000;}
 a img   {border:none;}
 
-h1,
-h2,
-h3,
-h4 {color:#FF0000;}
+h1,h2,
+h3,h4   {color:#FF0000;}
 
 h1 {font-size:18px; margin: 20px.1em 0;}
 h2 {font-size:16px; margin: 0.3em 0; padding-top: 0.8em;}
@@ -32,10 +27,6 @@ dl.altrow       {background: #f4f4f4;}
 dt              {font-weight: bold;padding-left: 4px;vertical-align: top;}
 dd              {margin-left: 10em;margin-top: -2em;vertical-align: top;}
 
-label           {display:block;margin-top:5px;font-weight:bold;}
-form p span     {display:block;margin-bottom:5px;}
-form .submit    {margin-top:10px;}
-
 /* INFO */
 #info           {float:right; margin:20px 20px 50px 0;color:#FFCC00;text-align:right;}
 #info a         {color:#FFCC00;text-decoration:none;}
@@ -52,37 +43,39 @@ form .submit    {margin-top:10px;}
 #footer a       {color:#000;}
 #footer a:hover {text-decoration:underline;}
 
-/* FILTER */
-#filter {position:absolute;top:0;right:0;width:560px;height:51px;padding:12px 0 0 90px;background:url('../../images/admin/filter_background.jpg') no-repeat;}
-#filter label {color:white;display:inline;padding-right:10px;}
-#filter input,
-#filter select  {background-color:black;border:solid 1px #999;color:white;}
-#filter .submit {border:none;vertical-align:top;}
-
 /* CONTENT */
 #content        {background:#fff;color:#333;padding: 10px 20px 40px 20px;height:auto !important;height:300px;min-height:300px; clear:both;}
-
 #order li       {list-style:none; background-color:#f4f4f4; margin:5px 0; padding:5px; cursor:move;width:300px;}
 
-form ul 				{margin-left: 10px;}
-
 /* MESSAGES */
-label.error  {color:red; font-weight:normal;}
-div.notice {border:solid 2px green;background-color:#B2DFB8;color:green;padding:3px 5px;}
-div.error {border:solid 2px red;background-color:#FDB5AF;color:red;padding:3px 5px;}
+div.notice      {border:solid 2px green;background-color:#B2DFB8;color:green;padding:3px 5px;}
+div.error       {border:solid 2px red;background-color:#FDB5AF;color:red;padding:3px 5px;}
 
 /* act_as_tree */
-.act_as_tree {margin:10px 0;}
+.act_as_tree        {margin:10px 0;}
 .act_as_tree,
-.act_as_tree ul  {padding:0 10px; list-style:none;}
-.act_as_tree ul  {padding:0 17px;}
-.act_as_tree li  {background:URL("/images/act_as_tree/bg.gif") repeat-y; clear:both;padding-bottom:1px;}
-.act_as_tree img {margin-right:-3px;}
-.act_as_tree a   {outline:none;}
-.act_as_tree div {position:absolute; top:0; left:0; display:none; background:white; border:1px solid black; z-index:1;}
-.act_as_tree div a {padding:5px 10px;display:block; width:100px; font-weight:normal; color:black;}
+.act_as_tree ul     {padding:0 10px; list-style:none;}
+.act_as_tree ul     {padding:0 17px;}
+.act_as_tree li     {background:URL("/images/act_as_tree/bg.gif") repeat-y; clear:both;padding-bottom:1px;}
+.act_as_tree img    {margin-right:-3px;}
+.act_as_tree a      {outline:none;}
+.act_as_tree div    {position:absolute; top:0; left:0; display:none; background:white; border:1px solid black; z-index:1;}
+.act_as_tree div a  {padding:5px 10px;display:block; width:100px; font-weight:normal; color:black;}
 .act_as_tree div a:hover {background:black; color:white;}
 
-/* checkbox */
-.checkbox p     { margin:10px 0 5px 0; font-weight:bold; }
-.checkbox label { display:inline; font-weight:normal; }
+/* form */
+
+form fieldset         { border:none; margin:10px 0; }
+form ol               { list-style:none; }
+form abbr             { color:red; border:none; }
+form select option    { padding:0 5px; }
+form optgroup option  { padding:0 20px; }
+form .string input    { width:250px; }
+form .password input  { width:250px; }
+form label            { display:block; margin-top:5px; font-weight:bold; }
+form p span           { display:block; margin-bottom:5px;}
+form label.error      { color:red; font-weight:normal; margin:0; }
+
+.check_boxes legend   { font-weight:bold; }
+.check_boxes label    { display:inline; font-weight:normal; }
+form .seo legend      { color:red; font-size:14px; font-weight:bold; }
