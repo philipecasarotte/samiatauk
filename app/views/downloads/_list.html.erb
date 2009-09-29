@@ -1,0 +1,13 @@
+<h1><%= @page.name %></h1>
+<div class="content_cms">
+	<%= @page.body %>
+</div>
+<ul id="file_list">
+<% @downloads.each do |download| %>	
+	<li>
+		<h2><%= link_to download.name, download_path(download.permalink) %></h2>
+		<%= simple_format(download.description.summary(200)) %>
+		<%= link_to "Download", download.file.url %>
+	</li>
+<% end %>
+</ul>

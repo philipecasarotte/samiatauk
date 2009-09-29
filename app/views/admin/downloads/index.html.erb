@@ -1,0 +1,31 @@
+<h1>Listando Downloads</h1>
+
+<table id="table">
+	<thead>
+		<tr>
+      		<th>Nome</th>
+			<th>Descrição</th>
+      		<th>Arquivo</th>
+			<th>Assunto</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @downloads.each do |download| %>
+      <tr>
+        <td><%= download.name %></td>
+		<td><%= download.description.summary 100 %></td>
+        <td><%= download.file_file_name %></td>
+		<td><%= download.subject %></td>
+
+        <td><%= link_to "Download", download.file.url %></td>
+		<td><%= link_to t(:edit), edit_object_url(download) %></td>
+        <td><%= link_to t(:destroy), object_url(download), :confirm => t(:are_you_sure), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Novo Download", new_admin_download_url %> | 
+<%= link_to t(:reorder), reorder_admin_downloads_url %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>

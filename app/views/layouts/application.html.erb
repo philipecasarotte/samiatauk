@@ -2,37 +2,52 @@
 											"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<title><%= metatag_title(@metatag_object, SITE_NAME) %></title>
+	<head>
+		<title><%= metatag_title(@metatag_object, SITE_NAME) %></title>
 
-	<%= metatags(@metatag_object) -%>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="content-language" content="en"/>
-	<meta name="author" content="DBurns Design - Professional Website Design in Los Angeles, California"/>
-	<meta name="distribution" content="global"/>
-	<meta name="revisit-after" content="30 days"/>
-	<meta name="copyright" content="DBurns Design"/>
+		<%= metatags(@metatag_object) -%>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="content-language" content="en"/>
+		<meta name="author" content="DBurns Design - Professional Website Design in Los Angeles, California"/>
+		<meta name="distribution" content="global"/>
+		<meta name="revisit-after" content="30 days"/>
+		<meta name="copyright" content="DBurns Design"/>
 
-	<%= stylesheet_link_tag "default" %>
+		<%= stylesheet_link_tag "default" %>
 
-	<link href="/favicon.ico" type="image/x-icon" rel="icon"/>
-	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+		<link href="/favicon.ico" type="image/x-icon" rel="icon"/>
+		<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
-	<%= javascript_include_tag :defaults, "plugins/crossbrowser", "http://www.google-analytics.com/ga", "default" %>
-	<%= yield :head %>
-</head>
-<body>
-
-<div id="content">
-	<% [:error, :notice].each do |message| %>
-		<% content_tag :div, :class => message do %>
-			<%= flash[message] %>
-		<% end if flash[message] %>
-	<% end %>
-	<%= yield  %>
-</div>
-
-<div id="footer"><%= link_to 'Professional Website Design', 'http://www.dburnsdesign.com', :target => '_blank' %> by DBurns Design</div>
-
-</body>
+		<%= javascript_include_tag :defaults, "plugins/crossbrowser", "http://www.google-analytics.com/ga", "default" %>
+		<%= yield :head %>
+	</head>
+	<body>
+		<div id="main">
+			<%= image_tag "samia_tauk.png", :alt => "Sâmia Tauk", :title => "Sâmia Tauk", :id => "logo" %>
+			<div id="top">
+	
+			</div>
+			<ul id="menu">
+				<li><%= link_to "HOME", root_path %></li>
+				<li><%= link_to "CIÊNCIA", science_downloads_path %></li>
+				<li><%= link_to "EVANGELISMO", faith_downloads_path %></li>
+				<li><%= link_to "FOTOS", photo_galleries_path %></li>
+				<li><%= link_to "BLOG", posts_path %></li>
+				<li><%= link_to "CURRICULUM", "http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4787552A8", :target => "_blank" %></li>
+				<li><%= link_to "QUEM SOU", page_path("quem-sou") %></li>
+				<li><%= link_to "CONTATO", page_path("contato") %></li>
+			</ul>
+			<div id="content">
+				<% [:error, :notice].each do |message| %>
+					<% content_tag :div, :class => message do %>
+						<%= flash[message] %>
+					<% end if flash[message] %>
+				<% end %>
+				<%= yield  %>
+			</div>
+			<div id="footer">
+				<%= link_to 'Ruby on Rails Development', 'http://www.philipecasarotte.com', :target => '_blank' %> by Philipe Casarotte
+			</div>
+		</div>
+	</body>
 </html>

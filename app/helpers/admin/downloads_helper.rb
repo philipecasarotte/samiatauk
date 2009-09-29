@@ -1,0 +1,2 @@
+module Admin::DownloadsHelper
+end

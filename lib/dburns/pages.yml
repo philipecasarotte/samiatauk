@@ -1,27 +1,79 @@
-contact:
-  name: "Contact"
-  body: "Coming soon"
-  permalink: "contact"
+home:
+  id: 1
+  name: "Home"
+  body: "Em breve"
+  permalink: "home"
   parent:
   is_protected: 1
 
-page_not_found:
-  name: "Page Not Found"
-  body: "Coming soon"
+blog:
+  id: 2    
+  name: "Blog"
+  body: "Em breve"
+  permalink: "blog"
+  parent:
+  is_protected: 1
+
+fotos:
+  id: 3    
+  name: "Fotos"
+  body: "Em breve"
+  permalink: "fotos"
+  parent:
+  is_protected: 1
+
+evangelismo:
+  id: 4    
+  name: "Evangelismo"
+  body: "Em breve"
+  permalink: "evangelismo"
+  parent:
+  is_protected: 1
+
+ciencia:
+  id: 5
+  name: "Ciência"
+  body: "Em breve"
+  permalink: "ciencia"
+  parent:
+  is_protected: 1
+
+quem_sou:
+  id: 6    
+  name: "Quem sou"
+  body: "Em breve"
+  permalink: "quem-sou"
+  parent:
+  is_protected: 1
+
+contato:
+  id: 7    
+  name: "Contato"
+  body: "Em breve"
+  permalink: "contato"
+  parent:
+  is_protected: 1
+
+pagina_nao_encontrada:
+  id: 8    
+  name: "Página Não Encontrada"
+  body: "Em breve"
   permalink: "404"
   parent:
   is_protected: 1
 
-unexpected_error:
-  name: "Unexpected Error"
-  body: "Coming soon"
+erro_inesperado:
+  id: 9
+  name: "Erro Inesperado"
+  body: "Em breve"
   permalink: "500"
   parent:
   is_protected: 1
 
-unprocessable_entity:
-  name: "Unprocessable Entity"
-  body: "Coming soon"
+nao_processavel:
+  id: 10    
+  name: "Não processável"
+  body: "Em breve"
   permalink: "422"
   parent:
   is_protected: 1

@@ -48,7 +48,7 @@ Rails::Initializer.run do |config|
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = "pt-BR"
+  config.i18n.default_locale = "pt-BR"
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
@@ -74,11 +74,14 @@ Rails::Initializer.run do |config|
   old_verbose = $VERBOSE
   $VERBOSE = nil
 
-  SITE_NAME = '* SITE NAME HERE *'
-  SITE_DOMAIN = 'changeme.com'
+  SITE_NAME = 'Sâmia Tauk'
+  SITE_DOMAIN = 'samiatauk.com'
   SITE_URL = "http://www.#{SITE_DOMAIN}/"
-  SITE_EMAIL = "contact@#{SITE_DOMAIN}"
+  SITE_EMAIL = "samiatauk@gmail.com"
   SITE_META_KEYWORDS = ""
+  
+  PAPERCLIP_PATH = ":rails_root/public/system/:class/:id/:style/:basename.:extension"
+  PAPERCLIP_URL = "/system/:class/:id/:style/:basename.:extension"
 
   $VERBOSE = old_verbose
 end

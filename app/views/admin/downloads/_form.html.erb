@@ -1,0 +1,12 @@
+<% f.inputs  do %>
+	<%= f.input :name %>
+	<%= f.label :subject, "Assunto" %>
+	<%= f.select :subject, [["Ciência", "Ciência"], ["Evangelismo", "Evangelismo"]]  %>
+	<li>
+	  <%= f.label :description, "Descrição" %>
+	  <%= fckeditor_textarea "download", "description", :height => "400px" %>
+	</li>
+	<%= f.input :file %>
+<% end -%>
+
+<%= render :partial => "/admin/meta_tags/form", :locals => { :f => f } %>

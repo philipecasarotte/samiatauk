@@ -6,11 +6,11 @@ class PagesController < ApplicationController
     @pages = Page.main_pages
   end
 
-  def contact
-    @page = Page.find_by_permalink('contact')
+  def contato
+    @page = Page.find_by_permalink('contato')
     if request.post?
       Mailer.deliver_contact(params[:contact])
-      flash[:notice] = "Your message was sent." # somehow the specs don't pass using t(:message_sent)
+      flash[:notice] = "Your message was sent."
     end
     @metatag_object = @page
   end
