@@ -1,4 +1,3 @@
-# DBurns Design Base App
+# Samia Tauk Website
 
-
-A base template for development of many other applications
+A simple website app
