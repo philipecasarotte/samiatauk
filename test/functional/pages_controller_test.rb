@@ -12,6 +12,7 @@ class PagesControllerTest < ActionController::TestCase
 
     context "on GET to index" do
       setup do
+        @page = Factory.create(:page, :name => "Home", :permalink => "home", :body => "Coming soon")
         get :index
       end
 

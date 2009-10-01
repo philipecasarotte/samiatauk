@@ -1,9 +1,44 @@
 * {margin:0;padding:0;outline:none;}
+img {border:none;}
 
 body {background:url(../images/bg/body.png) repeat-x;font:13px "Geneva", Verdana, Arial, sans-serif;color:#333;}
 
 p {line-height:14px;}
+a {color:#333;text-decoration:none;}
 
-#main {margin:0 auto;width:940px;}
+h1,h2,h3,h4,h5,h6 {font-family:"Georgia", "Times New Roman", serif;text-transform:uppercase;}
+h1 {font-size:24px;}
 
-#menu {background:url(../images/bg/menu.png) repeat-x;float:left;width:300px;}
+#main {margin:0 auto;width:920px;}
+
+/*Top*/
+#logo {float:left;margin:20px 20px 0 0;}
+
+#top {float:left;margin-top:20px;width:600px;height:85px;border-bottom:10px solid #333;text-align:right;}
+#top img {float:right;margin-top:3px;}
+#top h2 {font-family:"Geneva", Verdana, Arial, sans-serif;font-size:20px;margin-top:10px;text-transform:none;margin-top:;}
+#top big,
+#top small {display:block;}
+#top big {color:#999;font-size:14px;}
+#top small {color:#666;font-size:11px;}
+
+/*Menu*/
+#menu {padding:20px 0;background:url(../images/bg/menu.png) repeat-x;float:left;width:299px;font:bold 16px "Georgia", "Times New Roman", serif;}
+#menu li {list-style:none;}
+#menu li a {display:block;padding:5px 0 5px 20px;}
+#menu li a:hover {background-color:#333;color:white;}
+
+/*Home*/
+#welcome {float:left;width:280px;height:240px;border-right:1px solid #DCDCDC;padding-right:20px;}
+
+#last_posts {float:right;width:280px;height:240px;background-color:red;}
+
+#hot_box {float:left;width:600px;height:200px;background-color:yellow;margin-top:20px;}
+
+/*Content*/
+#content {float:left;width:599px;border-left:1px solid #DCDCDC;padding:20px 0 0 20px;}
+#content ul,
+#content ol {margin-left:40px;}
+
+/*Footer*/
+#footer {color:#666;float:right;width:600px;background-color:#EAEAEA;text-align:center;margin-top:20px;padding:15px 0;font-size:10px;}

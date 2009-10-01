@@ -3,7 +3,9 @@ class PagesController < ApplicationController
   after_filter(:except => :contact) {|c| c.cache_page}
 
   def index
+    @page = Page.find_by_permalink("home")
     @pages = Page.main_pages
+    @metatag_object = @page
   end
 
   def contato

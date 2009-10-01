@@ -23,9 +23,12 @@
 	</head>
 	<body>
 		<div id="main">
-			<%= image_tag "samia_tauk.png", :alt => "Sâmia Tauk", :title => "Sâmia Tauk", :id => "logo" %>
+			<%= link_to image_tag("samia_tauk_logo.png", :alt => "Sâmia Tauk", :title => "Sâmia Tauk", :id => "logo"), root_path %>
 			<div id="top">
-	
+				<%= image_tag "samia_tauk.png", :alt => "Sâmia Tauk", :title => "Sâmia Tauk"  %>
+				<h2>Sâmia Maria Tauk-Tornisielo</h2>
+				<big>61 anos | 28 de junho de 1946</big>
+				<small>Professora Títular</small>
 			</div>
 			<ul id="menu">
 				<li><%= link_to "HOME", root_path %></li>
@@ -46,7 +49,8 @@
 				<%= yield  %>
 			</div>
 			<div id="footer">
-				<%= link_to 'Ruby on Rails Development', 'http://www.philipecasarotte.com', :target => '_blank' %> by Philipe Casarotte
+				Design and <%= link_to 'Ruby on Rails Development', 'http://www.philipecasarotte.com', :target => '_blank' %> by Philipe Casarotte<br/>
+				&copy; Todos os direitos reservados
 			</div>
 		</div>
 	</body>
