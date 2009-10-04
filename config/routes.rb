@@ -7,6 +7,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :pages, :collection=>{ :reorder=>:get, :order=>:post }
     admin.resources :users
     admin.resources :downloads, :collection=>{ :reorder=>:get, :order=>:post }
+    admin.resources :posts, :as => :blog do |post|
+       post.resources :comments, :as => :comentarios
+    end
     admin.root :controller => "pages"
   end
 
@@ -16,7 +19,10 @@ ActionController::Routing::Routes.draw do |map|
   map.faith_downloads "/downloads/evangelismo", :controller => "downloads", :action => "faith"
   map.resources :downloads
   map.resources :photo_galleries, :as => :fotos
-  map.resources :posts, :has_many => :comments, :as => :blog
+  map.resources :posts, :as => :blog do |post|
+     post.resources :comments, :as => :comentarios
+  end
+  map.resources :comments, :as => :comentarios
 
   map.not_found "/404", :controller => "pages", :action => "404"
   map.application_error "/500", :controller => "pages", :action => "500"

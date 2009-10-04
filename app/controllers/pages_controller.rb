@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   def index
     @page = Page.find_by_permalink("home")
     @pages = Page.main_pages
+    @posts = Post.all(:limit => 3)
     @metatag_object = @page
   end
 

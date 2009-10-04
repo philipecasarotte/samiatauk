@@ -1,0 +1,7 @@
+<% div_for comment do %>
+	<div <%= cycle("class='odd'", "") %>
+		<p><strong>Comentário de <%= link_to comment.name, comment.website, :target => "_blank" %> em <%= l(comment.created_at, :format => :short) %></strong></p>
+		<%= simple_format comment.comment %>
+		<%= link_to (image_tag("/images/bt/destroy.gif", :alt => "Apagar comentário", :title => "Apagar comentário")), comment_path(comment), :method => :delete, :confirm => "Você tem certeza?" if current_user %>
+	</div>
+<% end %>

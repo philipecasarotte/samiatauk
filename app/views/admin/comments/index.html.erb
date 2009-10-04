@@ -1,0 +1,30 @@
+<h1>Listando Comentários de <%= parent_object.name %></h1>
+
+<table id="table">
+	<thead>
+		<tr>
+      		<th>Nome</th>
+			<th>Email</th>
+      		<th>Website</th>
+			<th>Comentário</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.name %></td>
+		<td><%= comment.email %></td>
+        <td><%= comment.website %></td>
+		<td><%= simple_format comment.comment %></td>
+
+		<td><%= link_to t(:edit), edit_object_url(comment) %></td>
+        <td><%= link_to t(:destroy), object_url(comment), :confirm => t(:are_you_sure), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Novo Comentário", new_admin_post_comment_url(parent_object) %> | 
+<%= link_to t(:back), admin_posts_url %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>

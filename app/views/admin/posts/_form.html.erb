@@ -1,0 +1,13 @@
+<% f.inputs  do %>
+	<%= f.input :name %>
+	<p>
+	  <%= f.label :published_on, "Publicado em" %>
+	  <%= f.date_select :published_on %>
+	</p>
+	<li>
+	  <%= f.label :body, "Texto" %>
+	  <%= fckeditor_textarea "post", "body", :height => "400px" %>
+	</li>
+<% end -%>
+
+<%= render :partial => "/admin/meta_tags/form", :locals => { :f => f } %>

@@ -1,0 +1,28 @@
+<h1>Listando Posts</h1>
+
+<table id="table">
+	<thead>
+		<tr>
+      		<th>Nome</th>
+			<th>Texto</th>
+      		<th>Publicado em</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.name %></td>
+		<td><%= post.body.summary 100 %></td>
+        <td><%= l(post.published_on, :format => :long) %></td>
+
+        <td><%= link_to "Comentários(#{post.comments.size})", admin_post_comments_path(post) %></td>
+		<td><%= link_to t(:edit), edit_object_url(post) %></td>
+        <td><%= link_to t(:destroy), object_url(post), :confirm => t(:are_you_sure), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Novo Post", new_admin_post_url %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>

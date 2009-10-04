@@ -3,11 +3,21 @@
 	<%= @page.body.summary 300 %>
 </div>
 <div id="last_posts">
+	<%= link_to image_tag("rss.png", :alt => "RSS", :title => "RSS"), posts_path(:atom) %>
 	<h1>Blog</h1>
+	<p>Confira os últimos posts da Dra. Sâmia e participe com seus comentários.</p>
 	<ul>
-		<li>sss</li>
+	<% @posts.each do |post| %>
+		<li>
+			<% link_to post_path(post.permalink) do %>
+				<strong><%= post.name %></strong>
+				<%= post.body.summary 85 %>
+			<% end %>
+		</li>
+	<% end %>
 	</ul>
 </div>
 <div id="hot_box">
 	<h1>Fotos</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
 </div>

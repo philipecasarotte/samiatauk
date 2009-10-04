@@ -1,0 +1,19 @@
+<h1><%= @post.name %></h1>
+<small><%= l(@post.published_on, :format => :long) %></small>
+<%= @post.body %>
+<h2>Comentários</h2>
+<% remote_form_for [@post,  Comment.new] do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+	<%= f.label :website %>
+	<%= f.text_field :website %>
+	<%= f.label :comment, "Comentário" %>
+	<%= f.text_area :comment %>
+	<%= submit_tag "Enviar" %>
+<% end %>
+<div id="comments">
+	<%= render :partial => @post.comments %>
+</div>
+<%= render :partial => "rss" %>

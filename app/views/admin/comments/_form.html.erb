@@ -1,0 +1,9 @@
+<% f.inputs  do %>
+	<%= f.input :name %>
+	<%= f.input :email %>
+	<%= f.input :website %>
+	<li>
+	  <%= f.label :comment, "Comentário" %>
+	  <%= fckeditor_textarea "comment", "comment", :height => "400px" %>
+	</li>
+<% end -%>

@@ -1,0 +1,15 @@
+<h1><%= @page.name %></h1>
+<%= @page.body %>
+<ul>
+<% @posts.each do |post| %>	
+	<li>
+		<% link_to post_path(post.permalink) do %>
+			<h2><%= post.name %></h2>
+			<small><%= l(post.published_on, :format => :long) %></small>
+			<%= post.body.summary 485 %>
+			<%= "Comentários(#{post.comments.size})" %>
+		<% end %>
+	</li>
+<% end %>
+</ul>
+<%= render :partial => "rss" %>
