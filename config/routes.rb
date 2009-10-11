@@ -4,11 +4,14 @@ ActionController::Routing::Routes.draw do |map|
     admin.login "login", :controller => "user_sessions", :action => "new"
     admin.logout "logout", :controller => "user_sessions", :action => "destroy"
     admin.resource :user_session
-    admin.resources :pages, :collection=>{ :reorder=>:get, :order=>:post }
+    admin.resources :pages, :collection => { :reorder => :get, :order => :post }
     admin.resources :users
-    admin.resources :downloads, :collection=>{ :reorder=>:get, :order=>:post }
+    admin.resources :downloads, :collection => { :reorder => :get, :order => :post }
     admin.resources :posts, :as => :blog do |post|
-       post.resources :comments, :as => :comentarios
+      post.resources :comments, :as => :comentarios
+    end
+    admin.resources :photo_galleries, :as => :galerias, :collection => { :reorder => :get, :order => :post } do |photo_gallery|
+      photo_gallery.resources :images, :as => :fotos, :collection => { :reorder => :get, :order => :post }
     end
     admin.root :controller => "pages"
   end
@@ -20,7 +23,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :downloads
   map.resources :photo_galleries, :as => :fotos
   map.resources :posts, :as => :blog do |post|
-     post.resources :comments, :as => :comentarios
+    post.resources :comments, :as => :comentarios
+  end
+  map.by_date "/blog/arquivo/:year/:month", :controller => "posts", :action => "by_date"
+  map.resources :photo_galleries, :as => :galerias do |photo_gallery|
+    photo_gallery.resources :images, :as => :fotos
   end
   map.resources :comments, :as => :comentarios
 

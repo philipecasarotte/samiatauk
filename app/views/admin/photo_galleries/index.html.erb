@@ -1,0 +1,27 @@
+<h1>Listando Galerias</h1>
+
+<table id="table">
+	<thead>
+		<tr>
+      		<th>Nome</th>
+			<th>Descrição</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @photo_galleries.each do |photo_gallery| %>
+      <tr>
+        <td><%= photo_gallery.name %></td>
+		<td><%= photo_gallery.description.summary 100 %></td>
+
+        <td><%= link_to "Fotos(#{photo_gallery.images.size})", admin_photo_gallery_images_path(photo_gallery) %></td>
+		<td><%= link_to t(:edit), edit_object_url(photo_gallery) %></td>
+        <td><%= link_to t(:destroy), object_url(photo_gallery), :confirm => t(:are_you_sure), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Nova Galeria", new_admin_photo_gallery_url %> | 
+<%= link_to t(:reorder), reorder_admin_photo_galleries_url %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>

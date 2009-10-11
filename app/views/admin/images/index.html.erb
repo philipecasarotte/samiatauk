@@ -1,0 +1,27 @@
+<h1>Listando Fotos de <%= parent_object.name %></h1>
+
+<table id="table">
+	<thead>
+		<tr>
+      		<th>Image</th>
+      		<th>Nome</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @images.each do |image| %>
+      <tr>
+        <td><%= image_tag image.image.url(:thumb) %></td>
+        <td><%= image.name %></td>
+
+        <td><%= link_to "Edit", edit_object_url(image) %></td>
+        <td><%= link_to "Destroy", object_url(image), :confirm => t(:are_you_sure), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Nova Foto", new_object_url %> |
+<%= link_to t(:reorder), reorder_admin_photo_gallery_images_path(parent_object) %> |
+<%= link_to t(:back), admin_photo_galleries_path %>
+
+<%= render :partial => '/admin/scaffold/data_table' %>

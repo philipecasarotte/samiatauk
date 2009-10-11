@@ -1,6 +1,6 @@
 <div id="welcome">
 	<h1><%= @page.name %></h1>
-	<%= @page.body.summary 300 %>
+	<%= @page.body.summary 570 %>
 </div>
 <div id="last_posts">
 	<%= link_to image_tag("rss.png", :alt => "RSS", :title => "RSS"), posts_path(:atom) %>
@@ -18,6 +18,16 @@
 	</ul>
 </div>
 <div id="hot_box">
+	<div>
+		<%= link_to image_tag("unesp.gif", :alt => "UNESP - CRE Rio Claro", :title => "UNESP - CRE Rio Claro"), "http://www.rc.unesp.br/ib/cea", :target => "_blank" %>
+		<%= link_to image_tag("skype.gif", :alt => "Call me on Skype", :title => "Call me on Skype"), "skype:samiatauk?call" %>
+		<p><strong><%= link_to "plataforma lattes", "http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4787552A8", :target => "_blank" %></strong></p>
+	</div>
 	<h1>Fotos</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+	<p><%= @images[0].photo_gallery.description.summary 180 rescue "" %></p>
+	<ul>
+	<% @images.each do |image| %>	
+		<li><%= link_to image_tag(image.image.url(:thumb), :alt => image.name, :title => image.name), photo_gallery_path(image.photo_gallery.permalink) %></li>
+	<% end %>
+	</ul>
 </div>

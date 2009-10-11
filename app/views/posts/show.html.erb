@@ -1,19 +1,25 @@
-<h1><%= @post.name %></h1>
-<small><%= l(@post.published_on, :format => :long) %></small>
-<%= @post.body %>
-<h2>Comentários</h2>
-<% remote_form_for [@post,  Comment.new] do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<%= f.label :website %>
-	<%= f.text_field :website %>
-	<%= f.label :comment, "Comentário" %>
-	<%= f.text_area :comment %>
-	<%= submit_tag "Enviar" %>
-<% end %>
+<%= link_to image_tag("rss.png", :alt => "RSS", :title => "RSS", :id => "feed_rss"), posts_path(:atom) %>
+<div id="posts" class="content_cms">
+	<h1><%= @post.name %></h1>
+	<small><%= l(@post.published_on, :format => :long) %><%= link_to t(:back), posts_path %></small>
+	<%= @post.body %>
+	<small><%= l(@post.published_on, :format => :long) %><%= link_to "Topo", "#" %></small>
+</div>
+<h2 class="title_with_line">Comentários</h2>
 <div id="comments">
 	<%= render :partial => @post.comments %>
 </div>
+<h2 class="title_with_line">Deixe seu Comentário</h2>
+<% remote_form_for [@post, Comment.new], :html => {:class => "validate", :id => "comment_form"} do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, :class => "required" %>
+	<%= f.label :email, "Email (não será divulgado)" %>
+	<%= f.text_field :email, :class => "required email" %>
+	<%= f.label :website %>
+	<%= f.text_field :website %>
+	<%= f.label :comment, "Comentário" %>
+	<%= f.text_area :comment, :class => "required" %>
+	<%= submit_tag "Enviar", :class => "submit" %>
+<% end %>
 <%= render :partial => "rss" %>
+<%= javascript "plugins/metadata", "plugins/validate", "plugins/validate_pt-BR.js" %>

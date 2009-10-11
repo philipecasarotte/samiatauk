@@ -1,0 +1,9 @@
+<% f.inputs  do %>
+	<%= f.input :name %>
+	<li>
+	  <%= f.label :description, "Descrição" %>
+	  <%= fckeditor_textarea "photo_gallery", "description", :height => "400px" %>
+	</li>
+<% end -%>
+
+<%= render :partial => "/admin/meta_tags/form", :locals => { :f => f } %>

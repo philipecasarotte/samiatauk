@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @page = Page.find_by_permalink("blog")
     @posts = Post.all(:include => :comments)
-    @metatag_object = @page
+    get_page
     
     respond_to do |format|
       format.html 
@@ -10,6 +9,11 @@ class PostsController < ApplicationController
       format.json { render :xml => @posts }
       format.atom
     end
+  end
+  
+  def by_date
+    @posts = Post.all(:conditions => "MONTH(published_on) = #{params[:month]} AND YEAR(published_on) = #{params[:year]}")
+    get_page
   end
   
   def show
@@ -20,5 +24,11 @@ class PostsController < ApplicationController
       format.html 
       format.xml  { render :xml => @post }
     end
+  end
+  
+  def get_page
+    @posts_by_date = Post.by_date
+    @page = Page.find_by_permalink("blog")
+    @metatag_object = @page
   end
 end

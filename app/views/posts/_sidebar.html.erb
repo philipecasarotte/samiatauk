@@ -1,0 +1,7 @@
+<ul id="sidebar">
+	<li class="title"><h2>Arquivo</h2></li>
+<% @posts_by_date.each do |group| %>		
+	<li><%= link_to_unless_current l(group.published_on, :format => :month_and_year), "/blog/arquivo/#{group.published_on.strftime("%Y")}/#{group.published_on.strftime("%m")}" %></li>
+<% end %>
+	<li><%= link_to_unless_current "Ver Todos", posts_path %></li>
+</ul>

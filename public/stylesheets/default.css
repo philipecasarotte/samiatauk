@@ -9,6 +9,13 @@ a {color:#333;text-decoration:none;}
 h1,h2,h3,h4,h5,h6 {font-family:"Georgia", "Times New Roman", serif;text-transform:uppercase;}
 h1 {font-size:24px;margin-bottom:10px;}
 
+label {display:block;font-weight:bold;}
+label.error {color:red;margin:-15px 0 5px 0;padding:5px 10px;border-top:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;background-color:#FFEDF4;text-align:center;}
+input, textarea {margin:5px 0 20px 0 ;width:300px;color:#FF0245;background-color:#EAEAEA;border:none;font-family:"Georgia", "Times New Roman", serif;font-size:16px;font-weight:bold;}
+input {height:30px;}
+textarea {height:150px;}
+input.submit {height:auto;width:auto;margin:0;padding:0;background:none;cursor:pointer;float:right;}
+
 #main {margin:0 auto;width:920px;}
 
 /*Top*/
@@ -41,11 +48,62 @@ h1 {font-size:24px;margin-bottom:10px;}
 
 #hot_box {float:left;width:560px;height:160px;margin-top:20px;background:url(../images/bg/hot_box.png);border:1px solid #DCDCDC;padding:20px;}
 #hot_box h1 {color:#FF0245;}
+#content #hot_box ul {margin:5px 0;}
+#hot_box li {display:inline;list-style:none;margin-right:10px;}
+#hot_box li a img {border:solid 3px #DCDCDC;}
+#hot_box li a:hover img {border-color:#FF0245;}
+#hot_box div {float:right;width:140px;height:160px;padding-left:20px;text-align:center;margin-left:20px;border-left:solid 1px #DCDCDC;}
+#hot_box div img {border-bottom:solid 1px #DCDCDC;padding:5px 0;}
+#hot_box div p {padding-top:10px;}
 
 /*Content*/
+.content_cms p {margin-bottom:14px;}
+
 #content {float:left;width:599px;border-left:1px solid #DCDCDC;padding:20px 0 0 20px;}
 #content ul,
 #content ol {margin-left:40px;}
+
+#contact {float:right;width:300px;margin-left:20px;padding-left:20px;border-left:solid 1px #DCDCDC;}
+
+/*Blog*/
+#content ul#posts {margin:0;width:370px;float:left;}
+#posts li {margin-bottom:20px;list-style:none;}
+#posts small {margin:10px 0;font-size:12px;font-style:italic;display:block;padding:5px 10px;border-top:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;background-color:#FFEDF4;}
+#posts small img {margin:2px 0 0 5px;}
+#posts small a {float:right;font-style:normal;font-weight:bold;font-size:14px;color:#FF0245;}
+#posts li a:hover {color:#FF0245;}
+#feed_rss {float:right;}
+h2.title_with_line {border-bottom:solid 1px #DCDCDC;padding-bottom:10px;margin:20px 0;}
+
+#comments {float:left;margin-bottom:20px;}
+.comment {position:relative;padding:20px;float:left;width:560px;}
+.comment p {margin-bottom:14px;}
+.comment.odd {background-color:#EAEAEA;}
+.comment img {position:absolute;top:20px;right:20px;}
+.comment small {float:right;color:#FF0245;}
+
+#comment_form input,
+#comment_form textarea {width:600px;}
+#comment_form input.submit {width:auto;}
+
+#content #sidebar {padding:20px;border:1px solid #DCDCDC;background:url(../images/bg/hot_box.png);float:right;width:149px;margin:0;padding-left:20px;margin-left:20px;}
+#sidebar li {border-top:solid 1px #DCDCDC;padding:5px 0;list-style:none;font-weight:bold;color:#FF0245;}
+#sidebar li.title {list-style:none;padding:0;border:none;margin-bottom:20px;}
+#sidebar li.title h2 {color:#FF0245;}
+#sidebar li a {display:block;color:#333;}
+#sidebar li:hover a {color:#FF0245;}
+
+/*Photo Gallery*/
+#drop_down {cursor:pointer;width:220px;height:28px;padding:5px 10px;position:absolute;z-index:999;right:20px;top:10px;background-color:#FF0245;font-size:14px;}
+#drop_down ul {display:none;background-color:#FC81D6;width:240px;left:0;position:absolute;padding:5px 0;}
+#drop_down ul li {list-style:none;}
+#drop_down ul li a {color:white;display:block;padding:3px 10px;}
+#drop_down ul li a:hover {background-color:white;color:#F852B9;text-decoration:none;}
+
+#content #images {margin:20px 0;}
+#images li {display:inline;}
+#images li a img {border:solid 3px #DCDCDC;}
+#images li a:hover img {border-color:#FF0245;}
 
 /*Footer*/
 #footer {color:#666;float:right;width:600px;background-color:#EAEAEA;text-align:center;margin-top:20px;padding:15px 0;font-size:10px;}

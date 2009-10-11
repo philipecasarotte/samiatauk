@@ -1,0 +1,11 @@
+<ul id="posts">
+<% @posts.each do |post| %>	
+	<li>
+		<% link_to post_path(post.permalink) do %>
+			<h2><%= post.name %></h2>
+			<small><%= l(post.published_on, :format => :long) %> | <%= image_tag "icon/comments.png", :alt => "Comentários", :title => "Comentários" %> <%= "Comentários(#{post.comments.size})" %></small>
+			<%= post.body.summary 310 %>
+		<% end %>
+	</li>
+<% end %>
+</ul>

@@ -1,10 +1,7 @@
 <h1><%= @page.name %></h1>
-
-<%= @page.body %>
-
-<% form_for('contact', :html => {:class => "validate"}) do |f| %>
+<% form_for("contact", :html => {:class => "validate", :id => "contact"}) do |f| %>
 	<p>
-		<%= f.label(:name) %>
+		<%= f.label(:name, "Nome") %>
 		<%= f.text_field :name, :class => "required" %>
 	</p>
 	<p>
@@ -13,16 +10,13 @@
 	</p>
 	
 	<p>
-		<%= f.label(:message) %>
+		<%= f.label(:message, "Mensagem") %>
 		<%= f.text_area :message, :class => "required" %>
 	</p>
-	
-	<% [:error, :notice].each do |message| %>
-		<% content_tag :div, :class => message do %>
-			<%= flash[message] %>
-		<% end if flash[message] %>
-	<% end %>
 
-	<%= submit_tag("Submit") %>
+	<%= submit_tag("Enviar", :class => "submit") %>
 <% end %>
-<%= javascript "plugins/metadata", "plugins/validate" %>
+<div class="content_cms">
+	<%= @page.body %>
+</div>
+<%= javascript "plugins/metadata", "plugins/validate", "plugins/validate_pt-BR.js" %>

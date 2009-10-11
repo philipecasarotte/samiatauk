@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @page = Page.find_by_permalink("home")
     @pages = Page.main_pages
     @posts = Post.all(:limit => 3)
+    @images = Image.all(:limit => 4, :include => :photo_gallery)
     @metatag_object = @page
   end
 
@@ -13,7 +14,7 @@ class PagesController < ApplicationController
     @page = Page.find_by_permalink('contato')
     if request.post?
       Mailer.deliver_contact(params[:contact])
-      flash[:notice] = "Your message was sent."
+      flash[:notice] = "Sua mensagem foi enviada."
     end
     @metatag_object = @page
   end

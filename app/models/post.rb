@@ -8,5 +8,7 @@ class Post < ActiveRecord::Base
 
   acts_as_seo
   
+  named_scope :by_date, :group => "MONTH(published_on), YEAR(published_on)"
+  
   default_scope :order => "published_on DESC"
 end
