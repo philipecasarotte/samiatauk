@@ -1,6 +1,8 @@
 <h1>Fotos</h1>
-<h3><%= @photo_gallery.name %></h3>
+<h3 class="gallery">Album: <%= @photo_gallery.name %></h3>
+<%= @photo_gallery.description %>
 <div id="drop_down">
+	veja outras galerias
 	<ul>
 	<% @photo_galleries.each do |photo_gallery| %>	
 		<li><%= link_to photo_gallery.name, photo_gallery_path(photo_gallery.permalink) %></li>
@@ -9,7 +11,8 @@
 </div>
 <ul id="images">
 <% @photo_gallery.images.each do |image| %>	
-	<li><%= link_to image_tag(image.image.url(:thumb), :alt => image.name, :title => image.name), photo_gallery_image_path(@photo_gallery.permalink, image.id) %></li>
+	<li><%= link_to image_tag(image.image.url(:thumb), :alt => image.name, :title => image.name), image.image.url(:big), :title => image.name %></li>
 <% end %>
 </ul>
-<%= javascript_include_tag "plugins/hoverIntent", "photo_galleries/default"%>
+<%= javascript_include_tag "plugins/lightbox", "plugins/hoverIntent", "photo_galleries/default"%>
+<%= stylesheet_link_tag "plugins/lightbox" %>

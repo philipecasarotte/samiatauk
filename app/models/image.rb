@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   validates_presence_of :name
   
   has_attached_file :image,
-                    :styles => { :big => '640x480>',:thumb => '74x74#' },
+                    :styles => { :big => '600x440>',:thumb => '74x74#' },
                     :path => PAPERCLIP_PATH,
                     :url => PAPERCLIP_URL,
                     :default_url => ""

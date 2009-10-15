@@ -1,9 +1,9 @@
 production:
   adapter: mysql
   encoding: utf8
-  database: <%= application %>_production
-  username: <%= application %>_site
-  password: password
+  database: samiatauk_production
+  username: root
+  password: yoshua77
   host: localhost
 
 development:

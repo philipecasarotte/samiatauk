@@ -5,10 +5,12 @@
 	<%= @post.body %>
 	<small><%= l(@post.published_on, :format => :long) %><%= link_to "Topo", "#" %></small>
 </div>
+<% if @post.comments.size > 0 %>
 <h2 class="title_with_line">Comentários</h2>
 <div id="comments">
 	<%= render :partial => @post.comments %>
 </div>
+<% end %>
 <h2 class="title_with_line">Deixe seu Comentário</h2>
 <% remote_form_for [@post, Comment.new], :html => {:class => "validate", :id => "comment_form"} do |f| %>
 	<%= f.label :name %>

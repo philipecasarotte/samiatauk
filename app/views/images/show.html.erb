@@ -1,0 +1,4 @@
+<h1>Fotos</h1>
+<h3><%= @image.photo_gallery.name %></h3>
+<%= image_tag @image.image.url(:big), :alt => @image.name, :class => "detail_#{@image.id}" %>
+<h4><%= @image.name %></h4>
