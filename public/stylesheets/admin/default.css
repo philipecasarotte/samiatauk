@@ -1,14 +1,16 @@
 *     {margin:0;padding:0;}
-body  {background: #FFF url('/images/admin/background.jpg') repeat-x; color:#fff; font:12px Verdana, Arial, Tahoma, sans-serif;}
+html {height:100%;}
+
+body  {background:#FF0245 url('/images/admin/background.png') repeat-x; color:#333; font:12px Verdana, Arial, Tahoma, sans-serif;}
 
 .clear  {clear:both;}
 
-a       {color:#FF0000;text-decoration:none;font-weight:bold;}
+a       {color:#FF0245;text-decoration:none;font-weight:bold;}
 a:hover {color:#000;}
 a img   {border:none;}
 
 h1,h2,
-h3,h4   {color:#FF0000;}
+h3,h4   {color:#FF0245;}
 
 h1 {font-size:18px; margin: 20px.1em 0;}
 h2 {font-size:16px; margin: 0.3em 0; padding-top: 0.8em;}
@@ -28,23 +30,23 @@ dt              {font-weight: bold;padding-left: 4px;vertical-align: top;}
 dd              {margin-left: 10em;margin-top: -2em;vertical-align: top;}
 
 /* INFO */
-#info           {float:right; margin:20px 20px 50px 0;color:#FFCC00;text-align:right;}
-#info a         {color:#FFCC00;text-decoration:none;}
+#info           {float:right; margin:20px 20px 50px 0;color:#333;text-align:right;}
+#info a         {color:white;text-decoration:none;}
 #info a:hover   {text-decoration:underline;}
 
 /* MENU */
-#menu           {margin-top:10px;}
+#menu           {margin-top:0}
 #menu li        {float:left; list-style-type:none; margin:0 2px; z-index:100; position:relative;}
-#menu a         {color:#FFCC00; display:block; width:auto; background:#000; border:solid 1px #666; border-width: 0 1px 1px 1px; padding:5px 10px; }
+#menu a         {color:#FFCC00; display:block; width:auto; background:#FFEDF4; border:solid 1px white; border-width: 1px 1px 1px 1px; padding:5px 10px; }
 #menu a:hover   {color:#FFF;}
 
 /* FOOTER */
-#footer         {clear: both; padding: 6px 20px; font-size:80%; text-align:right; color:#000;}
-#footer a       {color:#000;}
+#footer         {clear: both; padding: 6px 20px; font-size:80%; text-align:right; color:white;}
+#footer a       {color:white;}
 #footer a:hover {text-decoration:underline;}
 
 /* CONTENT */
-#content        {background:#fff;color:#333;padding: 10px 20px 40px 20px;height:auto !important;height:300px;min-height:300px; clear:both;}
+#content        {background:#fff;color:#333;padding: 10px 20px 40px 20px;height:auto !important;height:300px;min-height:300px; clear:both;border-top:solid 1px #333;}
 #order li       {list-style:none; background-color:#f4f4f4; margin:5px 0; padding:5px; cursor:move;width:300px;}
 
 /* MESSAGES */

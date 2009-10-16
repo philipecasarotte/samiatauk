@@ -1,5 +1,7 @@
-<h1><%= @download.name %><small><%= @download.subject %></small></h1>
+<h1><%= @download.name %></h1>
+<small class="file_info"><%= @download.file_file_name %> | <%= @download.file_file_size / 1000 if @download.file_file_size %>Kb<%= link_to t(:back), :back %></small>
 <div class="content_cms">
 	<%= @download.description %>
-	<p><%= link_to "Download", @download.file.url %></p>
-</div>s
+</div>
+<small class="file_info small"><%= @download.file_file_name %> | <%= @download.file_file_size / 1000 if @download.file_file_size %>Kb</small>
+<%= link_to image_tag("bt/download.png", :title => "Download #{@download.file_file_name}", :alt => "Download #{@download.file_file_name}", :id => "download"), @download.file.url %>

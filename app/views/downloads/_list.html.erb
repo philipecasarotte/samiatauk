@@ -5,9 +5,11 @@
 <ul id="file_list">
 <% @downloads.each do |download| %>	
 	<li>
-		<h2><%= link_to download.name, download_path(download.permalink) %></h2>
-		<%= simple_format(download.description.summary(200)) %>
-		<%= link_to "Download", download.file.url %>
+		<% link_to download_path(download.permalink) do %>
+			<h2><%= download.name %></h2>
+			<small><%= download.file_file_name %> | <%= download.file_file_size / 1000 if download.file_file_size %>Kb</small>
+			<%= simple_format(download.description.summary(400)) %>
+		<% end %>
 	</li>
 <% end %>
 </ul>

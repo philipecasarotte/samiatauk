@@ -31,14 +31,14 @@
 				<small>Professora Títular</small>
 			</div>
 			<ul id="menu">
-				<li><%= link_to "HOME", root_path %></li>
-				<li><%= link_to "CIÊNCIA", science_downloads_path %></li>
-				<li><%= link_to "EVANGELISMO", faith_downloads_path %></li>
-				<li><%= link_to "FOTOS", photo_galleries_path %></li>
-				<li><%= link_to "BLOG", posts_path %></li>
+				<li <%= "class='current'" if current_page?(root_path) %>><%= link_to "HOME", root_path %></li>
+				<li <%= "class='current'" if current_page?(page_path("quem-sou")) %>><%= link_to "QUEM SOU", page_path("quem-sou") %></li>
+				<li <%= "class='current'" if params[:controller] == "posts" %>><%= link_to "BLOG", posts_path %></li>
+				<li <%= "class='current'" if params[:controller] == "photo_galleries" %>><%= link_to "FOTOS", photo_galleries_path %></li>				
+				<li <%= "class='current'" if params[:controller] == "downloads" and params[:action] == "science" %>><%= link_to "CIÊNCIA", science_downloads_path %></li>
+				<li <%= "class='current'" if params[:controller] == "downloads" and params[:action] == "faith" %>><%= link_to "EVANGELISMO", faith_downloads_path %></li>
 				<li><%= link_to "CURRICULUM", "http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4787552A8", :target => "_blank" %></li>
-				<li><%= link_to "QUEM SOU", page_path("quem-sou") %></li>
-				<li><%= link_to "CONTATO", page_path("contato") %></li>
+				<li <%= "class='current'" if current_page?(page_path("contato")) %>><%= link_to "CONTATO", page_path("contato") %></li>
 			</ul>
 			<div id="content">
 				<% [:error, :notice].each do |message| %>

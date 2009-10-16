@@ -9,7 +9,7 @@
 #menu {font:14px "Gill Sans","Trebuchet MS",Arial, Verdana, Tahoma, sans-serif;}
 #menu li {display:inline;list-style-type:none; margin:0 2px;background:#000;}
 /*#menu li.selected, #menu li.selected a {background:white; color:#000;}*/
-#menu a {color:#FFCC00;padding:5px 10px;border:solid 1px #666;}
-#menu li a {border-width: 0 1px 1px 1px;background:#000;display:block;}
-#menu a:hover{color:#FFF;}
+#menu a {color:#333;padding:5px 10px;border:solid 1px #333;}
+#menu li a {border-width: 1px 1px 0 1px;background:#FFEDF4;display:block;}
+#menu a:hover{color:#FF0245;}
 #menu li ul li {*margin:-4px 0;}
