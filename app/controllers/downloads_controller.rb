@@ -1,5 +1,7 @@
 class DownloadsController < ApplicationController
   
+  after_filter {|c| c.cache_page}
+  
   def index
     redirect_to faith_downloads_path
   end

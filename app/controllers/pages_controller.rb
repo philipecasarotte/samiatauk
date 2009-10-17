@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  after_filter(:except => :contact) {|c| c.cache_page}
+  after_filter(:except => :contato) {|c| c.cache_page}
 
   def index
     @page = Page.find_by_permalink("home")

@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  
+  after_filter {|c| c.cache_page}
+  
   def index
     @posts = Post.all(:include => :comments)
     get_page

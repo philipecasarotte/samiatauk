@@ -1,4 +1,7 @@
 class PhotoGalleriesController < ApplicationController
+  
+  after_filter(:except => :index) {|c| c.cache_page}
+  
   def index
     @first_gallery = PhotoGallery.with_images.first
     if @first_gallery
