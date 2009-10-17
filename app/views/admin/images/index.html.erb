@@ -13,8 +13,8 @@
         <td><%= image_tag image.image.url(:thumb) %></td>
         <td><%= image.name %></td>
 
-        <td><%= link_to "Edit", edit_object_url(image) %></td>
-        <td><%= link_to "Destroy", object_url(image), :confirm => t(:are_you_sure), :method => :delete %></td>
+        <td><%= link_to t(:edit), edit_object_url(image) %></td>
+        <td><%= link_to t(:destroy), object_url(image), :confirm => t(:are_you_sure), :method => :delete %></td>
       </tr>
     <% end %>
   </tbody>

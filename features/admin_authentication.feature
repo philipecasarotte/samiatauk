@@ -7,19 +7,19 @@ Feature: Authentication
       Given no user exists with a login of "someuser"
       When I go to the login page
       And I sign in as "someuser/password"
-      Then I should see "login is not valid"
+      Then I should see "Login não é válido"
 
    Scenario: User enters wrong password
       Given I signed up with "someuser/password"
       When I go to the login page
       And I sign in as "someuser/wrongpassword"
-      Then I should see "password is not valid"
+      Then I should see "Senha não é valida"
    
    Scenario: User signs in with valid login and password but without admin role
       Given I signed up with "someuser/secret"
       When I go to the login page
       And I sign in as "someuser/secret"
-      Then I should see "You don't have access here"
+      Then I should see "Você não tem acesso."
 
     Scenario: User signs in with valid login and password and admin role
        Given I am signed up with "someuser/secret" as "admin"

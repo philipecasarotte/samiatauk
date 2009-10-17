@@ -20,12 +20,22 @@ module NavigationHelpers
       admin_users_path
     when /the admin list of pages/
       admin_pages_path
+    when /the admin list of downloads/
+      admin_downloads_path
+    when /the admin list of posts/
+      admin_posts_path
+    when /the admin list of photo galleries/
+      admin_photo_galleries_path   
+    when /the admin list of images/
+      admin_photo_gallery_images_path(1)
+    when /the admin list of comments/
+      admin_post_comments_path(1)
     when /the Home page/
-      '/pages/home'
+      '/'
     when /the About Us page/
       '/pages/about-us'
     when /the Contact page/
-      '/pages/contact'
+      '/pages/contato'
 
     # Add more mappings here.
     # Here is a more fancy example:

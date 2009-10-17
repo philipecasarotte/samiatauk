@@ -15,22 +15,22 @@ Feature: Manage pages
     Then I should see "About Us"
     And I should see "Contact"
 
-  Scenario: Create valid page
+  Scenario: Criar valid page
     Given I have no pages
     And I am on the admin list of pages
-    When I follow "New Page"
-    And I fill in "Name" with "About Us"
-    And I press "Create"
-    Then I should see "Successfully created!"
+    When I follow "Nova Página"
+    And I fill in "Nome" with "About Us"
+    And I press "Criar"
+    Then I should see "Criado com sucesso!"
     And I should see "About Us"
     And I should have 1 page
 
-  Scenario: Create invalid page
+  Scenario: Criar invalid page
     Given I have no pages
     And I am on the admin list of pages
-    When I follow "New Page"
-    And I press "Create"
-    Then I should see "Name can't be blank"
+    When I follow "Nova Página"
+    And I press "Criar"
+    Then I should see "Nome não pode ser vazio"
     And I should have 0 pages
 
   Scenario: Edit a Page
@@ -40,9 +40,9 @@ Feature: Manage pages
       | Contact  | Contact page  |
     And I am on the admin list of pages
     When I follow "Edit"
-    And I fill in "Name" with "Get in touch with us"
-    And I press "Update"
-    Then I should see "Successfully updated!"
+    And I fill in "Nome" with "Get in touch with us"
+    And I press "Atualizar"
+    Then I should see "Atualizado com sucesso!"
     And I should see "Get in touch with us"
 
   Scenario: Reorder Pages
@@ -51,7 +51,7 @@ Feature: Manage pages
       | About Us | About Us page | 0        |
       | Contact  | Contact page  | 1        |
     And I go to the admin list of pages
-    When I follow "Reorder"
+    When I follow "Reordenar"
     Then I should see "About Us"
     And I should see "Contact"
   

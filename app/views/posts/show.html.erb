@@ -5,14 +5,16 @@
 	<%= @post.body %>
 	<small><%= l(@post.published_on, :format => :long) %><%= link_to "Topo", "#" %></small>
 </div>
-<% if @post.comments.size > 0 %>
+<% if @post.comments.size == 0 %>
+<h2 class="title_with_line" id="changetitle">Nenhum Comentário ainda</h2>
+<% else %>
 <h2 class="title_with_line">Comentários</h2>
+<% end %>
 <div id="comments">
 	<%= render :partial => @post.comments %>
 </div>
-<% end %>
 <h2 class="title_with_line">Deixe seu Comentário</h2>
-<% remote_form_for [@post, Comment.new], :html => {:class => "validate", :id => "comment_form"} do |f| %>
+<% remote_form_for [@post, Comment.new], :success => "$('#changetitle').html('Comentários');$('#comment_name, #comment_email, #comment_comment, #comment_website').val('')", :html => {:class => "validate", :id => "comment_form"} do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name, :class => "required" %>
 	<%= f.label :email, "Email (não será divulgado)" %>

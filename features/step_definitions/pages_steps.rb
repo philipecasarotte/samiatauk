@@ -7,5 +7,5 @@ Then /^I should have ([0-9+]) pages?$/ do |count|
 end
 
 Then /^I should see a contact form$/ do
-  assert_have_selector 'form', {:action => page_path('contact')}
+  assert_have_selector 'form', {:action => page_path('contato')}
 end

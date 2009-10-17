@@ -8,7 +8,7 @@ Feature: Frontend pages
       | name     | body          |
       | About Us | About Us page |
       | Home     | Home Page     |
-      | Contact  | Contact page  |
+      | Contato  | Contact page  |
       
   Scenario: Visit one page
     When I go to the Home page
@@ -20,5 +20,5 @@ Feature: Frontend pages
     
   Scenario: Visit a page with a form
     When I go to the Contact page
-    Then I should see "Contact"
+    Then I should see "Contato"
     And I should see a contact form

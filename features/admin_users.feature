@@ -37,38 +37,38 @@ Feature: Manage users
     And I should see "admin"
     And I should see "admin@example.com"
 
-  Scenario: Create Valid User
+  Scenario: Criar Valid User
     Given I have no users except for admin
     And the following role records
       | name  |
       | admin |
     And I am on the admin list of users
-    When I follow "New User"
+    When I follow "Novo Usuário"
     And I fill in "Login" with "bob"
-    And I fill in "Name" with "Bob"
-    And I fill in "Password" with "secret"
-    And I fill in "Password Confirmation" with "secret"
+    And I fill in "Nome" with "Bob"
+    And I fill in "Senha" with "secret"
+    And I fill in "Confirmação de senha" with "secret"
     And I fill in "Email" with "bob@example.com"
     And I check the role "Admin"
-    And I press "Create"
-    Then I should see "Successfully created!"
+    And I press "Criar"
+    Then I should see "Criado com sucesso!"
     And I should see "bob"
     And I should have 2 users
 
-  Scenario: Create Invalid User
+  Scenario: Criar Invalid User
     Given I have no users except for admin
     And the following role records
       | name  |
       | admin |
     And I am on the admin list of users
-    When I follow "New User"
-    And I fill in "Name" with "Bob"
-    And I fill in "Password" with "secret"
-    And I fill in "Password Confirmation" with "secret"
+    When I follow "Novo Usuário"
+    And I fill in "Nome" with "Bob"
+    And I fill in "Senha" with "secret"
+    And I fill in "Confirmação de senha" with "secret"
     And I fill in "Email" with "bob@example.com"
     And I check the role "Admin"
-    And I press "Create"
-    Then I should see "Login is too short"
+    And I press "Criar"
+    Then I should see "Login é muito curto"
     And I should not see "bob"
     And I should have 1 user
 
@@ -79,7 +79,7 @@ Feature: Manage users
       | admin | admin@example.com | secret   | secret                |
     And I am on the admin list of users
     When I follow "Edit"
-    And I fill in "Name" with "Bob Martin"
-    And I press "Update"
-    Then I should see "Successfully updated!"
+    And I fill in "Nome" with "Bob Martin"
+    And I press "Atualizar"
+    Then I should see "Atualizado com sucesso!"
     And I should see "Bob Martin"
