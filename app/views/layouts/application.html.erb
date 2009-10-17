@@ -37,7 +37,7 @@
 				<li <%= "class='current'" if params[:controller] == "photo_galleries" %>><%= link_to "FOTOS", photo_galleries_path %></li>				
 				<li <%= "class='current'" if params[:controller] == "downloads" and params[:action] == "science" %>><%= link_to "CIÊNCIA", science_downloads_path %></li>
 				<li <%= "class='current'" if params[:controller] == "downloads" and params[:action] == "faith" %>><%= link_to "EVANGELISMO", faith_downloads_path %></li>
-				<li><%= link_to "CURRICULUM", "http://buscatextual.cnpq.br/buscatextual/visualizacv.jsp?id=K4787552A8", :target => "_blank" %></li>
+				<li <%= "class='current'" if current_page?(page_path("curriculum")) %>><%= link_to "CURRICULUM", page_path("curriculum") %></li>
 				<li <%= "class='current'" if current_page?(page_path("contato")) %>><%= link_to "CONTATO", page_path("contato") %></li>
 			</ul>
 			<div id="content">

@@ -46,8 +46,16 @@ quem_sou:
   parent:
   is_protected: 1
 
-contato:
+curriculum:
   id: 7    
+  name: "Curriculum"
+  body: "Em breve"
+  permalink: "curriculum"
+  parent:
+  is_protected: 1
+
+contato:
+  id: 8    
   name: "Contato"
   body: "Em breve"
   permalink: "contato"
@@ -55,7 +63,7 @@ contato:
   is_protected: 1
 
 pagina_nao_encontrada:
-  id: 8    
+  id: 9    
   name: "Página Não Encontrada"
   body: "Em breve"
   permalink: "404"
@@ -63,7 +71,7 @@ pagina_nao_encontrada:
   is_protected: 1
 
 erro_inesperado:
-  id: 9
+  id: 10
   name: "Erro Inesperado"
   body: "Em breve"
   permalink: "500"
@@ -71,7 +79,7 @@ erro_inesperado:
   is_protected: 1
 
 nao_processavel:
-  id: 10    
+  id: 11    
   name: "Não processável"
   body: "Em breve"
   permalink: "422"

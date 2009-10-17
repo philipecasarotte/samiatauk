@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.login "login", :controller => "user_sessions", :action => "new"
     admin.logout "logout", :controller => "user_sessions", :action => "destroy"
     admin.resource :user_session
-    admin.resources :pages, :collection => { :reorder => :get, :order => :post }
+    admin.resources :pages, :as => :paginas, :collection => { :reorder => :get, :order => :post }
     admin.resources :users
     admin.resources :downloads, :collection => { :reorder => :get, :order => :post }
     admin.resources :posts, :as => :blog do |post|
@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => "pages"
   end
 
-  map.pages "/pages/:action", :controller => "pages"
-  map.resources :pages
+  map.pages "/paginas/:action", :controller => "pages"
+  map.resources :pages, :as => :paginas
   map.science_downloads "/downloads/ciencia", :controller => "downloads", :action => "science"
   map.faith_downloads "/downloads/evangelismo", :controller => "downloads", :action => "faith"
   map.resources :downloads

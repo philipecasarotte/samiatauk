@@ -33,9 +33,9 @@ module NavigationHelpers
     when /the Home page/
       '/'
     when /the About Us page/
-      '/pages/about-us'
+      '/paginas/about-us'
     when /the Contact page/
-      '/pages/contato'
+      '/paginas/contato'
 
     # Add more mappings here.
     # Here is a more fancy example:
