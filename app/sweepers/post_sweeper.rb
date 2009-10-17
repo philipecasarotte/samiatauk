@@ -5,7 +5,7 @@ class PostSweeper < ApplicationSweeper
   def after_clear_cache(model)
     if model.class.name == "Comment"
       index_path = posts_path
-      path = post_path(model.post)
+      path = post_path(model.post.permalink)
       expire_page(path) if path
       expire_page(index_path) if index_path
     else

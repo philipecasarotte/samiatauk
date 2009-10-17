@@ -6,7 +6,7 @@ class PhotoGallerySweeper < ApplicationSweeper
     expire_page('/index')
     if model.class.name == "Image"
       index_path = photo_galleries_path
-      path = photo_gallery_path(model.photo_gallery)
+      path = photo_gallery_path(model.photo_gallery.permalink)
       expire_page(path) if path
       expire_page(index_path) if index_path
     else
