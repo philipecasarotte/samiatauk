@@ -29,6 +29,20 @@ class PagesController < ApplicationController
     rescue ActionView::MissingTemplate
       render 'show'
   end
+  
+  def sitemap
+    @pages = Page.all
+    @posts = Post.all
+    @downloads = Download.all
+    @photo_galleries = PhotoGallery.with_images
+    
+    respond_to do |format|
+      format.html 
+      format.xml  { render :xml }
+      format.json { render :xml }
+      format.atom
+    end
+  end
 
 end
 

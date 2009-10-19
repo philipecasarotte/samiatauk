@@ -15,7 +15,8 @@ ActionController::Routing::Routes.draw do |map|
     end
     admin.root :controller => "pages"
   end
-
+  
+  map.sitemap "/sitemap.xml", :controller => "pages", :action => "sitemap", :format => "xml"
   map.pages "/paginas/:action", :controller => "pages"
   map.resources :pages, :as => :paginas
   map.science_downloads "/downloads/ciencia", :controller => "downloads", :action => "science"

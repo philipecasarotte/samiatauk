@@ -13,7 +13,7 @@ class Mailer < ActionMailer::Base
       :domain => SITE_DOMAIN,
       :authentication => :plain,
       :user_name => "samiatauk@gmail.com",
-      :password => "dev@1942!"
+      :password => "s9ewropk"
   }
   
   def contact(params)
