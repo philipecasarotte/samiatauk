@@ -27,7 +27,7 @@
 	<p><%= @images[0].photo_gallery.description.summary 180 rescue "" %></p>
 	<ul>
 	<% @images.each do |image| %>	
-		<li><%= link_to image_tag(image.image.url(:thumb), :alt => image.name, :title => image.name), photo_gallery_path(image.photo_gallery.permalink) %></li>
+		<li><%= link_to image_tag(image.image.url(:thumb), :alt => image.name, :title => image.name), photo_gallery_path(image.photo_gallery.permalink) rescue "" %></li>
 	<% end %>
 	</ul>
 </div>
