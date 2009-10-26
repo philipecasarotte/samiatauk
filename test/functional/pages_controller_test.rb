@@ -16,7 +16,7 @@ class PagesControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_assign_to(:pages) { Page.main_pages }
+      should_assign_to(:page) { Page.find_by_permalink("home") }
     end
 
     context "on GET to show" do
