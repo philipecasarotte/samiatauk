@@ -5,7 +5,8 @@ class PagesController < ApplicationController
   def index
     @page = Page.find_by_permalink("home")
     @posts = Post.all(:limit => 3)
-    @images = PhotoGallery.first.images(:limit => 4, :include => :photo_gallery) rescue ""
+    @photo_gallery = PhotoGallery.first
+    @images = Image.all(:limit => 4, :conditions => ["photo_gallery_id = ?", @photo_gallery.id]) rescue ""
     @metatag_object = @page
   end
 
