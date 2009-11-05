@@ -7,7 +7,8 @@ p, li {line-height:14px;}
 a {color:#333;text-decoration:none;}
 
 h1,h2,h3,h4,h5,h6 {font-family:"Georgia", "Times New Roman", serif;text-transform:uppercase;}
-h1 {font-size:24px;margin-bottom:10px;}
+h1 {font-size:24px;margin-bottom:10px;line-height:24px;}
+h2 {line-height:18px;font-size:18px;}
 
 label {display:block;font-weight:bold;}
 label.error {color:red;margin:-15px 0 5px 0;padding:5px 10px;border-top:1px solid #DCDCDC;border-bottom:1px solid #DCDCDC;background-color:#FFEDF4;text-align:center;}
