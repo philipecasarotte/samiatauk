@@ -1,4 +1,5 @@
 #crossbrowser {
+	font-family:"Trebuchet MS", Verdana, Arial, sans-serif;
 	background:#F5FAFF;
 	position:absolute;
 	width:100%;
@@ -78,3 +79,5 @@
 	background:url(/images/crossbrowser/browsers.gif) 0px -34px no-repeat;
 	text-indent:-9999px;
 }
+
+#main {display:none;}

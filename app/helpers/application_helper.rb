@@ -9,7 +9,11 @@ module ApplicationHelper
 	def javascript(*files)
 		content_for(:head) { javascript_include_tag(*files) }
 	end
-
+	
+  def w3c_date(date)
+     date.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+  end
+  
 	def stylesheet(*files)
 		content_for(:head) { stylesheet_link_tag(*files) }
 	end

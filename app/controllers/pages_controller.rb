@@ -37,10 +37,8 @@ class PagesController < ApplicationController
     @photo_galleries = PhotoGallery.with_images
     
     respond_to do |format|
-      format.html 
-      format.xml  { render :xml }
-      format.json { render :xml }
-      format.atom
+      format.html
+      format.xml
     end
   end
 
